@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:59:20 by florent           #+#    #+#             */
-/*   Updated: 2026/01/05 23:06:20 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/08 16:55:07 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,8 @@ void Phonebook::short_string(std::string string)
 {
     if (string.length() > 10)
     {
-        for (int i=0; i < 9; i++)
-            std::cout << string[i] << std::ends;
-        std::cout << "." << std::ends;
+        
+        std::cout << std::setw(9) << string << "." << std::ends;
     }
     else
     {
