@@ -19,11 +19,14 @@ all : $(NAME)
 
 $(NAME): $(OBJ_FILES) 
 	@$(CXX) $(CXXFLAGS) $(OBJ_FILES) -o $(NAME)
-
+	@echo "Fichier compiler"
+	
 clean :
 	@rm -f $(OBJ_FILES)
+	@echo "Fichier object supprime"
 
 fclean : clean	
 	@rm -f $(NAME)
+	@echo "Fichier executable supprime"
 
 re : fclean all

@@ -14,7 +14,8 @@ int main(int argc, char** argv)
     {
         tmp = argv[i];
         for (size_t  j = 0; j < tmp.size(); j++)
-            std::cout << (char)toupper(tmp[j]) << std::ends;
+            std::cout << (char)toupper(tmp[j]);
     }
+    std::cout << "\n" << std::ends;
     return (0);
 }
