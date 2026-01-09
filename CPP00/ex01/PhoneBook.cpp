@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 16:59:20 by florent           #+#    #+#             */
-/*   Updated: 2026/01/09 02:15:55 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/09 17:01:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ Phonebook::Phonebook(void)
 	std::cout << \
 		"Welcome to Crappy! Created an empty phonebook for up to 8 contacts" \
 		<< std::endl;
-        this->index = 0;
+        _index = 0;
         
     for (int i=0; i < 8; i++)
     {
-        this->contact[i].first_name = "";
-        this->contact[i].last_name = "";
-        this->contact[i].nickname = "";
-        this->contact[i].phone_number = "";   
-        this->contact[i].dark_secret = "";   
+        _contact[i].set_FirstName("");
+        _contact[i].set_LastName("");
+        _contact[i].set_NickName("");
+        _contact[i].set_PhoneNumber("");   
+        _contact[i].set_DarkSecret("");   
     }
 }
 
@@ -38,30 +38,48 @@ Phonebook::~Phonebook(void)
 
 void Phonebook::add()
 {
+    std::string tmp_fn;
+    std::string tmp_ln;
+    std::string tmp_nn;
+    std::string tmp_pn;
+    std::string tmp_ds;
+    
     /*Get input from user*/
     std::cout << "Vous voulez ajouter un contact\n" << std::endl;
-    this->contact[index].first_name = get_input_user("Fisrt Name");
-    this->contact[index].last_name = get_input_user("Last Name");
-    this->contact[index].nickname = get_input_user("Nickname");
-    this->contact[index].phone_number = get_input_user("Phone Number");
     
-    /*Check if there is only digit in phone number*/
-    if (!this->contact[index].ft_isdigit())
-    {
-        std::cout << "Error phone number\nContact not save\n" << std::endl;
-        return;
-    }
+    tmp_fn = get_input_user("Fisrt Name");
+    if (tmp_fn == "")
+        return (print_error("Error information\nContact not save\n"));
+        
+    tmp_ln = get_input_user("Last Name");
+    if (tmp_ln == "")
+        return (print_error("Error information\nContact not save\n"));
+        
+    tmp_nn = get_input_user("Nickname");
+    if (tmp_nn == "")
+        return (print_error("Error information\nContact not save\n"));
+        
+    tmp_pn = get_input_user("Phone Number");
+    if (tmp_pn == "")
+        return (print_error("Error information\nContact not save\n"));
+    if (!ft_isdigit(tmp_pn)) 
+        return (print_error("Error phone number\nContact not save\n"));
+        
+    tmp_ds = get_input_user("Dark Secret");
+    if (tmp_ds == "")
+        return (print_error("Error information\nContact not save\n"));
+        
+        
+    std::cout << "Information correct\nContact save\n" << std::endl;
     
-    this->contact[index].dark_secret = get_input_user("Dark Secret");
-
-    /*Check if there is an empty field in contact*/
-    if (this->contact[index].empty_Contact())
-    {
-        std::cout << "Error information\nContact not save\n" << std::endl;
-        return ;
-    }
-    this->index++;
-    this->index = this->index % 8;
+    _contact[_index].set_FirstName(tmp_fn);
+    _contact[_index].set_LastName(tmp_ln);
+    _contact[_index].set_NickName(tmp_nn);
+    _contact[_index].set_PhoneNumber(tmp_pn);
+    _contact[_index].set_DarkSecret(tmp_ds);
+    
+    this->_index++;
+    this->_index = this->_index % 8;
 }
 
 void Phonebook::search()
@@ -76,45 +94,48 @@ void Phonebook::search()
     std::cout << "|----------|----------|----------|----------|" << std::endl;
 
     int i = 0;
-    while (i < 8 && !this->contact[i].empty_Contact())
+    while (i < 8 && !_contact[i].empty_Contact())
     {
         std::cout << "|    " << i << std::ends;
         std::cout << "     |" << std::ends;
 
-        short_string(this->contact[i].first_name);
+        short_string(_contact[i].get_FirstName());
         std::cout << "|" << std::ends;
-        short_string(this->contact[i].last_name);
+        short_string(_contact[i].get_LastName());
         std::cout << "|" << std::ends;
-        short_string(this->contact[i].nickname);
+        short_string(_contact[i].get_NickName());
         std::cout << "|" << std::endl;
         i++;
             
     }
     /*Get input user*/
-    std::cout << "Entrer un index:" << std::endl;
+    std::cout << "\nEntrer un index:" << std::endl;
     std::getline(std::cin, input);
 
     /*Cast*/
     const char *cstr = input.c_str();
     index = std::atoi(cstr);
     
+    /*Check input*/
     if (index == 0 && input != "0")
         std::cout << "\nError input user: wrong input" << std::endl;  
     
+    /*Check index range*/
     else if (0 > index || index > 7)
         std::cout << "\nError input user: index out of range" << std::endl;
-        
-    else if (this->contact[index].empty_Contact())
+    
+    /*Check contact field*/
+    else if (_contact[index].empty_Contact())
         std::cout << "\nError input user: empty field" << std::endl;
         
     else
     {
-        std::cout << "\nVous avez selection l'index: " << index << std::endl;
-        std::cout << "First Name: " <<  this->contact[index].first_name << std::endl;
-        std::cout << "Last Name: " <<  this->contact[index].last_name << std::endl;
-        std::cout << "Nickname: " <<  this->contact[index].nickname << std::endl;
-        std::cout << "Phone Number: " <<  this->contact[index].phone_number << std::endl;
-        std::cout << "Dark Secret: " <<  this->contact[index].dark_secret << std::endl;
+        std::cout << "\nVous avez selectionne l'index: " << index << std::endl;
+        std::cout << "First Name: " << _contact[index].get_FirstName() << std::endl;
+        std::cout << "Last Name: " << _contact[index].get_LastName() << std::endl;
+        std::cout << "Nickname: " << _contact[index].get_NickName() << std::endl;
+        std::cout << "Phone Number: " << _contact[index].get_PhoneNumber() << std::endl;
+        std::cout << "Dark Secret: " << _contact[index].get_DarkSecret() << std::endl;
     }
     std::cout << "" << std::endl;
 }
@@ -125,7 +146,7 @@ std::string Phonebook::get_input_user(std::string ask)
     
     std::cout << "Enter a " << ask << " : ";
     std::getline(std::cin, input);
-    std::replace( input.begin(), input.end(), '\t', ' '); // replace all '\t' to ' '
+    std::replace(input.begin(), input.end(), '\t', ' '); // replace all '\t' to ' '
     
     if (std::cin.good())
         std::cout << "His " << ask << " is " << input << std::endl;
@@ -151,4 +172,19 @@ void Phonebook::short_string(std::string string)
             std::cout << " " << std::ends;
         std::cout << string << std::ends;
     }
+}
+
+int ft_isdigit(std::string phone_number)
+{
+    for (size_t i = 0; i < phone_number.length(); i++)
+    {
+        if (phone_number[i] < '0' || phone_number[i] > '9')
+            return (0);
+    }
+    return (1);
+}
+
+void print_error(std::string string)
+{
+    std::cout << string << std::endl;
 }

@@ -3,57 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 20:45:10 by florent           #+#    #+#             */
-/*   Updated: 2026/01/05 23:02:38 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/09 16:49:56 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 /*Constructeur*/
-Contact::Contact()
-{    
-}
-
-Contact::Contact(std::string first_name, std::string last_name,
-     std::string nickname, std::string phone_number, std::string dark_secret)
-{
-    this->first_name = first_name;
-    this->last_name = last_name;
-    this->nickname = nickname;
-    this->phone_number = phone_number;
-    this->dark_secret = dark_secret;
-}
+Contact::Contact() {}
 
 /*Destructeur*/
-Contact::~Contact(void)
-{
-}
+Contact::~Contact(void) {}
 
 int Contact::empty_Contact()
 {
-    if (this->first_name == "")
+    if (_first_name == "")
         return (1);
-    if (this->last_name == "")
+    if (_last_name == "")
         return (1);
-    if (this->nickname == "")
+    if (_nickname == "")
         return (1);
-    if (this->phone_number == "")
+    if (_phone_number == "")
         return (1);
-    if (this->dark_secret == "")
+    if (_dark_secret == "")
         return (1);
     return (0);
 }
 
-int Contact::ft_isdigit()
-{
-    for (size_t i = 0; i < this->phone_number.length(); i++)
-    {
-        if (this->phone_number[i] < '0' || this->phone_number[i] > '9')
-            return (0);
-    }
-    return (1);
-}
+/*Get*/
+std::string Contact::get_FirstName() {return (_first_name);}
+std::string Contact::get_LastName() {return (_last_name);}
+std::string Contact::get_NickName() {return (_nickname);}
+std::string Contact::get_PhoneNumber() {return (_phone_number);}
+std::string Contact::get_DarkSecret() {return (_dark_secret);}
 
+/*Set*/
+void Contact::set_FirstName(std::string string) {_first_name = string;}
+void Contact::set_LastName(std::string string) {_last_name = string;}
+void Contact::set_NickName(std::string string) {_nickname = string;}
+void Contact::set_PhoneNumber(std::string string) {_phone_number = string;}
+void Contact::set_DarkSecret(std::string string) {_dark_secret = string;}
