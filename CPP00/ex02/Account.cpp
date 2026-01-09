@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 21:12:40 by florent           #+#    #+#             */
-/*   Updated: 2026/01/08 16:47:12 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/09 13:49:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void Account::displayStatus(void) const
 void Account::_displayTimestamp(void)
 {
     // std::cout << "[19920104_091532] ";
-    
+
     time_t timestamp = time(NULL);
     struct tm * timeInfos = localtime(&timestamp);
     
@@ -151,8 +151,7 @@ void Account::_displayTimestamp(void)
     std::cout << std::setw(2) << std::setfill('0') << timeInfos->tm_hour;
     std::cout << std::setw(2) << std::setfill('0') << timeInfos->tm_min;
     std::cout << std::setw(2) << std::setfill('0') << timeInfos->tm_sec;
-    std::cout << "] ";
-    
+    std::cout << "] ";    
 }
 
 Account::Account (void)
