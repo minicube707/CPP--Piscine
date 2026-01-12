@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 16:17:35 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/11 17:02:10 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/12 14:13:01 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 
 class	Zombie
 {  
-    private:
-        std::string _name;
-        
+	private:
+		std::string _name;
+	
 	public:
-        /*Initialisation*/
-        Zombie(std::string name);
-        ~Zombie(); 
+		/*Initialisation*/
+		Zombie(std::string name);
+		~Zombie(); 
 
-        /*Function*/
-        void announce(void);
+		/*Function*/
+		void announce(void);
 };
 
 Zombie* newZombie( std::string name );
