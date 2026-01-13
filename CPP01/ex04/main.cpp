@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:08:56 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/12 18:39:47 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/13 18:05:52 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int main(int argc, char** argv)
     std::string line;
     std::string tmp;
     while (std::getline(f, line))
-        tmp.append(line + "\n");
+    {
+        if (!f.eof())
+            line.append("\n");
+        tmp.append(line);
+    }
     f.close();
 
     /*Replace*/
