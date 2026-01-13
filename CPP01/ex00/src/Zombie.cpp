@@ -6,13 +6,13 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 16:16:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/11 16:49:58 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:25:47 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name): _name(name)
+Zombie::Zombie(const std::string& name): _name(name)
 {
     std::cout << "I am a zombie" << std::endl;
 }
