@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:14:22 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/12 14:48:52 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:43:56 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Weapon::Weapon(std::string type):_type(type){}
 Weapon::~Weapon(){}
 
 /*Get*/
-std::string& Weapon::getType(){return (_type);}
+const std::string& Weapon::getType() const {return (_type);}
 
 /*Set*/
 void Weapon::setType(std::string type){_type = type;}

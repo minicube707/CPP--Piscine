@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:20:25 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/12 15:38:00 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:38:45 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class	HumanB
 {  
     private:
         std::string _name;
-        Weapon _weapon;
+        const Weapon* _weapon;
     
     public:
         /*Initialisation*/
@@ -28,7 +28,7 @@ class	HumanB
         
         /*Function*/
         void attack();
-        void setWeapon(Weapon weapon);
+        void setWeapon(const Weapon& weapon);
 };
    
 #endif

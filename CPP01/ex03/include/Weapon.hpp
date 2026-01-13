@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:11:14 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/12 14:49:07 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:44:17 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	Weapon
         ~Weapon();
         
         /*Get*/
-        std::string& getType();
+        const std::string& getType() const;
 
         /*Set*/
         void setType(std::string type);
