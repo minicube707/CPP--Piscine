@@ -22,7 +22,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ_FILES) 
 	@$(CXX) $(CXXFLAGS) $(OBJ_FILES) -o $(NAME)
-	@echo "Fichier compiler"
+	@echo "Fichier compile"
 	
 clean :
 	@rm -f $(OBJ_FILES)
