@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:38:10 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/13 17:44:36 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/14 16:28:14 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ HumanB::~HumanB(){}
 /*Function*/
 void HumanB::attack()
 {
-    std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+    if (_weapon)
+        std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
 }
 
 void HumanB::setWeapon(const Weapon& weapon)
