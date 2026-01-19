@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/14 16:50:47 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/19 15:45:25 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called\n";
-    _integer = 0;
+    _fixed_point = 0;
 }
 
 //Destructor
@@ -40,7 +40,7 @@ Fixed &Fixed::operator=(const Fixed& old)
     if (this == &old)
         return (*this);
 
-    this->_integer = old.getRawBits();
+    this->_fixed_point = old.getRawBits();
     return (*this);
 }
 
@@ -48,9 +48,9 @@ Fixed &Fixed::operator=(const Fixed& old)
 int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called\n";
-    return _integer;
+    return _fixed_point;
 }
 void Fixed::setRawBits( int const raw )
 {
-    _integer = raw;
+    _fixed_point = raw;
 }
