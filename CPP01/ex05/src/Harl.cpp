@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:58:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/13 15:24:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:38:50 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Harl::Harl()
 }
 Harl::~Harl(){std::cout << "\n[SERVER] Player \"Harl\" 2.0 left the server\n";}
 
-/*Public*/
+/*Methode Public*/
 void Harl::complain( std::string level )
 {   
     /*Tab string*/
@@ -37,7 +37,7 @@ void Harl::complain( std::string level )
     (this->*_functptr[i])();
 }
 
-/*Private*/
+/*Methode Private*/
 void Harl::debug( void )
 {
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle -special-ketchup burger. I really do!\n";

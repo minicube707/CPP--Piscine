@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:20:25 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/12 15:39:40 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:36:09 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class	HumanA
         HumanA(std::string name, Weapon &weapon);
         ~HumanA();
         
-        /*Function*/
+        /*Methode*/
         void attack();
 };
    

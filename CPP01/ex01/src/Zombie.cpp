@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 16:16:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/11 17:35:42 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:35:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ Zombie::~Zombie()
     std::cout << "I am dying..., Blood, blood, blood, everywhere, HUUUU, (x_x)" << std::endl;
 }
 
+/*Set*/
+void Zombie::setName(std::string name) {_name = name;}
+
+/*Methode*/
 void Zombie::announce(void)
 {
    std::cout << _name <<": BraiiiiiiinnnzzzZ..." << std::endl; 
 }
-
-void Zombie::setName(std::string name) {_name = name;}

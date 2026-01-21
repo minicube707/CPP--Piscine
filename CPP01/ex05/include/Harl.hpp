@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:59:03 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/13 15:12:23 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:37:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class	Harl
     
         void (Harl::*_functptr[5])();
         
+        /*Methode*/
         void debug( void );
         void info( void );
         void warning( void );
@@ -33,6 +34,7 @@ class	Harl
         Harl();
         ~Harl();
 
+        /*Methode*/
         void complain( std::string level );
 };
    

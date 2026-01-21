@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:20:25 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/13 17:38:45 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:36:16 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class	HumanB
         HumanB(std::string name);
         ~HumanB();
         
-        /*Function*/
+        /*Methode*/
         void attack();
         void setWeapon(const Weapon& weapon);
 };

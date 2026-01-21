@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:38:10 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/14 16:28:14 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:36:30 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 HumanB::HumanB(std::string name):_name(name), _weapon(NULL){}
 HumanB::~HumanB(){}
 
-/*Function*/
+/*Methode*/
 void HumanB::attack()
 {
     if (_weapon)
