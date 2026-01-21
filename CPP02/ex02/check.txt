@@ -2,6 +2,7 @@ Default constructor called
 Int constructor called
 Float constructor called
 Copy constructor called
+Copy assignment operator called
 Float constructor called
 Copy assignment operator called
 Destructor called

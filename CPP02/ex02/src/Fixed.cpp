@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/21 17:46:36 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/21 17:47:12 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ Fixed::Fixed(const int value)
     _fixed_point = value << _const_eight;
 }
 
-//Constructeur: Convert an Float to a Fix-Point
 Fixed::Fixed(const float value)
 {
     std::cout << "Float constructor called\n";
@@ -68,35 +67,18 @@ void Fixed::setRawBits( int const raw )
     _fixed_point = raw;
 }
 
-//Methode to convert Fix-Point to Float
+/*Methode*/
 float Fixed::toFloat( void ) const
 {
     return (_fixed_point / 256.0f);
 }
 
-//Methode to convert Fix-Point to Int
 int Fixed::toInt( void ) const
 {
     return _fixed_point >> _const_eight;
 }
 
-/*Function*/
-/*
-=========DESCRIPTION=========
-Surcharge de l’opérateur << pour afficher un objet Fixed
-sur un flux de sortie (ex : std::cout).
-
-=========INPUT=========
-std::ostream& os : flux de sortie
-const Fixed& obj : objet Fixed à afficher (passé par référence constante)
-
-=========OUTPUT=========
-std::ostream& : référence vers le flux de sortie, permettant
-l’enchaînement des affichages (ex : std::cout << a << b << std::endl)
-
-=========DETAILS=========
-L’objet Fixed est affiché sous forme de float via la méthode toFloat().
-*/
+//Surcharge
 std::ostream& operator<<(std::ostream& os, const Fixed& obj)
 {
 	os << obj.toFloat();
