@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/21 17:46:53 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/23 20:27:36 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <string>
 # include <cmath>
 
+
 class	Fixed
 {  
     private: 
         int _fixed_point;
         static int const _const_eight = 8;
+        static float const _epsilon;
         
     public:
         //Constructer
@@ -45,6 +47,33 @@ class	Fixed
         /*Methode*/
         float toFloat( void ) const;
         int toInt( void ) const;
+
+        /*Operator Surcharge*/
+        /*Comparison Operator*/
+        bool operator==(const Fixed& obj) const;
+        bool operator!=(const Fixed& obj) const;
+        bool operator<(const Fixed& obj) const;
+        bool operator<=(const Fixed& obj) const;
+        bool operator>(const Fixed& obj) const;
+        bool operator>=(const Fixed& obj) const;
+        
+        /*Arithmetic Operator*/
+        Fixed operator+(const Fixed& obj) const;
+        Fixed operator-(const Fixed& obj) const;
+        Fixed operator*(const Fixed& obj) const;
+        Fixed operator/(const Fixed& obj) const;
+
+        /*Increment/Decrement Operator*/
+        Fixed& operator++();
+        Fixed operator++(int);
+        Fixed& operator--();
+        Fixed operator--(int);
+
+        /*Overloaded Member Function*/
+        static Fixed& min(Fixed& a, Fixed& b);
+        static const Fixed& min(const Fixed& a, const Fixed& b);
+        static Fixed& max(Fixed& a, Fixed& b);
+        static const Fixed& max(const Fixed& a, const Fixed& b);
 };
 
 /*Function*/
