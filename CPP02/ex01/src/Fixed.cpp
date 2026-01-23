@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/21 17:46:36 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/23 18:51:11 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
     std::cout << "Float constructor called\n";
-    _fixed_point = roundf(value * 256.0f);
+    _fixed_point = roundf(value * float(1 << _const_eight));
 }
 
 //Destructor
@@ -71,7 +71,7 @@ void Fixed::setRawBits( int const raw )
 //Methode to convert Fix-Point to Float
 float Fixed::toFloat( void ) const
 {
-    return (_fixed_point / 256.0f);
+    return (_fixed_point / float(1 << _const_eight));
 }
 
 //Methode to convert Fix-Point to Int
