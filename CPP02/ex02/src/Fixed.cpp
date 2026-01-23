@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/23 20:27:48 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/24 00:26:44 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-const float Fixed::_epsilon = 0.003f;
-
 /*CANONICAL FORM*/
-Fixed::Fixed(){_fixed_point = 0;}
+Fixed::Fixed(){_fixed_point = FIXE_POINT;}
 Fixed::Fixed(const int value){_fixed_point = value << _const_eight;}
 Fixed::Fixed(const float value){_fixed_point = roundf(value * float(1 << _const_eight));}
 Fixed::~Fixed(){}
@@ -68,27 +66,27 @@ Fixed Fixed::operator/(const Fixed& obj) const
 /*Increment/Decrement Operator*/
 Fixed& Fixed::operator++()
 {
-    _fixed_point += roundf(_epsilon * float(1 << _const_eight));
+    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
     return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed tmp = *this;
-    _fixed_point += roundf(_epsilon * float(1 << _const_eight));
+    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
     return (tmp);
 }
 
 Fixed& Fixed::operator--()
 {
-    _fixed_point -= roundf(_epsilon * float(1 << _const_eight));
+    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
     return (*this);
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed tmp = *this;
-    _fixed_point -= roundf(_epsilon * float(1 << _const_eight));
+    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
     return (tmp);
 }
 

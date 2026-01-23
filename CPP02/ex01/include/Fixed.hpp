@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/21 17:46:08 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/24 00:19:23 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include <string>
 # include <cmath>
 
+# define FIXE_POINT 0
+# define CONST_EIGHT 8
+
 class	Fixed
 {  
     private: 
         int _fixed_point;
-        static int const _const_eight = 8;
+        static int const _const_eight = CONST_EIGHT;
         
     public:
         //Constructer
