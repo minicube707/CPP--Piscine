@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/23 20:39:48 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/24 00:35:28 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ int main( void )
     std::cout << e << " == " << g << ": " << (e == g) << std::endl;
     std::cout << e << " == " << h << ": " << (e == h) << std::endl;
     std::cout << e << " == " << i << ": " << (e == i) << std::endl;
+    std::cout << i << " == " << h << ": " << (i == h) << std::endl;
 
     std::cout << "\nTest: !=" << std::endl;
     std::cout << e << " != " << f << ": " << (e != f) << std::endl;
     std::cout << e << " != " << g << ": " << (e != g) << std::endl;
     std::cout << e << " != " << h << ": " << (e != h) << std::endl;
     std::cout << e << " != " << i << ": " << (e != i) << std::endl;
-
+    std::cout << i << " != " << h << ": " << (i != h) << std::endl;
+    
     std::cout << "\nTest: <" << std::endl;
     std::cout << e << " < " << f << ": " << (e < f) << std::endl;
     std::cout << f << " < " << e << ": " << (f < e) << std::endl;
@@ -68,7 +70,8 @@ int main( void )
     std::cout << g << " < " << e << ": " << (g < e) << std::endl;
     std::cout << e << " < " << h << ": " << (e < h) << std::endl;
     std::cout << e << " < " << i << ": " << (e < i) << std::endl;
-
+    std::cout << i << " < " << h << ": " << (i < h) << std::endl;
+    
     std::cout << "\nTest: >" << std::endl;
     std::cout << e << " > " << f << ": " << (e > f) << std::endl;
     std::cout << f << " > " << e << ": " << (f > e) << std::endl;
@@ -76,7 +79,8 @@ int main( void )
     std::cout << g << " > " << e << ": " << (g > e) << std::endl;
     std::cout << e << " > " << h << ": " << (e > h) << std::endl;
     std::cout << e << " > " << i << ": " << (e > i) << std::endl;
-
+    std::cout << i << " > " << h << ": " << (i > h) << std::endl;
+    
     std::cout << "\nTest: <=" << std::endl;
     std::cout << e << " <= " << f << ": " << (e <= f) << std::endl;
     std::cout << f << " <= " << e << ": " << (f <= e) << std::endl;
@@ -84,7 +88,8 @@ int main( void )
     std::cout << g << " <= " << e << ": " << (g <= e) << std::endl;
     std::cout << e << " <= " << h << ": " << (e <= h) << std::endl;
     std::cout << e << " <= " << i << ": " << (e <= i) << std::endl;
-
+    std::cout << i << " <= " << h << ": " << (i <= h) << std::endl;
+    
     std::cout << "\nTest: >=" << std::endl;
     std::cout << e << " >= " << f << ": " << (e >= f) << std::endl;
     std::cout << f << " >= " << e << ": " << (f >= e) << std::endl;
@@ -92,7 +97,7 @@ int main( void )
     std::cout << g << " >= " << e << ": " << (g >= e) << std::endl;
     std::cout << e << " >= " << h << ": " << (e >= h) << std::endl;
     std::cout << e << " >= " << i << ": " << (e >= i) << std::endl;
-
+    std::cout << i << " >= " << h << ": " << (i >= h) << std::endl;
     
     
     std::cout << "\nArithmetic Operator" << std::endl;
@@ -124,12 +129,20 @@ int main( void )
     std::cout << i << " * " << h << ": " << (i * h) << std::endl;
     
     std::cout << "\nTest: 0 *" << std::endl;
-    std::cout << z << " + " << e << ": " << (z + f) << std::endl;
-    std::cout << z << " + " << f << ": " << (z + f) << std::endl;
-    std::cout << z << " + " << g << ": " << (z + g) << std::endl;
-    std::cout << z << " + " << h << ": " << (z + h) << std::endl;
-    std::cout << z << " + " << n << ": " << (z + n) << std::endl;
-    std::cout << z << " + " << i << ": " << (z + i) << std::endl;
+    std::cout << z << " * " << e << ": " << (z * f) << std::endl;
+    std::cout << z << " * " << f << ": " << (z * f) << std::endl;
+    std::cout << z << " * " << g << ": " << (z * g) << std::endl;
+    std::cout << z << " * " << h << ": " << (z * h) << std::endl;
+    std::cout << z << " * " << n << ": " << (z * n) << std::endl;
+    std::cout << z << " * " << i << ": " << (z * i) << std::endl;
+
+    std::cout << "\nTest: 1 *" << std::endl;
+    std::cout << o << " * " << e << ": " << (o * f) << std::endl;
+    std::cout << o << " * " << f << ": " << (o * f) << std::endl;
+    std::cout << o << " * " << g << ": " << (o * g) << std::endl;
+    std::cout << o << " * " << h << ": " << (o * h) << std::endl;
+    std::cout << o << " * " << n << ": " << (o * n) << std::endl;
+    std::cout << o << " * " << i << ": " << (o * i) << std::endl;
     
     std::cout << "\nTest: /" << std::endl;
     std::cout << e << " / " << f << ": " << (e / f) << std::endl;
