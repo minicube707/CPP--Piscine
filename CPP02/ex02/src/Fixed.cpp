@@ -6,7 +6,7 @@
 /*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 00:26:44 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/24 01:12:43 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@ Fixed::Fixed(const int value){_fixed_point = value << _const_eight;}
 Fixed::Fixed(const float value){_fixed_point = roundf(value * float(1 << _const_eight));}
 Fixed::~Fixed(){}
 Fixed::Fixed(const Fixed &other){setRawBits(other.getRawBits());}
-Fixed &Fixed::operator=(const Fixed& old)
-{
-    
-    if (this == &old)
-        return (*this);
-        
-    _fixed_point = old.getRawBits();
-    return (*this);
-}
+Fixed &Fixed::operator=(const Fixed& old){if (this == &old)_fixed_point = old.getRawBits();return (*this);}
 
 /*Get Set*/
 int Fixed::getRawBits( void ) const{return _fixed_point;}
