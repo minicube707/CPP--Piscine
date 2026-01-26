@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: florent <florent@student.42.fr>            +#+  +:+       +#+         #
+#    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/01/24 01:36:20 by florent          ###   ########.fr        #
+#    Updated: 2026/01/26 16:10:33 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 #              FILE
 # =======================================
 FILE_NAMES =	main \
+				bsp \
 				
 CLASS_FILE = 	Fixed \
 				Point \
@@ -41,8 +42,7 @@ OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
 HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp)
 
 NAME = BSD
-
-
+	
 # =======================================
 #              RULES
 # =======================================
@@ -51,7 +51,7 @@ NAME = BSD
 all : $(NAME)
 
 $(OBJ_PATH) :
-	mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEA_FILES) | $(OBJ_PATH)
 	@$(CXX) $(CXXFLAGS) -I $(HEA_PATH) -O3 -c $< -o $@

@@ -50,7 +50,7 @@ NAME = Orthodox_Canonical_Form
 all : $(NAME)
 
 $(OBJ_PATH) :
-	mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEA_FILES) | $(OBJ_PATH)
 	@$(CXX) $(CXXFLAGS) -I $(HEA_PATH) -O3 -c $< -o $@
