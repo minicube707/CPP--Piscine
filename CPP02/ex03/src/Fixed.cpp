@@ -3,22 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 01:11:36 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/26 18:19:53 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 /*CANONICAL FORM*/
+//Constructer
 Fixed::Fixed(){_fixed_point = FIXE_POINT;}
 Fixed::Fixed(const int value){_fixed_point = value << _const_eight;}
 Fixed::Fixed(const float value){_fixed_point = roundf(value * float(1 << _const_eight));}
+
+//Destructor
 Fixed::~Fixed(){}
+
+//Copy constructor
 Fixed::Fixed(const Fixed &other){setRawBits(other.getRawBits());}
+
+//Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed& old){if (this == &old)_fixed_point = old.getRawBits();return (*this);}
+
+
 
 /*Get Set*/
 int Fixed::getRawBits( void ) const{return _fixed_point;}
@@ -47,6 +56,7 @@ bool Fixed::operator>=(const Fixed& obj) const{return !(*this < obj);}
 /*Arithmetic operator*/
 Fixed Fixed::operator+(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) + (obj.getRawBits() / float(1 << _const_eight)));}
 Fixed Fixed::operator-(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) - (obj.getRawBits() / float(1 << _const_eight)));}
+Fixed Fixed::operator-(void) const{return (-getRawBits() / float(1 << _const_eight));}
 Fixed Fixed::operator*(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) * (obj.getRawBits() / float(1 << _const_eight)));}
 Fixed Fixed::operator/(const Fixed& obj) const
 {

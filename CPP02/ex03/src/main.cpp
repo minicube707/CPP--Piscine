@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 01:37:49 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/26 16:01:16 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include "Point.hpp"
 
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
 int main( void )
 {
-    Point a;
-    Point b (2, 3);
+    Point a (0, 2);
+    Point b (1, 0);
+    Point c (3, 2);
+    Point p (2, 3);
 
-    std::cout << a << "\n" << b;
+    bsp(a, b, c, p);
+    
     return 0;
 }

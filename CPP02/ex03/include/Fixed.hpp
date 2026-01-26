@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 00:26:17 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/26 17:01:24 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ class	Fixed
         /*Arithmetic Operator*/
         Fixed operator+(const Fixed& obj) const;
         Fixed operator-(const Fixed& obj) const;
+        Fixed operator-(void) const;
         Fixed operator*(const Fixed& obj) const;
         Fixed operator/(const Fixed& obj) const;
 

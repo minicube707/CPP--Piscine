@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:41:35 by florent           #+#    #+#             */
-/*   Updated: 2026/01/24 01:26:26 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/26 18:21:49 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class	Point
         //Constructer
         Point();                                           
         Point(const float x, const float y);
+        Point(const Fixed x, const Fixed y);
         
         //Destructor
         ~Point();
@@ -44,10 +45,18 @@ class	Point
         Fixed get_y( void ) const;
         void set_x( Fixed x );
         void set_y( Fixed y );
-                
+
+        /*Arithmetic Operator*/
+        Point operator+(const Point& obj) const;
+        Point operator-(const Point& obj) const;
+        Point operator-(void) const;
+        
+        Point operator*(const Fixed& scalire) const;
+            
 };
     
 /*Function*/
 std::ostream& operator<<(std::ostream& os, const Point& obj);
+Fixed dot_procduct(const Point& a, const Point& b);
 
 #endif
