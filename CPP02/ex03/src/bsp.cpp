@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:39:41 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/27 15:35:20 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/27 17:45:22 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,11 @@ Fixed calcul_area_triangle(Point const a, Point const b, Point const c)
     return (area_triangle);
 }
 
-bool bsp( Point const a, Point const b, Point const c, Point const point )
+/*===================*/
+/*=====Methode 1=====*/
+/*===================*/ 
+bool methode_1(Point const a, Point const b, Point const c, Point const point)
 {
-    /*===================*/
-    /*=====Methode 1=====*/
-    /*===================*/ 
-    
     //Calcul area main triangle
     Fixed area_main_triangle = calcul_area_triangle(a, b, c);
 
@@ -62,6 +61,46 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
     std::cout << "The Area of the ABP triange is " << area_triangle_abp << "\n";
     std::cout << "The Area of the ACP triange is " << area_triangle_acp << "\n";
     std::cout << "The Area of the BCP triange is " << area_triangle_bcp << "\n";
+
+    Fixed sum_area = area_triangle_abp + area_triangle_acp + area_triangle_bcp;
+
+    if (roundf(sum_area.toFloat()) > roundf(area_main_triangle.toFloat()))
+    {
+        std::cout << "\nThe sum of area of the sub-triangne is greater than to the main triangle.\nThe point is not in the triangle\n";
+        std::cout << "Sum area equal + area main triangle: " << sum_area << " > " << area_main_triangle << "\n";
+        std::cout << "Return false\n";
+        return (false);
+    }
     
+    if (area_triangle_abp == 0)
+    {
+        std::cout << "\nThe area of the triangle ABP is null. That means the point P is on the straight AB\n";
+        std::cout << "Return false\n";
+        return (false);
+    }
+    if (area_triangle_acp == 0)
+    {
+        std::cout << "\nThe area of the triangle ACP is null. That means the point P is on the straight AC\n";
+        std::cout << "Return false\n";
+        return (false);
+    }
+        if (area_triangle_bcp == 0)
+    {
+        std::cout << "\nThe area of the triangle BCP is null. That means the point P is on the straight BC\n";
+        std::cout << "Return false\n";
+        return (false);
+    }
+    
+    std::cout << "\nThe sum of area of the sub-triangne is equal to the main triangle.\nThe point is in the triangle\n";
+    std::cout << "Any of the area of the sub-triangle are null. That means the point P is not on the edge of the triangle\n";
+    std::cout << "Return true\n";
+    return (true);
+}
+
+bool bsp( Point const a, Point const b, Point const c, Point const point )
+{
+    /*=====Methode 1=====*/
+    methode_1(a, b, c, point);
+
     return (true);
 }
