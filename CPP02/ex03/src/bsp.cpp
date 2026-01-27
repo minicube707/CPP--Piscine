@@ -6,13 +6,14 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:39:41 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/27 17:45:22 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/27 18:35:53 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include "Point.hpp"
 
+# include <string>
 
 Fixed calcul_area_triangle(Point const a, Point const b, Point const c)
 {
@@ -68,39 +69,102 @@ bool methode_1(Point const a, Point const b, Point const c, Point const point)
     {
         std::cout << "\nThe sum of area of the sub-triangne is greater than to the main triangle.\nThe point is not in the triangle\n";
         std::cout << "Sum area equal + area main triangle: " << sum_area << " > " << area_main_triangle << "\n";
-        std::cout << "Return false\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";
         return (false);
     }
     
     if (area_triangle_abp == 0)
     {
         std::cout << "\nThe area of the triangle ABP is null. That means the point P is on the straight AB\n";
-        std::cout << "Return false\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";
         return (false);
     }
     if (area_triangle_acp == 0)
     {
         std::cout << "\nThe area of the triangle ACP is null. That means the point P is on the straight AC\n";
-        std::cout << "Return false\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";
         return (false);
     }
         if (area_triangle_bcp == 0)
     {
         std::cout << "\nThe area of the triangle BCP is null. That means the point P is on the straight BC\n";
-        std::cout << "Return false\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";
         return (false);
     }
     
     std::cout << "\nThe sum of area of the sub-triangne is equal to the main triangle.\nThe point is in the triangle\n";
     std::cout << "Any of the area of the sub-triangle are null. That means the point P is not on the edge of the triangle\n";
-    std::cout << "Return true\n";
+    std::cout << "Return " << GREEN << "true" << RESET << "\n";
+    return (true);
+}
+
+Fixed equation_line(Point x, Fixed slope, Fixed biais) {return x.get_y() - slope * x.get_x() - biais;}
+
+
+int check_equation(Point const point_line1, Point const point_line2, Point const check_point, Point const point)
+{
+    Fixed slope =  (point_line1.get_y() - point_line2.get_y()) / (point_line1.get_x() - point_line2.get_x());
+    Fixed biais = point_line1.get_y() - slope * point_line1.get_x();
+
+    if (equation_line(point, slope, biais) == 0)
+        return (0);
+    if (equation_line(check_point, slope, biais) > 0 && equation_line(point, slope, biais) > 0)
+        return (1);
+    if (equation_line(check_point, slope, biais) < 0 && equation_line(point, slope, biais) < 0)
+        return (1);
+    return (-1);
+}
+
+bool print_message(int equation, std::string name)
+{
+    if (equation == -1)
+    {
+        std::cout << "The point is not on the correct side of line " << name << "\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";;
+        return (false); 
+    }
+    if (equation == 0)
+    {
+        std::cout << "The point is on the line " << name << "\n";
+        std::cout << "Return " << RED << "false" << RESET << "\n";;
+        return (false); 
+    } 
+    return (true);
+}
+
+/*===================*/
+/*=====Methode 2=====*/
+/*===================*/ 
+bool methode_2(Point const a, Point const b, Point const c, Point const point)
+{
+    int equation1 = check_equation(a, b, c, point);
+    int equation2 = check_equation(a, c, b, point);
+    int equation3 = check_equation(b, c, a, point);
+    
+    if (!print_message(equation1, "AB"))
+        return (false);
+    if (!print_message(equation2, "AC"))
+        return (false);
+    if (!print_message(equation3, "BC"))
+        return (false);
+    
+    std::cout << "The point is on the correct side for each line\n";
+    std::cout << "Return " << GREEN << "true" << RESET << "\n";
     return (true);
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point )
 {
+    bool is_inside;
+    
     /*=====Methode 1=====*/
-    methode_1(a, b, c, point);
+    std::cout << "Methode 1\n";
+    is_inside = methode_1(a, b, c, point);
 
-    return (true);
+    
+    /*=====Methode 2=====*/
+    std::cout << "\n\nMethode 2\n";
+    methode_2(a, b, c, point);
+    
+    return (is_inside);
 }

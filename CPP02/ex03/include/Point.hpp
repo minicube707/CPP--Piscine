@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:41:35 by florent           #+#    #+#             */
-/*   Updated: 2026/01/27 13:29:49 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/27 18:32:53 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 #include "Fixed.hpp"
 
+# define GREEN  "\033[32m"
+# define RED    "\033[31m"
+# define RESET  "\033[0m"
+    
 class	Point
 {  
     private: 
