@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/26 18:19:53 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/27 15:18:46 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,38 @@ Fixed Fixed::operator--(int)
     return (tmp);
 }
 
+Fixed Fixed::operator*=(const Fixed& obj)
+{
+    setRawBits(getRawBits() * (obj.getRawBits() / float(1 << _const_eight)));
+    return (*this);
+}
+
 /*Overloaded Member Function*/
 Fixed& Fixed::min(Fixed& a, Fixed& b){if (a > b)return (b);return (a);}
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b){if (a > b)return (b);return (a);}
 Fixed& Fixed::max(Fixed& a, Fixed& b){if (a < b)return (b);return (a);}
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b){if (a < b)return (b);return (a);}
+
+//Math
+Fixed square_root(const Fixed& a)
+{
+    float n = a.toFloat();
+    if (n < 0) return -1;   // pas de racine réelle
+    if (n == 0) return 0;
+
+    float x = n;           // estimation initiale
+    float eps = 1e-1f;    // précision adaptée au float
+
+    while ((x * x - n) > eps || (n - x * x) > eps)
+        x = (x + n / x) / 2.0f;
+    
+    Fixed res (x);
+    return (res);
+}
+Fixed pow(const Fixed& a, int exp)
+{
+    Fixed res (1);
+    for (int i = 0; i < exp; i++)
+        res *= a;
+    return (res);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/26 17:01:24 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/27 14:12:04 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,15 @@ class	Fixed
         Fixed operator-(void) const;
         Fixed operator*(const Fixed& obj) const;
         Fixed operator/(const Fixed& obj) const;
-
+        
         /*Increment/Decrement Operator*/
         Fixed& operator++();
         Fixed operator++(int);
         Fixed& operator--();
         Fixed operator--(int);
 
+        Fixed operator*=(const Fixed& obj);
+        
         /*Overloaded Member Function*/
         static Fixed& min(Fixed& a, Fixed& b);
         static const Fixed& min(const Fixed& a, const Fixed& b);
@@ -81,5 +83,9 @@ class	Fixed
 
 /*Function*/
 std::ostream& operator<<(std::ostream& os, const Fixed& obj);
-      
+
+//Math
+Fixed square_root(const Fixed& a);
+Fixed pow(const Fixed& a, int exp);
+
 #endif

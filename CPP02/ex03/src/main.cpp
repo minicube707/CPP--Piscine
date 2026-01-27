@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/26 16:01:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/27 15:19:01 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 int main( void )
-{
+{   
     Point a (0, 2);
     Point b (1, 0);
     Point c (3, 2);

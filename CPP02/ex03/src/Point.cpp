@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:46:36 by florent           #+#    #+#             */
-/*   Updated: 2026/01/26 18:19:13 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/27 14:22:55 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,11 @@ Point Point::operator*(const Fixed& scalire) const{return Point(_x * scalire,_y 
 
 /*Function*/
 Fixed dot_procduct(const Point& a, const Point& b){return (Fixed(a.get_x() * b.get_x() + a.get_y() * b.get_y()));}
+
+Fixed euclidean_distance(const Point& a, const Point& b)
+{
+	Fixed x = a.get_x() - b.get_x();
+	Fixed y = a.get_y() - b.get_y();
+	
+	return(square_root(pow(x, 2) + pow(y, 2)));
+}
