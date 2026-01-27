@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/27 14:12:04 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/27 18:51:45 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ std::ostream& operator<<(std::ostream& os, const Fixed& obj);
 //Math
 Fixed square_root(const Fixed& a);
 Fixed pow(const Fixed& a, int exp);
+Fixed abs(const Fixed& a);
 
 #endif
