@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 01:12:43 by florent          ###   ########.fr       */
+/*   Updated: 2026/01/28 11:27:06 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,10 @@ bool Fixed::operator<=(const Fixed& obj) const{return !(*this > obj);}
 bool Fixed::operator>=(const Fixed& obj) const{return !(*this < obj);}
 
 /*Arithmetic operator*/
-Fixed Fixed::operator+(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) + (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator-(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) - (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator*(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) * (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator/(const Fixed& obj) const
-{
-    if (obj.getRawBits() == 0)
-        return (-1);
-    return ((getRawBits() / float(1 << _const_eight)) / (obj.getRawBits() / float(1 << _const_eight)));
-}
+Fixed Fixed::operator+(const Fixed& obj) const{return toFloat() + (obj.toFloat());}
+Fixed Fixed::operator-(const Fixed& obj) const{return toFloat() - (obj.toFloat());}
+Fixed Fixed::operator*(const Fixed& obj) const{return toFloat() * (obj.toFloat());}
+Fixed Fixed::operator/(const Fixed& obj) const{if (obj.getRawBits() == 0) return (-1); return toFloat() / (obj.toFloat());}
 
 /*Increment/Decrement Operator*/
 Fixed& Fixed::operator++()

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/27 18:52:25 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/28 11:37:05 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,11 @@ bool Fixed::operator<=(const Fixed& obj) const{return !(*this > obj);}
 bool Fixed::operator>=(const Fixed& obj) const{return !(*this < obj);}
 
 /*Arithmetic operator*/
-Fixed Fixed::operator+(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) + (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator-(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) - (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator-(void) const{return (-getRawBits() / float(1 << _const_eight));}
-Fixed Fixed::operator*(const Fixed& obj) const{return ((getRawBits() / float(1 << _const_eight)) * (obj.getRawBits() / float(1 << _const_eight)));}
-Fixed Fixed::operator/(const Fixed& obj) const
-{
-    if (obj.getRawBits() == 0)
-        return (-1);
-    return ((getRawBits() / float(1 << _const_eight)) / (obj.getRawBits() / float(1 << _const_eight)));
-}
+Fixed Fixed::operator+(const Fixed& obj) const{return toFloat() + (obj.toFloat());}
+Fixed Fixed::operator-(const Fixed& obj) const{return toFloat() - (obj.toFloat());}
+Fixed Fixed::operator-(void) const{return ( - toFloat());}
+Fixed Fixed::operator*(const Fixed& obj) const{return toFloat() * (obj.toFloat());}
+Fixed Fixed::operator/(const Fixed& obj) const{if (obj.getRawBits() == 0) return (-1); return toFloat() / (obj.toFloat());}
 
 /*Increment/Decrement Operator*/
 Fixed& Fixed::operator++()
@@ -94,7 +89,7 @@ Fixed Fixed::operator--(int)
 
 Fixed Fixed::operator*=(const Fixed& obj)
 {
-    setRawBits(getRawBits() * (obj.getRawBits() / float(1 << _const_eight)));
+    setRawBits(getRawBits() * obj.toFloat());
     return (*this);
 }
 
@@ -105,14 +100,15 @@ Fixed& Fixed::max(Fixed& a, Fixed& b){if (a < b)return (b);return (a);}
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b){if (a < b)return (b);return (a);}
 
 //Math
+//Newton Methode
 Fixed square_root(const Fixed& a)
 {
     float n = a.toFloat();
-    if (n < 0) return -1;   // pas de racine réelle
+    if (n < 0) return -1;   // no real square root
     if (n == 0) return 0;
 
-    float x = n;           // estimation initiale
-    float eps = 1e-1f;    // précision adaptée au float
+    float x = n;            // initial estimate
+    float eps = 1e-1f;      // precision adapted to the float
 
     while ((x * x - n) > eps || (n - x * x) > eps)
         x = (x + n / x) / 2.0f;
@@ -120,6 +116,7 @@ Fixed square_root(const Fixed& a)
     Fixed res (x);
     return (res);
 }
+
 Fixed pow(const Fixed& a, int exp)
 {
     Fixed res (1);
