@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 14:41:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/28 18:25:03 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,43 @@
 *                INITIALISATION
 **************************************************/
 
+// ====================
+// == Canonical Form ==
+// ====================
+
 //Constructer
 ClapTrap::ClapTrap(std::string name): _name(name), _hit_point(10), _energy_point(10), _attack_energy(10)
 {
-    std::cout << "\nCreate a Clap Trap\n";
+    std::cout << CYAN;
+    std::cout << "\nCreate a ClapTrap\n";
+    std::cout << RESET;
+    
     print_stat();
 }
 
 //Destructor
 ClapTrap::~ClapTrap()
 {
-    std::cout << "\nDestroy a Clap Trap\n";
+    std::cout << BLUE;
+    std::cout << "\nDestroy a ClapTrap\n";
+    std::cout << RESET;
 }
 
 //Copy constructor
 ClapTrap::ClapTrap(const ClapTrap &other): _name(other._name), _hit_point(other._hit_point), _energy_point(other._energy_point), _attack_energy(other._attack_energy)
 {
-    std::cout << "\nCopy a Clap Trap\n";
+    std::cout << CYAN;
+    std::cout << "\nCopy a ClapTrap\n";
+    std::cout << RESET;
+    
     print_stat();
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-    std::cout << "\nAssigned a Clap Trap\n";
+    std::cout << CYAN;
+    std::cout << "\nAssigned a ClapTrap\n";
+    std::cout << RESET;
     
     if (this == &other)
     {
@@ -60,15 +74,22 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 *                Methode
 **************************************************/
 
-/*Mandatory*/
+// ====================
+// ==   Mandatory    ==
+// ====================
 void ClapTrap::attack(const std::string& target)
 {
     if (check_energy_point() || check_hit_point())
         return ;
-    
+        
+    _energy_point -= 1;
+
+    std::cout << RED;
     std::cout << "\nAttack\n";
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _hit_point << " points of damage!\n";
-    _energy_point -= 1;
+    std::cout << RESET;
+    
+    print_stat();
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -77,9 +98,13 @@ void ClapTrap::takeDamage(unsigned int amount)
         _hit_point -= amount;
     else
         _hit_point = 0;
-        
+    
+    std::cout << YELLOW;
     std::cout << "\nBeing Attack\n";
     std::cout << "ClapTrap " << _name << " lost " << amount << " hit points.\n" << "New points of damage: " << _hit_point <<"\n";
+    std::cout << RESET;
+    
+    print_stat();
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -88,12 +113,19 @@ void ClapTrap::beRepaired(unsigned int amount)
         return ;
         
     _hit_point += amount;
+    _energy_point -= 1;
+    
+    std::cout << GREEN;
     std::cout << "\nRepaired\n";
     std::cout << "ClapTrap " << _name << " regains " << amount << " hit points.\n" << "New points of damage: " << _hit_point <<"\n";
-    _energy_point -= 1;
+    std::cout << RESET;
+    
+    print_stat();
 }
 
-/*Added*/
+// ====================
+// == Added Methode  ==
+// ====================
 int ClapTrap::check_energy_point(void)
 {
     if (_energy_point == 0)

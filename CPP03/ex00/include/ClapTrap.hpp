@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 14:04:36 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/01/28 18:20:58 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <iostream>
 # include <string>
 
+# define RESET  "\033[0m"
+
+# define RED     "\033[31m"
+# define GREEN   "\033[32m"
+# define YELLOW  "\033[33m"
+# define BLUE    "\033[34m"
+# define CYAN    "\033[36m"
+
 class ClapTrap
 {
     private:
@@ -24,6 +32,9 @@ class ClapTrap
         int _energy_point;
         int _attack_energy;
         
+        // ====================
+        // ==   Added Init   ==
+        // ====================
         ClapTrap();
         
     public:
@@ -32,6 +43,10 @@ class ClapTrap
         *                INITIALISATION
         **************************************************/
         
+        // ====================
+        // == Canonical Form ==
+        // ====================
+
         ClapTrap(std::string name);
         ~ClapTrap();
         ClapTrap(const ClapTrap &other);
@@ -41,12 +56,16 @@ class ClapTrap
         *                Methode
         **************************************************/
         
-        /*Mandatory*/
+        // ====================
+        // ==   Mandatory    ==
+        // ====================
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
 
-        /*Added*/
+        // ====================
+        // == Added Methode  ==
+        // ====================
         int check_energy_point(void);
         int check_hit_point(void);
         void print_stat(void);
