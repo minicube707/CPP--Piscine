@@ -20,6 +20,7 @@ int main()
     
     Zombie *z;
     z = newZombie("Flesh");
+    z->announce();
     delete z;
     return (0);
 }
