@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 18:47:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:44:09 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class ClapTrap
     protected:
         std::string _name;
         unsigned int _hit_point;
-        int _energy_point;
-        int _attack_damage; 
+        unsigned int _energy_point;
+        unsigned int _attack_damage; 
         
         // ====================
         // ==   Added Init   ==
