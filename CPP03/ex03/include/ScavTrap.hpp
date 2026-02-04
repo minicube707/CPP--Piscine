@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/03 15:52:08 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:13:29 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 //ScavTrap hérite de ClapTrap
 //Tout ce qui est public et protected dans ClapTrap reste accessible dans ScavTrap
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {   
     protected:
 
@@ -53,7 +53,7 @@ class ScavTrap : public ClapTrap
         // ====================
         // ==   Mandatory    ==
         // ====================
-        void attack(const std::string& target);
+        virtual void attack(const std::string& target);
         void guardGate();
 
         // ====================

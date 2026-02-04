@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:08:03 by florent           #+#    #+#             */
-/*   Updated: 2026/02/03 16:01:01 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:35:16 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,23 @@
 // ====================
 
 //Constructer
-DiamondTrap::DiamondTrap(std::string name):ScavTrap(name)
+//Les classes de base sont toujours construites dans l’ordre où elles sont déclarées dans la classe (HEADER),
+//pas dans l’ordre de la liste d’initialisation.
+//(HEADER) class DiamondTrap : public ScavTrap, public FragTrap
+DiamondTrap::DiamondTrap(std::string name):ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
 {
     std::cout << CYAN;
     std::cout << "\nCreate a DiamondTrap\n";
     std::cout << RESET;
+    
+    _name = name;
+     
+    // Initialisation explicite des stats
+    _hit_point = FragTrap::_hit_point;
+    _energy_point = ScavTrap::_energy_point;
+    _attack_damage = FragTrap::_attack_damage;
+    
+
     
     print_stat();
 }
@@ -74,7 +86,22 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 // ====================
 // ==   Mandatory    ==
 // ====================
+void DiamondTrap::whoAmI(void)
+{
+    std::cout << "\nWhoamI\n";
+    std::cout << "Name: " << _name << "\n";
+    std::cout << "Clap Name: " << ClapTrap::_name << "\n";
+}
+
+// ====================
+// == Added Methode  ==
+// ====================
 void DiamondTrap::print_stat(void)
 {
-    std::cout << "Print stat Diamond Trap";
+    std::cout << "\nStat DiamondTrap\n";
+    std::cout << "Name: " << _name << "\n";
+    std::cout << "Clap Name: " << ClapTrap::_name << "\n";
+    std::cout << "Hit point: " << _hit_point << "\n";
+    std::cout << "Energy Point: " << _energy_point << "\n";
+    std::cout << "Attack Energy: " << _attack_damage << "\n";
 }

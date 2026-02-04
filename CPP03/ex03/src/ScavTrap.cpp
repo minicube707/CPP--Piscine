@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:19:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/03 15:54:19 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/04 15:35:36 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,14 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 // ====================
 // ==   Added Init   ==
 // ====================
-ScavTrap::ScavTrap(){}
+ScavTrap::ScavTrap()
+{
+    _hit_point = 100;
+    _energy_point = 50;
+    _attack_damage = 20;
+
+    _gate_keeper_mode = false;
+}
 
 /**************************************************
 *                Methode
@@ -122,8 +129,9 @@ void ScavTrap::guardGate()
 // == Added Methode  ==
 // ====================
 void ScavTrap::print_stat(void)
-{
-    std::cout << "\nName: " << _name << "\n";
+{   
+    std::cout << "\nStat ScavTrap\n";
+    std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
     std::cout << "Attack Energy: " << _attack_damage << "\n";
