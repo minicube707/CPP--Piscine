@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:42:05 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 17:12:29 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:15:07 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ FragTrap::FragTrap(std::string name):ClapTrap(name)
     std::cout << "\nCreate a FragTrap\n";
     std::cout << RESET;
     
-    _hit_point = 100;
-    _energy_point = 100;
-    _attack_damage = 30;
+    _hit_point = _init_hit_point;
+    _energy_point = _init_energy_point;
+    _attack_damage = _init_attack_damage;
     
     print_stat();
 }

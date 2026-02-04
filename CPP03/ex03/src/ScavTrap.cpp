@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:19:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 17:12:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:14:58 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ ScavTrap::ScavTrap(std::string name):ClapTrap(name)
     std::cout << "\nCreate a ScavTrap\n";
     std::cout << RESET;
     
-    _hit_point = 100;
-    _energy_point = 50;
-    _attack_damage = 20;
+    _hit_point = _init_hit_point;
+    _energy_point = _init_energy_point;
+    _attack_damage = _init_attack_damage;
     
     _gate_keeper_mode = false;
     

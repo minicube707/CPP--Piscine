@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 15:13:29 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:09:52 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ class ScavTrap : virtual public ClapTrap
         // ====================
         // ==   Added Init   ==
         // ====================
+        
+        static const int _init_hit_point = 100;
+        static const int _init_energy_point = 50;
+        static const int _init_attack_damage = 20;
         
         ScavTrap();
         

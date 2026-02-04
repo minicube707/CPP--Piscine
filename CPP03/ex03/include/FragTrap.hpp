@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:39:12 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 15:13:33 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:08:51 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ class FragTrap : virtual public ClapTrap
         // ==   Added Init   ==
         // ====================
         
+        static const int _init_hit_point = 100;
+        static const int _init_energy_point = 100;
+        static const int _init_attack_damage = 30;
+
         FragTrap();
         
     public:
