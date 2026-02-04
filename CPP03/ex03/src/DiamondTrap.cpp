@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:08:03 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 17:11:30 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:54:38 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 // == Canonical Form ==
 // ====================
 
-//Constructer
-//Les classes de base sont toujours construites dans l’ordre où elles sont déclarées dans la classe (HEADER),
-//pas dans l’ordre de la liste d’initialisation.
-//(HEADER) class DiamondTrap : public ScavTrap, public FragTrap
+// Constructor
+// Base classes are always constructed in the order they are declared in the class (HEADER),
+// not in the order of the initializer list.
+// (HEADER) class DiamondTrap : public ScavTrap, public FragTrap
 DiamondTrap::DiamondTrap(std::string name):ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
 {
     std::cout << CYAN;
@@ -59,6 +59,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other): ScavTrap(other), FragTrap(ot
     print_stat();
 }
 
+//Copy assignment
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 {
     std::cout << CYAN;

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 17:44:53 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:53:41 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 # include "ClapTrap.hpp"
 
-//ScavTrap hérite de ClapTrap
-//Tout ce qui est public et protected dans ClapTrap reste accessible dans ScavTrap
+// ScavTrap inherits from ClapTrap
+// Everything that is public and protected in ClapTrap remains accessible in ScavTrap
+// 'virtual' allows sharing a single instance of the common base class in multiple inheritance (prevents the diamond problem)
 class ScavTrap : virtual public ClapTrap
 {   
     protected:

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:05 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 18:59:41 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:51:35 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include "ClapTrap.hpp"
 
-//ScavTrap hérite de ClapTrap
-//Tout ce qui est public et protected dans ClapTrap reste accessible dans ScavTrap
+// FragTrap inherits from ClapTrap
+// Everything that is public and protected in ClapTrap remains accessible in FragTrap
 class ScavTrap : public ClapTrap
 {   
     private:

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 17:11:27 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:53:56 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ ClapTrap::ClapTrap(const ClapTrap &other): _name(other._name), _hit_point(other.
     print_stat();
 }
 
+//Copy assignment
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
     std::cout << CYAN;

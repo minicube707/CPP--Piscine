@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:42:05 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 17:11:18 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:52:01 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ FragTrap::FragTrap(const FragTrap &other):ClapTrap(other._name)
     print_stat();
 }
 
+//Copy assignment
 FragTrap& FragTrap::operator=(const FragTrap& other)
 {
     std::cout << CYAN;

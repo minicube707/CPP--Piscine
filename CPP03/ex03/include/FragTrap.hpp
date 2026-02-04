@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:39:12 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 17:44:48 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:53:05 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 # include "ClapTrap.hpp"
 
-//FragTrap hérite de ClapTrap
-//Tout ce qui est public et protected dans ClapTrap reste accessible dans FragTrap
-// virtual permet de partager une seule instance de la classe de base commune en héritage multiple (évite le problème du diamant).
+// FragTrap inherits from ClapTrap
+// Everything that is public and protected in ClapTrap remains accessible in FragTrap
+// 'virtual' allows sharing a single instance of the common base class in multiple inheritance (prevents the diamond problem)
 class FragTrap : virtual public ClapTrap
 {   
     protected:

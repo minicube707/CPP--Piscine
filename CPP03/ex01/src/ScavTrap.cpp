@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:19:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 17:11:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:50:45 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ ScavTrap::ScavTrap(const ScavTrap &other):ClapTrap(other._name)
     print_stat();
 }
 
+//Copy assignment
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
     std::cout << CYAN;

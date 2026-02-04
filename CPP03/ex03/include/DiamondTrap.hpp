@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:02:47 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 15:31:14 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:55:13 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
-//DiamondTrap hérite de ScavTrap et de FragTrap
-//Tout ce qui est public et protected dans ScavTrap et FragTrap reste accessible dans DiamondTrap
+// DiamondTrap inherits from ScavTrap and FragTrap
+// Everything that is public and protected in ScavTrap and FragTrap remains accessible in DiamondTrap
 class DiamondTrap : public ScavTrap, public FragTrap
 {   
     private:
@@ -50,12 +50,13 @@ class DiamondTrap : public ScavTrap, public FragTrap
         **************************************************/
         
         /*
-        Dans ce cas de diamond trap, ScavTrap redéfinit la méthode attack() alors que FragTrap hérite
-        simplement de celle de ClapTrap. Lors de l’appel à DiamondTrap.attack(), le compilateur choisit
-        la méthode la plus proche dans la hiérarchie : ScavTrap::attack(). La version héritée
-        de ClapTrap via FragTrap est masquée (name hiding), ce qui évite toute ambiguïté. Ce
-        comportement est résolu à la compilation car attack() n’est pas virtuelle.
+        In this DiamondTrap case, ScavTrap overrides the attack() method, while FragTrap simply
+        inherits it from ClapTrap. When calling DiamondTrap.attack(), the compiler chooses
+        the closest method in the hierarchy: ScavTrap::attack(). The version inherited
+        from ClapTrap via FragTrap is hidden (name hiding), which avoids any ambiguity.
+        This behavior is resolved at compile time because attack() is not virtual.
         */
+
         // ====================
         // ==   Mandatory    ==
         // ====================

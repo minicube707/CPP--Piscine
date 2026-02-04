@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:39:12 by florent           #+#    #+#             */
-/*   Updated: 2026/02/03 14:06:29 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/04 17:51:19 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include "ClapTrap.hpp"
 
-//FragTrap hérite de ClapTrap
-//Tout ce qui est public et protected dans ClapTrap reste accessible dans FragTrap
+// FragTrap inherits from ClapTrap
+// Everything that is public and protected in ClapTrap remains accessible in FragTrap
 class FragTrap : public ClapTrap
 {   
     private:
