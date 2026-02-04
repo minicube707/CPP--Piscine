@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:08:03 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 15:35:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:11:30 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ DiamondTrap::DiamondTrap(std::string name):ClapTrap(name + "_clap_name"), ScavTr
     
     _name = name;
      
-    // Initialisation explicite des stats
+    // Explicit initialization of statistics
     _hit_point = FragTrap::_hit_point;
     _energy_point = ScavTrap::_energy_point;
     _attack_damage = FragTrap::_attack_damage;
-    
 
-    
     print_stat();
 }
 
@@ -103,5 +101,5 @@ void DiamondTrap::print_stat(void)
     std::cout << "Clap Name: " << ClapTrap::_name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
-    std::cout << "Attack Energy: " << _attack_damage << "\n";
+    std::cout << "Attack Damage: " << _attack_damage << "\n";
 }

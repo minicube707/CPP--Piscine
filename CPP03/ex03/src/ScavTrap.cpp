@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:19:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 15:35:36 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:12:37 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 // ====================
 ScavTrap::ScavTrap()
 {
-    _hit_point = 100;
-    _energy_point = 50;
-    _attack_damage = 20;
+    _energy_point = _init_energy_point;
 
     _gate_keeper_mode = false;
 }
@@ -134,6 +132,6 @@ void ScavTrap::print_stat(void)
     std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
-    std::cout << "Attack Energy: " << _attack_damage << "\n";
+    std::cout << "Attack Damage: " << _attack_damage << "\n";
     std::cout << "Garde keeper mode: " << _gate_keeper_mode << "\n";
 }

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:42:05 by florent           #+#    #+#             */
-/*   Updated: 2026/02/04 15:21:04 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:12:29 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 // ====================
 FragTrap::FragTrap()
 {
-    _hit_point = 100;
-    _energy_point = 100;
-    _attack_damage = 30;
+    _hit_point = _init_hit_point;
+    _attack_damage = _init_attack_damage;
 }
 
 /**************************************************
@@ -114,5 +113,5 @@ void FragTrap::print_stat(void)
     std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
-    std::cout << "Attack Energy: " << _attack_damage << "\n";
+    std::cout << "Attack Damage: " << _attack_damage << "\n";
 }

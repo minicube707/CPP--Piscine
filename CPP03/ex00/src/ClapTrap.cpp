@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 14:22:00 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 17:10:44 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,5 @@ void ClapTrap::print_stat(void)
     std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
-    std::cout << "Attack Energy: " << _attack_damage << "\n";
+    std::cout << "Attack Damage: " << _attack_damage << "\n";
 }
