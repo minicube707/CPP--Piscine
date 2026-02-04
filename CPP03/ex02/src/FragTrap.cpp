@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:42:05 by florent           #+#    #+#             */
-/*   Updated: 2026/02/03 14:10:24 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/04 14:23:13 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void FragTrap::highFivesGuys(void)
 // ====================
 void FragTrap::print_stat(void)
 {
-    std::cout << "\nName: " << _name << "\n";
+    std::cout << "\nStat FragTrap\n";
+    std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
     std::cout << "Attack Energy: " << _attack_damage << "\n";

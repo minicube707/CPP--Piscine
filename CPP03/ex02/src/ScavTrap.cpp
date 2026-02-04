@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:19:59 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 18:59:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/04 14:23:38 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ void ScavTrap::guardGate()
 // ====================
 void ScavTrap::print_stat(void)
 {
-    std::cout << "\nName: " << _name << "\n";
+    std::cout << "\nStat ScavTrap\n";
+    std::cout << "Name: " << _name << "\n";
     std::cout << "Hit point: " << _hit_point << "\n";
     std::cout << "Energy Point: " << _energy_point << "\n";
     std::cout << "Attack Energy: " << _attack_damage << "\n";
