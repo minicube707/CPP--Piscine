@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:12:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 18:44:12 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 14:32:53 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ Cat& Cat::operator=(const Cat& other){if (this != &other)_type = other._type;ret
 **************************************************/
 
 // ====================
+// ==   Mandatory    ==
+// ====================
+void Cat::makeSound(void) const{std::cout << "Cat meow\n";}
+   
+// ====================
 // == Geter & Seter  ==
 // ====================
 const std::string Cat::getType(void) const {return _type;}
-
-void Cat::makeSound(void) const
-{
-    std::cout << "Cat meow\n";
-}

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:16:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 13:32:52 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 14:28:11 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,17 @@ class WrongCat : public WrongAnimal
         /**************************************************
         *                Methode
         **************************************************/
-
+        
+        // ====================
+        // ==   Mandatory    ==
+        // ====================
+        void makeSound(void) const;
+        
         // ====================
         // == Geter & Seter  ==
         // ====================
         const std::string getType(void) const;
         
-        void makeSound(void) const;
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:15 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 13:14:12 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/05 14:27:17 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ class Animal
         **************************************************/
 
         // ====================
+        // ==   Mandatory    ==
+        // ====================
+        virtual void makeSound(void) const;
+        
+        // ====================
         // == Geter & Seter  ==
         // ====================
         const std::string getType(void) const;
 
-        virtual void makeSound(void) const;
 };
 
 #endif

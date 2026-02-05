@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 18:43:54 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 14:28:35 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ Animal& Animal::operator=(const Animal& other){if (this != &other)_type = other.
 **************************************************/
 
 // ====================
+// ==   Mandatory    ==
+// ====================
+void Animal::makeSound(void) const{std::cout << "Animal make sound\n";}
+       
+// ====================
 // == Geter & Seter  ==
 // ====================
 const std::string Animal::getType(void) const {return _type;}
         
-void Animal::makeSound(void) const
-{
-    std::cout << "Animal make sound\n";
-}

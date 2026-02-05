@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 13:38:52 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 14:33:35 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other){if (this != &other
 **************************************************/
 
 // ====================
+// ==   Mandatory    ==
+// ====================
+void WrongAnimal::makeSound(void) const{std::cout << "WrongAnimal make sound\n";}
+
+// ====================
 // == Geter & Seter  ==
 // ====================
 const std::string WrongAnimal::getType(void) const {return _type;}
         
-void WrongAnimal::makeSound(void) const
-{
-    std::cout << "WrongAnimal make sound\n";
-}
