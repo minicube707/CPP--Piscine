@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:15 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 16:43:55 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 17:01:49 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class Animal
         //If a class has at least one virtual function,
         //or if it is used polymorphically,
         //then its destructor must be virtual.
-        //const Animal* j = new Dog();
+        //call ~Cat() or ~Dog() then ~Animal() thanks to virtual
         virtual ~Animal();
         
         Animal(const Animal &other);
