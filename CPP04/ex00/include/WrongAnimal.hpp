@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:15 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 13:14:12 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/05 13:18:12 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include <iostream>
 # include <string>
 
-class Animal
+class WrongAnimal
 {
     protected:
         std::string _type;
@@ -32,17 +32,17 @@ class Animal
         // == Canonical Form ==
         // ====================
         
-        Animal();
-        Animal(std::string type);
+        WrongAnimal();
+        WrongAnimal(std::string type);
 
         // If a class has at least one virtual function,
         // or if it is used polymorphically,
         // then its destructor must be virtual.
         //const Animal* j = new Dog();
-        virtual ~Animal();
+        virtual ~WrongAnimal();
         
-        Animal(const Animal &other);
-        Animal& operator=(const Animal& other);
+        WrongAnimal(const WrongAnimal &other);
+        WrongAnimal& operator=(const WrongAnimal& other);
 
         /**************************************************
         *                Methode
@@ -53,7 +53,7 @@ class Animal
         // ====================
         const std::string getType(void) const;
 
-        virtual void makeSound(void) const;
+        void makeSound(void) const;
 };
 
 #endif
