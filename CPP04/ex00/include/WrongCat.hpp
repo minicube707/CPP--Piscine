@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:16:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 13:31:48 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/05 13:32:52 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
     public:
 
@@ -27,10 +27,10 @@ class Cat : public Animal
         // == Canonical Form ==
         // ====================
         
-        Cat();
-        ~Cat();
-        Cat(const Cat &other);
-        Cat& operator=(const Cat& other);
+        WrongCat();
+        ~WrongCat();
+        WrongCat(const WrongCat &other);
+        WrongCat& operator=(const WrongCat& other);
 
         /**************************************************
         *                Methode
