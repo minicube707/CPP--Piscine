@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 12:26:44 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/07 18:11:41 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 18:45:09 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void MateriaSource::learnMateria(AMateria* ptr)
         
     for (int i = 0; i < 4 ; i++)
     {
-        if ( _inventory[i] != 0)
+        if ( _inventory[i] == 0)
         {
             _inventory[i] = ptr->clone();
             return ;
