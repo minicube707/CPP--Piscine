@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:15 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 17:01:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 12:11:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class Animal
         // ====================
         // ==   Mandatory    ==
         // ====================
+        //call Cat::makeSound() or Dog::makeSound(), not Animal::makeSound()
         virtual void makeSound(void) const;
         
         // ====================

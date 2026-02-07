@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:33:15 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 17:16:30 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 12:12:08 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,30 @@ class Animal
         // ==   Mandatory    ==
         // ====================
         //call Cat::makeSound() or Dog::makeSound(), not Animal::makeSound()
-        //The value = 0 means that Animal does not implement this method.
-        //Animal becomes abstract: you cannot create an instance of Animal.
-        //You force all derived classes to implement `makeSound()`.
+        /*
+        SUMMARY – virtual = 0 in C++
+
+        1) virtual f() = 0
+        - Declares a pure virtual method
+        - Makes the class abstract
+        - Forces all concrete derived classes to implement f()
+        - Defines a functional contract (interface behavior)
+
+        2) virtual ~Base() = 0
+        - Makes the class abstract without enforcing behavior
+        - Indicates the class is intended only as a base (blueprint)
+        - Ensures safe destruction through a base-class pointer
+        - The destructor MUST still have an implementation
+            (e.g. Base::~Base() = default;)
+
+        3) Constructor
+        - Can never be virtual
+        - Therefore can never be pure (= 0)
+
+        Quick recap:
+        - = 0 on a method     -> derived classes must implement behavior
+        - = 0 on destructor   -> abstraction + safe polymorphic destruction
+        */
         virtual void makeSound(void) const = 0;
         
         // ====================
