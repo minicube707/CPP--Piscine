@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:05:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 17:10:42 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 17:14:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int main()
     delete i;
     
     ///MY TEST
-    std::cout << "\n";
+    std::cout << "\nMY TEST\n\n";
     
     const Animal* c = new Cat();
     c->haveAnIdea("I am dead and alive in the same time", 0);
     std::cout << c->tellAnIdea(0) << "\n";
-    
+    std::cout << "\n";
+        
     c->haveAnIdea("Garfield like eat lasagne and pizza", 42);
     c->haveAnIdea("I think I gonna help Tom to hunt Jerry", 37);
     c->haveAnIdea("One day I dream being in space leaving a rainbow trail", 3);
@@ -56,6 +57,25 @@ int main()
     
     deepcopy->printIdea();
     delete deepcopy;
+
+    std::cout << "\n";
     
+    Animal* list_animal[10];
+
+    for (int i = 0; i < 10 ; i++)
+    {
+        if (i % 2)
+            list_animal[i] = new Dog;
+        else
+            list_animal[i] = new Cat;
+    }
+
+    for (int i = 0; i < 10 ; i++)
+        list_animal[i]->makeSound();
+    
+        
+    for (int i = 0; i < 10 ; i++)
+        delete list_animal[i];
+        
     return 0;
 }
