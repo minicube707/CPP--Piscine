@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:29:32 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 17:31:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 13:11:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <iostream>
 # include <string>
+
+//Forward Declaration
+//Circular Dependency
+class AMateria; 
 
 class ICharacter
 {

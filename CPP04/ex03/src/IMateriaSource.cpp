@@ -6,8 +6,8 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:37:07 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 17:37:12 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 17:58:17 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "AMateria.hpp"
+# include "IMateriaSource.hpp"

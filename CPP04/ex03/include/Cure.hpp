@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 18:09:17 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/05 18:13:16 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/07 18:24:55 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 class Cure: public AMateria
 {   
     private:
-        std::string _type;
+        const std::string _type;
     
     public:
+        Cure();
         Cure(std::string const & type);
         ~Cure();
+
+        AMateria* clone() const;
+        void use(ICharacter& target);
 };
 
 #endif

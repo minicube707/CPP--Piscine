@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/05 18:01:58 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/07 17:57:19 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -std=c++98 -g
 
 
 # =======================================
@@ -27,10 +27,12 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 FILE_NAMES =	main \
 				
 CLASS_FILE = 	AMateria \
+				Character \
+				Cure \
 				Ice \
 				ICharacter \
-				IMateriaSource
-
+				IMateriaSource \
+				MateriaSource \
 
 # =======================================
 #              VARIABLE
