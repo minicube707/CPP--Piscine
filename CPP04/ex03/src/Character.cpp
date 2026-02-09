@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 12:59:28 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/07 18:34:44 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/09 15:45:08 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,46 @@ Character::Character(const Character &other): _name(other._name)
         _inventory[i] = other._inventory[i];
 }
 
+Character& Character::operator=(const Character& other)
+{
+    if (this == &other)
+        return (*this);
+    
+    _name = other.getName();
+    for (int i = 0; i < 4 ; i++)
+        _inventory[i] = other._inventory[i];
+    return (*this);
+}
+
 std::string const & Character::getName() const{return _name;}
 
 void Character::equip(AMateria* m)
 {
-    if (m != 0)
+    if (m == 0)
         return;
         
     for (int i = 0; i < 4 ; i++)
     {
-        if ( _inventory[i] != 0)
+        if ( _inventory[i] == 0)
         {
-            _inventory[i] = m->clone();
+            _inventory[i] = m;
             return ;
         }
     }
 }
 
-void Character::unequip(int idx){(void) idx;}
+void Character::unequip(int idx) 
+{
+    if (0 <= idx && idx <= 4)
+        _inventory[idx] = 0;
+}
 
-void Character::use(int idx, ICharacter& target){(void) idx; (void) target;}
+
+void Character::use(int idx, ICharacter& target)
+{
+    AMateria *tmp = _inventory[idx];
+
+    if (tmp == 0)
+        return ;
+    tmp->use(target);
+}

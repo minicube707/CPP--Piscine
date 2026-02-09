@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 12:50:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/07 18:34:15 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/09 15:03:24 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class Character: public ICharacter
 {
     private:
-        const std::string _name;
-        const AMateria* _inventory[4];
+        std::string _name;
+        AMateria* _inventory[4];
         
     public:
         Character();
@@ -32,7 +32,7 @@ class Character: public ICharacter
         std::string const & getName() const;
         void equip(AMateria* m);
         void unequip(int idx);
-        void use(int idx, ICharacter& target);
+        virtual void use(int idx, ICharacter& target);
 };
 
 #endif

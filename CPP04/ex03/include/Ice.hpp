@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:58:55 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/07 18:25:04 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/09 14:51:25 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 
 class Ice: public AMateria
 {   
-    private:
-        const std::string _type;
-    
     public:
         Ice();
         Ice(std::string const & type);
         ~Ice();
 
+        std::string const & getType() const;
+        
         AMateria* clone() const;
         void use(ICharacter& target);
 };
