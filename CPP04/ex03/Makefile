@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/07 17:57:19 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/09 15:11:38 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,10 @@ CLASS_FILE = 	AMateria \
 				Character \
 				Cure \
 				Ice \
-				ICharacter \
-				IMateriaSource \
 				MateriaSource \
+
+ABSTR_FILE = 	ICharacter \
+				IMateriaSource \
 
 # =======================================
 #              VARIABLE
@@ -43,7 +44,7 @@ HEA_PATH = include
 
 SRC_FILES = $(FILE_NAMES:%=$(SRC_PATH)/%.cpp) $(CLASS_FILE:%=$(SRC_PATH)/%.cpp)
 OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
-HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp)
+HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp) $(ABSTR_FILE:%=$(HEA_PATH)/%.hpp) 
 
 NAME = Now_it_s_weird!
 
