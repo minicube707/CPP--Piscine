@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 
 # =======================================
