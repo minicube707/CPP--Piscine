@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:53 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/09 19:50:25 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/10 11:10:37 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ const std::string Bureaucrat::get_name(void) const {return _name;}
 unsigned int Bureaucrat::get_grade(void) const {return _grade;}
 void Bureaucrat::set_grade(unsigned int grade) {check_grade(grade);}
 
+/*------METHODE------*/
 void Bureaucrat::check_grade(unsigned int grade) 
 {
     if (grade < 1)
@@ -43,6 +44,9 @@ void Bureaucrat::check_grade(unsigned int grade)
 
     _grade = grade;
 }
+
+void Bureaucrat::increase_grade(void){check_grade(_grade - 1);}
+void Bureaucrat::decrease_grade(void){check_grade(_grade + 1);}
 
 /*--OS-SURCHARGE--*/
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj){os << obj.get_name() << ", bureaucrat grade " << obj.get_grade() << "\n"; return (os);}

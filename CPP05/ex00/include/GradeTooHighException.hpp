@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:17:55 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/09 19:52:14 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/10 11:08:13 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,8 @@
 class GradeTooHighException : public std::exception 
 {
     public:
-        const char* what() const noexcept override {return "Error: grade too high";};
+        //Redefining the what() method of std::exception
+        //'throw()': ensures that this function does not throw an exception
+        //(equivalent of 'noexcept' in C++11+)
+        const char* what() const throw() {return "Too Hight";};
 };

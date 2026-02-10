@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:49 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/09 19:48:23 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/10 11:10:20 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,14 @@ class Bureaucrat
         unsigned int get_grade(void) const;
         void set_grade(unsigned int grade);
 
+        /*------METHODE------*/
         void check_grade(unsigned int grade);
+        void increase_grade(void);
+        void decrease_grade(void);
+
 };
 
+/*--OS-SURCHARGE--*/
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
 
 #endif
