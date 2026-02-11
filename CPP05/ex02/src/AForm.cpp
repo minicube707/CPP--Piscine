@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:42:54 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/10 16:56:48 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/11 15:49:50 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void AForm::beSigned(const Bureaucrat& b)
     _is_signed = true;
 }
 
+//Check the grade at initialization
 void AForm::check_grade(unsigned int grade) 
 {
     if (grade < 1)
@@ -59,6 +60,18 @@ void AForm::check_grade(unsigned int grade)
         
     if (grade > 150)
         throw GradeTooLowException();
+}
+
+//Check the Form before to be sign
+void AForm::checkExecute(Bureaucrat const & executor) const
+{
+    //If the grade of the Form is greater than the Bureaucrat
+    if (executor.get_grade() > get_grade_to_exec())
+        throw GradeTooLowException();
+    
+    //If the Form is signed
+    if (get_state_sign() == false)
+        throw FormNotSignedException();
 }
 
 /*--OS-SURCHARGE--*/

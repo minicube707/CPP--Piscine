@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/10 17:41:51 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/11 15:05:10 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ CLASS_FILE = 	Bureaucrat \
 
 ABSTR_FILE = 	GradeTooLowException \
 				GradeTooHighException \
+				FormNotSignedException \
 
 # =======================================
 #              VARIABLE

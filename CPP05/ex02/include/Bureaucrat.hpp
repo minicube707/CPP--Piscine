@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:49 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/10 16:59:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/11 15:55:27 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ class Bureaucrat
 
         /*------METHODE------*/
         void signForm(AForm& f);
-                
+        void executeForm(AForm const & form) const;
+        
         void check_grade(unsigned int grade);
         void increase_grade(void);
         void decrease_grade(void);

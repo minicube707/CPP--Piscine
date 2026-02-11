@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:53 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/10 16:58:46 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/11 16:03:43 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void Bureaucrat::signForm(AForm& f)
 
 }
 
+//Check the grade at initialization
 void Bureaucrat::check_grade(unsigned int grade) 
 {
     if (grade < 1)
@@ -62,6 +63,21 @@ void Bureaucrat::check_grade(unsigned int grade)
 
 void Bureaucrat::increase_grade(void){check_grade(_grade - 1);}
 void Bureaucrat::decrease_grade(void){check_grade(_grade + 1);}
+
+
+void Bureaucrat::executeForm(AForm const & form) const
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << _name << " executed " << form.get_name() << '\n';
+    }
+    catch(const std::exception& e)
+    {
+       std::cout << _name << " couldn't execute " << form.get_name() << " because " << e.what() << '\n';
+    }
+    
+}
 
 /*--OS-SURCHARGE--*/
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj){os << obj.get_name() << ", bureaucrat grade " << obj.get_grade() << "\n"; return (os);}
