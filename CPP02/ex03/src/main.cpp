@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 18:03:01 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:07:43 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int main( void )
         std::cout << "\nThe function return " << RED << "false" << RESET << "\n";
 
     //=============================
-    //Test precision
+    //Test Point are same coordonnate
     //A (0, 2)
     //B (0, 0)
     //C (3, 2)
