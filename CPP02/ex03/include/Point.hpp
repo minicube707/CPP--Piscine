@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:41:35 by florent           #+#    #+#             */
-/*   Updated: 2026/01/27 18:32:53 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 17:43:28 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ class	Point
 /*Function*/
 std::ostream& operator<<(std::ostream& os, const Point& obj);
 Fixed dot_procduct(const Point& a, const Point& b);
+Fixed cross_procduct(const Point& a, const Point& b);
 Fixed euclidean_distance(const Point& a, const Point& b);
+
+Point get_vecteur(const Point& a, const Point& b);
 
 #endif

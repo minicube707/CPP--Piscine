@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 00:35:28 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/13 15:18:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main( void )
     /*===My Test====*/
     /*==============*/
 
-    /*
+    
     std::cout << "\n\nMy test" << std::endl;
 
     Fixed e = 42;
@@ -47,6 +47,18 @@ int main( void )
     Fixed o = 1;
     Fixed n = -42;
     
+    std::cout << "\nCopy Constructeur" << std::endl;
+    
+    Fixed cp(51);
+    std::cout << "Fixed cp(51)" <<  ": " << cp << std::endl;
+    
+    std::cout << "\nCopy Assignment" << std::endl;
+    
+    Fixed ca = Fixed(51);   
+    std::cout << "Fixed ca = Fixed(51)" <<  ": " << ca << std::endl;
+    ca = Fixed(21); 
+    std::cout << "ca = Fixed(21)" <<  ": " << ca << std::endl;
+    
     std::cout << "\nComparison Operator" << std::endl;
     
     std::cout << "\nTest: ==" << std::endl;
@@ -55,6 +67,7 @@ int main( void )
     std::cout << e << " == " << h << ": " << (e == h) << std::endl;
     std::cout << e << " == " << i << ": " << (e == i) << std::endl;
     std::cout << i << " == " << h << ": " << (i == h) << std::endl;
+    std::cout << h << " == " << h << ": " << (h == h) << std::endl;
 
     std::cout << "\nTest: !=" << std::endl;
     std::cout << e << " != " << f << ": " << (e != f) << std::endl;
@@ -62,6 +75,7 @@ int main( void )
     std::cout << e << " != " << h << ": " << (e != h) << std::endl;
     std::cout << e << " != " << i << ": " << (e != i) << std::endl;
     std::cout << i << " != " << h << ": " << (i != h) << std::endl;
+    std::cout << h << " != " << h << ": " << (h != h) << std::endl;
     
     std::cout << "\nTest: <" << std::endl;
     std::cout << e << " < " << f << ": " << (e < f) << std::endl;
@@ -71,6 +85,7 @@ int main( void )
     std::cout << e << " < " << h << ": " << (e < h) << std::endl;
     std::cout << e << " < " << i << ": " << (e < i) << std::endl;
     std::cout << i << " < " << h << ": " << (i < h) << std::endl;
+    std::cout << h << " < " << h << ": " << (h < h) << std::endl;
     
     std::cout << "\nTest: >" << std::endl;
     std::cout << e << " > " << f << ": " << (e > f) << std::endl;
@@ -80,6 +95,7 @@ int main( void )
     std::cout << e << " > " << h << ": " << (e > h) << std::endl;
     std::cout << e << " > " << i << ": " << (e > i) << std::endl;
     std::cout << i << " > " << h << ": " << (i > h) << std::endl;
+    std::cout << h << " > " << h << ": " << (h > h) << std::endl;
     
     std::cout << "\nTest: <=" << std::endl;
     std::cout << e << " <= " << f << ": " << (e <= f) << std::endl;
@@ -89,6 +105,7 @@ int main( void )
     std::cout << e << " <= " << h << ": " << (e <= h) << std::endl;
     std::cout << e << " <= " << i << ": " << (e <= i) << std::endl;
     std::cout << i << " <= " << h << ": " << (i <= h) << std::endl;
+    std::cout << h << " <= " << h << ": " << (h <= h) << std::endl;
     
     std::cout << "\nTest: >=" << std::endl;
     std::cout << e << " >= " << f << ": " << (e >= f) << std::endl;
@@ -98,7 +115,7 @@ int main( void )
     std::cout << e << " >= " << h << ": " << (e >= h) << std::endl;
     std::cout << e << " >= " << i << ": " << (e >= i) << std::endl;
     std::cout << i << " >= " << h << ": " << (i >= h) << std::endl;
-    
+    std::cout << h << " >= " << h << ": " << (h >= h) << std::endl;
     
     std::cout << "\nArithmetic Operator" << std::endl;
 
@@ -108,6 +125,7 @@ int main( void )
     std::cout << e << " + " << h << ": " << (e + h) << std::endl;
     std::cout << e << " + " << i << ": " << (e + i) << std::endl;
     std::cout << h << " + " << i << ": " << (h + i) << std::endl;
+    std::cout << h << " + " << h << ": " << (h + h) << std::endl;
     
     std::cout << "\nTest: -" << std::endl;
     std::cout << e << " - " << f << ": " << (e - f) << std::endl;
@@ -117,7 +135,8 @@ int main( void )
     std::cout << e << " - " << i << ": " << (e - i) << std::endl;
     std::cout << h << " - " << i << ": " << (h - i) << std::endl;
     std::cout << i << " - " << h << ": " << (i - h) << std::endl;
-
+    std::cout << h << " - " << h << ": " << (h - h) << std::endl;
+    
     std::cout << "\nTest: *" << std::endl;
     std::cout << e << " * " << f << ": " << (e * f) << std::endl;
     std::cout << e << " * " << g << ": " << (e * g) << std::endl;
@@ -127,6 +146,7 @@ int main( void )
     std::cout << e << " * " << i << ": " << (e * i) << std::endl;
     std::cout << h << " * " << i << ": " << (h * i) << std::endl;
     std::cout << i << " * " << h << ": " << (i * h) << std::endl;
+    std::cout << h << " * " << h << ": " << (h * h) << std::endl;
     
     std::cout << "\nTest: 0 *" << std::endl;
     std::cout << z << " * " << e << ": " << (z * f) << std::endl;
@@ -153,6 +173,7 @@ int main( void )
     std::cout << e << " / " << i << ": " << (e / i) << std::endl;
     std::cout << h << " / " << i << ": " << (h / i) << std::endl;
     std::cout << i << " / " << h << ": " << (i / h) << std::endl;
+    std::cout << h << " / " << h << ": " << (h / h) << std::endl;
     
     std::cout << "\nTest: 0 /" << std::endl;
     std::cout << e << " / " << z << ": " << (e / z) << std::endl;
@@ -201,7 +222,7 @@ int main( void )
     std::cout << e << " max " << i << ": " << Fixed::max(e , i) << std::endl;
     std::cout << h << " max " << i << ": " << Fixed::max(h , i) << std::endl;
     std::cout << i << " max " << h << ": " << Fixed::max(i , h) << std::endl;
-    */
+    
    
     return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:46:36 by florent           #+#    #+#             */
-/*   Updated: 2026/01/27 14:22:55 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/13 17:43:18 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Point::~Point(){}
 Point::Point(const Point &other): _x(other.get_x()), _y(other.get_y()){}
 
 //Copy assignment operator overload
-Point &Point::operator=(const Point& old){if (this == &old)_x = old.get_x();_y = old.get_y();return (*this);}
+Point &Point::operator=(const Point& old){if (this == &old) return (*this);_x = old.get_x();_y = old.get_y();return (*this);}
 
 
 
@@ -51,6 +51,7 @@ Point Point::operator*(const Fixed& scalire) const{return Point(_x * scalire,_y 
 
 /*Function*/
 Fixed dot_procduct(const Point& a, const Point& b){return (Fixed(a.get_x() * b.get_x() + a.get_y() * b.get_y()));}
+Fixed cross_procduct(const Point& a, const Point& b){return a.get_x() * b.get_y() - a.get_y() * b.get_x();}
 
 Fixed euclidean_distance(const Point& a, const Point& b)
 {
@@ -59,3 +60,5 @@ Fixed euclidean_distance(const Point& a, const Point& b)
 	
 	return(square_root(pow(x, 2) + pow(y, 2)));
 }
+
+Point get_vecteur(const Point& a, const Point& b){return Point(b.get_x() - a.get_x(), b.get_y() - a.get_y());}

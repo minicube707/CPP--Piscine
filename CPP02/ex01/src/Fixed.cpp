@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 00:18:43 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/13 17:26:53 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called\n";
-    _fixed_point = FIXE_POINT;
+    _fixed_point = _init_value;
 }
 
 //Constructeur: Convert an Int to a Fix-Point
@@ -43,7 +43,7 @@ Fixed::~Fixed()
 Fixed::Fixed(const Fixed &other)
 {   
     std::cout << "Copy constructor called\n";
-    this->setRawBits(other.getRawBits());
+    *this = other;
 }
 
 //Copy assignment operator overload
@@ -83,19 +83,20 @@ int Fixed::toInt( void ) const
 /*Function*/
 /*
 =========DESCRIPTION=========
-Surcharge de l’opérateur << pour afficher un objet Fixed
-sur un flux de sortie (ex : std::cout).
+Extra operator for displaying a Fixed object
+on an output stream (e.g., std::cout).
 
 =========INPUT=========
-std::ostream& os : flux de sortie
-const Fixed& obj : objet Fixed à afficher (passé par référence constante)
+std::ostream& os: output stream
+const Fixed& obj: Fixed object to display (passed by constant reference)
 
-=========OUTPUT=========
-std::ostream& : référence vers le flux de sortie, permettant
-l’enchaînement des affichages (ex : std::cout << a << b << std::endl)
+==========OUTPUT=========
+std::ostream&: reference to the output stream, allowing
+chaining outputs (e.g., std::cout << a << b << std::endl)
 
 =========DETAILS=========
-L’objet Fixed est affiché sous forme de float via la méthode toFloat().
+The Fixed object is displayed as a float using the toFloat() method.
+
 */
 std::ostream& operator<<(std::ostream& os, const Fixed& obj)
 {

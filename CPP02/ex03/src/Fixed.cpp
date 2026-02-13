@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 11:37:05 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 17:25:12 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*CANONICAL FORM*/
 //Constructer
-Fixed::Fixed(){_fixed_point = FIXE_POINT;}
+Fixed::Fixed(){_fixed_point = _init_value;}
 Fixed::Fixed(const int value){_fixed_point = value << _const_eight;}
 Fixed::Fixed(const float value){_fixed_point = roundf(value * float(1 << _const_eight));}
 
@@ -25,7 +25,7 @@ Fixed::~Fixed(){}
 Fixed::Fixed(const Fixed &other){setRawBits(other.getRawBits());}
 
 //Copy assignment operator overload
-Fixed &Fixed::operator=(const Fixed& old){if (this == &old)_fixed_point = old.getRawBits();return (*this);}
+Fixed &Fixed::operator=(const Fixed& old){if (this != &old)_fixed_point = old.getRawBits();return (*this);}
 
 
 
@@ -63,27 +63,27 @@ Fixed Fixed::operator/(const Fixed& obj) const{if (obj.getRawBits() == 0) return
 /*Increment/Decrement Operator*/
 Fixed& Fixed::operator++()
 {
-    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point += _const_epsilon;
     return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed tmp = *this;
-    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point += _const_epsilon;
     return (tmp);
 }
 
 Fixed& Fixed::operator--()
 {
-    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point -= _const_epsilon;
     return (*this);
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed tmp = *this;
-    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point -= _const_epsilon;
     return (tmp);
 }
 
@@ -126,3 +126,4 @@ Fixed pow(const Fixed& a, int exp)
 }
 
 Fixed abs(const Fixed& a) {if (a < 0) return (-a); return (a);}
+int get_sign(const Fixed a){if (a < 0) return (-1); return (1);}

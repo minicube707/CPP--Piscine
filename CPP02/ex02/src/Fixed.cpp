@@ -6,19 +6,19 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/28 11:27:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 15:06:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 /*CANONICAL FORM*/
-Fixed::Fixed(){_fixed_point = FIXE_POINT;}
+Fixed::Fixed(){_fixed_point = _init_value;}
 Fixed::Fixed(const int value){_fixed_point = value << _const_eight;}
 Fixed::Fixed(const float value){_fixed_point = roundf(value * float(1 << _const_eight));}
 Fixed::~Fixed(){}
 Fixed::Fixed(const Fixed &other){setRawBits(other.getRawBits());}
-Fixed &Fixed::operator=(const Fixed& old){if (this == &old)_fixed_point = old.getRawBits();return (*this);}
+Fixed &Fixed::operator=(const Fixed& old){if (this != &old)_fixed_point = old.getRawBits();return (*this);}
 
 /*Get Set*/
 int Fixed::getRawBits( void ) const{return _fixed_point;}
@@ -53,27 +53,27 @@ Fixed Fixed::operator/(const Fixed& obj) const{if (obj.getRawBits() == 0) return
 /*Increment/Decrement Operator*/
 Fixed& Fixed::operator++()
 {
-    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point += _const_epsilon;
     return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed tmp = *this;
-    _fixed_point += roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point += _const_epsilon;
     return (tmp);
 }
 
 Fixed& Fixed::operator--()
 {
-    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point -= _const_epsilon;
     return (*this);
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed tmp = *this;
-    _fixed_point -= roundf(EPSILON * float(1 << _const_eight));
+    _fixed_point -= _const_epsilon;
     return (tmp);
 }
 

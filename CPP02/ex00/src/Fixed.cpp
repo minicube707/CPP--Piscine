@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:16 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/24 00:23:01 by florent          ###   ########.fr       */
+/*   Updated: 2026/02/13 11:55:51 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called\n";
-    _fixed_point = FIXE_POINT;
+    _fixed_point = _init_value;
 }
 
 //Destructor
@@ -29,7 +29,7 @@ Fixed::~Fixed()
 Fixed::Fixed(const Fixed &other)
 {   
     std::cout << "Copy constructor called\n";
-    this->setRawBits(other.getRawBits());
+    *this = other;
 }
 
 //Copy assignment operator overload

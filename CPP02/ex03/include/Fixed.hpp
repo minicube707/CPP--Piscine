@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:43:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/01/27 18:51:45 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 17:31:02 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 # include <string>
 # include <cmath>
 
-# define FIXE_POINT 0
-# define CONST_EIGHT 8
-# define EPSILON 0.003f
-
 class	Fixed
 {  
     private: 
+        //Constant
+        static int const _const_eight = 8;
+        static int const _const_epsilon = 1;
+        static int const _init_value = 0;
+
+        //Variable
         int _fixed_point;
-        static int const _const_eight = CONST_EIGHT;
         
     public:
         //Constructer
@@ -88,5 +89,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& obj);
 Fixed square_root(const Fixed& a);
 Fixed pow(const Fixed& a, int exp);
 Fixed abs(const Fixed& a);
+
+int get_sign(const Fixed a);
 
 #endif
