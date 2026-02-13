@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:14:31 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/11 15:32:56 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:13:55 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class PresidentialPardonForm: public AForm
         static const int grade_sign = 25;
         static const int grade_exec = 5;
 
+        //Variable
         std::string _target;   
         
     public:
