@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 15:18:31 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/14 13:27:17 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,6 @@ int main( void )
     std::cout << h << " max " << i << ": " << Fixed::max(h , i) << std::endl;
     std::cout << i << " max " << h << ": " << Fixed::max(i , h) << std::endl;
     
-   
+
     return 0;
 }

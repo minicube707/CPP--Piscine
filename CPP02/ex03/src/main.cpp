@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:57:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 18:07:43 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/14 16:55:57 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int main( void )
     Point a (0, 2);
     Point b (1, 0);
     Point c (3, 2);
-    Point p (1, 1);
+    Point p1 (1, 1);
     
-    answer = bsp(a, b, c, p);
+    answer = bsp(a, b, c, p1);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -47,8 +47,8 @@ int main( void )
     //P (0, 1)
     //False
 
-    p = Point (0, 1);
-    answer = bsp(a, b, c, p);
+    Point p2 = Point (0, 1);
+    answer = bsp(a, b, c, p2);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -64,8 +64,8 @@ int main( void )
     //P (1.5, 2.5)
     //False
 
-    p = Point (1.5, 2.5);
-    answer = bsp(a, b, c, p);
+    Point p3 = Point (1.5, 2.5);
+    answer = bsp(a, b, c, p3);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -81,8 +81,8 @@ int main( void )
     //P (2, 0.5)
     //False
 
-    p = Point (2, 0.5);
-    answer = bsp(a, b, c, p);
+    Point p4 = Point (2, 0.5);
+    answer = bsp(a, b, c, p4);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -98,8 +98,8 @@ int main( void )
     //P (2.2, 1.2)
     //False on straight BC
 
-    p = Point (2.2, 1.2);
-    answer = bsp(a, b, c, p);
+    Point p5 = Point (2.2, 1.2);
+    answer = bsp(a, b, c, p5);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -116,8 +116,8 @@ int main( void )
     //P (0.6, 2)
     //False on straight AC
     
-    p = Point (0.6, 2);
-    answer = bsp(a, b, c, p);
+    Point p6 = Point (0.6, 2);
+    answer = bsp(a, b, c, p6);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -133,8 +133,8 @@ int main( void )
     //P (0.8, 0.4)
     //False on straight AB
 
-    p = Point (0.8, 0.4);
-    answer = bsp(a, b, c, p);
+    Point p7 = Point (0.8, 0.4);
+    answer = bsp(a, b, c, p7);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -150,8 +150,8 @@ int main( void )
     //P (1.264, 0.264)
     //False on straight BC
 
-    p = Point (1.264, 0.264);
-    answer = bsp(a, b, c, p);
+    Point p8 = Point (1.264, 0.264);
+    answer = bsp(a, b, c, p8);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -167,8 +167,8 @@ int main( void )
     //P (0.535, 2)
     //False on straight AC
 
-    p = Point (0.535, 2);
-    answer = bsp(a, b, c, p);
+    Point p9 = Point (0.535, 2);
+    answer = bsp(a, b, c, p9);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -182,10 +182,10 @@ int main( void )
     //B (1, 0)
     //C (3, 2)
     //P (0.9253,0.1494)
-    //False on straight AC
+    //False on straight AB
 
-    p = Point (0.9253,0.1494);
-    answer = bsp(a, b, c, p);
+    Point p10 = Point (0.9253,0.1494);
+    answer = bsp(a, b, c, p10);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -201,8 +201,8 @@ int main( void )
     //P (1, 1.9995)
     //True 
 
-    p = Point (1, 1.995);
-    answer = bsp(a, b, c, p);
+    Point p11 = Point (1, 1.995);
+    answer = bsp(a, b, c, p11);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";
@@ -214,12 +214,12 @@ int main( void )
     //A (0, 2)
     //B (0, 0)
     //C (3, 2)
-    //P (1.17,1.97)
+    //P (0, 0)
     //True 
 
-    b = Point (0, 0);
-    p = Point (0, 0);
-    answer = bsp(a, b, c, p);
+    Point b2 = Point (0, 0);
+    Point p12 = Point (0, 0);
+    answer = bsp(a, b2, c, p12);
     
     if (answer)
         std::cout << "\nThe function return " << GREEN << "true" << RESET << "\n";

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:41:35 by florent           #+#    #+#             */
-/*   Updated: 2026/02/13 17:43:28 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/14 16:53:47 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 class	Point
 {  
     private: 
-       Fixed _x; 
-       Fixed _y;
+       const Fixed _x; 
+       const Fixed _y;
         
     public:
         //Constructer
@@ -47,8 +47,6 @@ class	Point
         /*Get Set*/
         Fixed get_x( void ) const;
         Fixed get_y( void ) const;
-        void set_x( Fixed x );
-        void set_y( Fixed y );
 
         /*Arithmetic Operator*/
         Point operator+(const Point& obj) const;

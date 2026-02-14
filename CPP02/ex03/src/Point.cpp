@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:46:36 by florent           #+#    #+#             */
-/*   Updated: 2026/02/13 17:43:18 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/14 16:53:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ Point::~Point(){}
 Point::Point(const Point &other): _x(other.get_x()), _y(other.get_y()){}
 
 //Copy assignment operator overload
-Point &Point::operator=(const Point& old){if (this == &old) return (*this);_x = old.get_x();_y = old.get_y();return (*this);}
+Point &Point::operator=(const Point& old){(void) old; return(*this);} //Useless because private atribut are private
 
 
 
 /*Get Set*/
 Fixed Point::get_x( void ) const {return (_x);}
 Fixed Point::get_y( void ) const {return (_y);}
-void Point::set_x( Fixed x ){_x = x;}
-void Point::set_y( Fixed y ){_y = y;}
 
 //Surcharge
 std::ostream& operator<<(std::ostream& os, const Point& obj)
