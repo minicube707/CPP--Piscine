@@ -25,7 +25,7 @@ Point::~Point(){}
 Point::Point(const Point &other): _x(other.get_x()), _y(other.get_y()){}
 
 //Copy assignment operator overload
-Point &Point::operator=(const Point& old){(void) old; return(*this);} //Useless because private atribut are private
+Point &Point::operator=(const Point& old){(void) old; return(*this);} //Useless because private attribute are const
 
 
 
