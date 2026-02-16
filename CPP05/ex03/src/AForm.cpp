@@ -6,20 +6,27 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:42:54 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/14 15:00:17 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/16 16:55:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "AForm.hpp"
 
 /* ************************************************************************** */
+/*                          STATIC CONSTANT                                   */
+/* ************************************************************************** */
+
+const std::string AForm::_allowed_name_form[3] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+const std::string AForm::_flag_wrong_name = "Wrong_Name";
+
+/* ************************************************************************** */
 /*                             CANONICAL FORM                                 */
 /* ************************************************************************** */
 
 //Constructor
-AForm::AForm(): _name("Important form"), _is_signed(false), _grade_to_sign(1), _grade_to_exec(1) {}
+AForm::AForm(): _name("Important form"), _grade_to_sign(150), _grade_to_exec(150), _is_signed(false) {}
 AForm::AForm(const std::string name, const unsigned int grade_to_sign, const unsigned int grade_to_exec):
-_name(name), _is_signed(false), _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec)
+_name(name), _grade_to_sign(grade_to_sign), _grade_to_exec(grade_to_exec), _is_signed(false)
 {
     check_grade(grade_to_sign);
     check_grade(grade_to_exec);
@@ -28,7 +35,7 @@ _name(name), _is_signed(false), _grade_to_sign(grade_to_sign), _grade_to_exec(gr
 //Destructor, Copy Constructor, Copy Constructor
 AForm::~AForm() {}
 AForm::AForm(const AForm &other):
-_name(other._name), _is_signed(other._is_signed), _grade_to_sign(other._grade_to_sign), _grade_to_exec(other._grade_to_exec)
+_name(other._name), _grade_to_sign(other._grade_to_sign), _grade_to_exec(other._grade_to_exec), _is_signed(other._is_signed)
 {
     check_grade(other._grade_to_sign);
     check_grade(other._grade_to_exec);
@@ -45,11 +52,17 @@ AForm& AForm::operator=(const AForm& other)
 /*                            GETTER & SETTER                                 */
 /* ************************************************************************** */
 
+//Static getter
+const std::string* AForm::get_allowed_name_form(void) {return _allowed_name_form;}
+const std::string AForm::get_flag_wrong_name(void) {return _flag_wrong_name;}
+
+//Getter
 const std::string AForm::get_name(void) const {return _name;}
 unsigned int AForm::get_grade_to_sign(void) const {return _grade_to_sign;}
 unsigned int AForm::get_grade_to_exec(void) const {return _grade_to_exec;}
 bool AForm::get_state_sign(void) const {return _is_signed;}
 
+//Setter
 void AForm::set_state_sign(bool new_state) {_is_signed = new_state;}
         
 
@@ -87,8 +100,19 @@ void AForm::check_execute(Bureaucrat const & executor) const
 
 void AForm::beSigned(const Bureaucrat& b)
 {
+    //Check if the name isn't empty
+    if (_name == "")
+        throw FormMissingPartException("Name Form");
+    
+    //Check if the name is correct
+    if (_name == get_flag_wrong_name())
+        throw FormWrongNameException();
+    
+    //Check if the grade is greater than
     if (_grade_to_sign < b.get_grade())
         throw GradeTooLowException();
+    
+    //Else sign the Form
     _is_signed = true;
 }
 
@@ -99,8 +123,21 @@ void AForm::beSigned(const Bureaucrat& b)
 
 /*--OS-SURCHARGE--*/
 std::ostream& operator<<(std::ostream& os, const AForm& obj)
-{os << obj.get_name() << " in state " << obj.get_state_sign() << " must be sign with a grade " << obj.get_grade_to_sign() << \
-    " and must be execute with a grade " << obj.get_grade_to_exec() << "\n";
+{   
+    //Check if the name is correct
+    if (obj.get_name() == AForm::get_flag_wrong_name())
+        os << "Wrong name form\n";
+    
+    //Check if the name isn't empty
+    else if (obj.get_name() == "")
+        os << "Empty form\n";
+    
+    //Else print the information
+    else
+    {
+        os << obj.get_name() << " in state " << obj.get_state_sign() << " requires a signing grade of " << obj.get_grade_to_sign() << \
+        " and an execution grade of " << obj.get_grade_to_exec() << "\n";
+    }
     return os;
 }
 
@@ -114,4 +151,14 @@ void check_name(std::string name_form, std::string target_name)
     //If the Target Doesn't have a name
     if (target_name == "")
         throw FormMissingPartException("Target Name");
+
+    const std::string* tmp_allowed_name_form = AForm::get_allowed_name_form();
+    for (int i = 0; i < 3; i++)
+    {
+        //If the name Form is allowed do nothing
+        if (name_form == tmp_allowed_name_form[i])
+            return;
+    }
+    //Else raise Execption
+    throw FormWrongNameException();
 }

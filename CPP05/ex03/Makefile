@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/14 18:17:41 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/16 13:34:18 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 
 # =======================================
@@ -36,6 +36,7 @@ CLASS_FILE = 	Bureaucrat \
 ABSTR_FILE = 	GradeTooLowException \
 				GradeTooHighException \
 				FormNotSignedException \
+				FormWrongNameException \
 
 # =======================================
 #              VARIABLE

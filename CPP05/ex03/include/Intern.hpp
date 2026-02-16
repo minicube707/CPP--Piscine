@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 13:44:22 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/14 18:29:05 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/16 15:03:38 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 class Intern
 {
-
     public:
         //Constructor
         Intern();
@@ -36,10 +35,11 @@ class Intern
         /*------METHODE------*/
         AForm* makeForm(std::string name_form, std::string target);
 
-        AForm* make_shrubbery_creation_form();
-        AForm* make_robotomy_request_form();
-        AForm* make_presidential_pardon_form();
+        //Mehtode to make form
+        AForm* make_shrubbery_creation_form(const std::string name_form, const std::string target);
+        AForm* make_robotomy_request_form(const std::string name_form, const std::string target);
+        AForm* make_presidential_pardon_form(const std::string name_form, const std::string target);
         
-        void get_type_form(std::string name_form, std::string target_name);
+        AForm* get_type_form(std::string name_form, std::string target_name);
 };
 

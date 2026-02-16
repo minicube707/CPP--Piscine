@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:14:31 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 18:13:55 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/16 15:06:02 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ class PresidentialPardonForm: public AForm
 {
     private:
         //Const to initialize the value of the grades
-        static const int grade_sign = 25;
-        static const int grade_exec = 5;
+        static const int _grade_sign = 25;
+        static const int _grade_exec = 5;
 
         //Variable
         std::string _target;   
@@ -28,7 +28,8 @@ class PresidentialPardonForm: public AForm
         //Constructor
         PresidentialPardonForm();
         PresidentialPardonForm(const std::string target);
-
+        PresidentialPardonForm(const std::string name, const std::string target);
+        
         //Destructor, Copy Constructor, Copy Constructor
         ~PresidentialPardonForm();
         PresidentialPardonForm(const PresidentialPardonForm &other); 

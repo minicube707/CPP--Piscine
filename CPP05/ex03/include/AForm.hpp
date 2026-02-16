@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:42:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/14 15:00:44 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/16 16:41:43 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "GradeTooLowException.hpp"
 # include "FormMissingPartException.hpp"
 # include "FormNotSignedException.hpp"
+# include "FormWrongNameException.hpp"
 
 # include "Bureaucrat.hpp"
 
@@ -30,10 +31,17 @@ class Bureaucrat;
 class AForm
 {
     private:
+        //Static Constant
+        static const std::string _allowed_name_form[3];
+        static const std::string _flag_wrong_name;
+        
+        //Constant
         const std::string _name;
-        bool _is_signed;    
         const unsigned int _grade_to_sign;
         const unsigned int _grade_to_exec;
+        
+        //Variable
+        bool _is_signed;    
     
     protected:
         void check_execute(Bureaucrat const & executor) const;
@@ -50,11 +58,17 @@ class AForm
         AForm& operator=(const AForm& other);
 
         /*--SETTER-&-GETTER--*/
+        //Static getter
+        static const std::string* get_allowed_name_form(void);
+        static const std::string get_flag_wrong_name(void);
+        
+        //Getter
         const std::string get_name(void) const;
         unsigned int get_grade_to_sign(void) const;
         unsigned int get_grade_to_exec(void) const;
         bool get_state_sign(void) const;
-        
+
+        //Setter
         void set_state_sign(bool new_state);
         
         /*------METHODE------*/
@@ -67,4 +81,5 @@ class AForm
 std::ostream& operator<<(std::ostream& os, const AForm& obj);
 
 void check_name(std::string name_form, std::string target_name);
+
 #endif

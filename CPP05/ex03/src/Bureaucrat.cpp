@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:53 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/14 14:55:45 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/16 15:11:20 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void Bureaucrat::set_grade(unsigned int grade) {check_grade(grade);}
 /* ************************************************************************** */
 
 void Bureaucrat::signForm(AForm& f)
-{
+{   
     try
     {
        f.beSigned(*this);
