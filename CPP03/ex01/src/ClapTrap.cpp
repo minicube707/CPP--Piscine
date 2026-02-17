@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:52:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/04 17:50:39 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/17 14:08:34 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // ====================
         
 //Constructer
-ClapTrap::ClapTrap(std::string name): _name(name), _hit_point(10), _energy_point(10), _attack_damage(10)
+ClapTrap::ClapTrap(std::string name): _name(name), _hit_point(10), _energy_point(10), _attack_damage(0)
 {
     std::cout << CYAN;
     std::cout << "\nCreate a ClapTrap\n";
