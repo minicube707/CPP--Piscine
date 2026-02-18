@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/16 18:21:04 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/18 16:21:17 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 
 
 # =======================================
 #              FILE
 # =======================================
-FILE_NAMES = main 
+FILE_NAMES =	main \
+				check_type \
+				convert_string_to \
 
 CLASS_FILE = ScalarConverter 
 
@@ -38,6 +40,7 @@ HEA_PATH = include
 SRC_FILES = $(FILE_NAMES:%=$(SRC_PATH)/%.cpp) $(CLASS_FILE:%=$(SRC_PATH)/%.cpp)
 OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
 HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp) $(ABSTR_FILE:%=$(HEA_PATH)/%.hpp)
+DEP_FILES = $(OBJ_FILES:.o=.d)
 
 NAME = Conversion_of_scalar_types
 
@@ -69,3 +72,6 @@ fclean : clean
 	@echo "Fichier executable supprime"
 
 re : fclean all
+
+# Automatic inclusion of .d files if they exist
+-include $(DEP_FILES)
