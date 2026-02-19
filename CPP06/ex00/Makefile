@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/18 16:21:17 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/19 18:49:49 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -g
 
 
 # =======================================
@@ -27,6 +27,7 @@ CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 FILE_NAMES =	main \
 				check_type \
 				convert_string_to \
+				cast_to \
 
 CLASS_FILE = ScalarConverter 
 
@@ -64,7 +65,7 @@ $(NAME): $(OBJ_FILES)
 	@echo "Fichier compile"
 	
 clean :
-	@rm -f $(OBJ_FILES)
+	@rm -f $(OBJ_FILES) $(DEP_FILES)
 	@echo "Fichier object supprime"
 
 fclean : clean	
