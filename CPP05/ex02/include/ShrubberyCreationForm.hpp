@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:14:31 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 18:14:04 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/19 15:45:27 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ class ShrubberyCreationForm: public AForm
 {
     private:
         //Const to initialize the value of the grades
-        static const int grade_sign = 145;
-        static const int grade_exec = 137;
+        static const int _const_grade_sign = 145;
+        static const int _const_grade_exec = 137;
         
         //Variable
         std::string _target;

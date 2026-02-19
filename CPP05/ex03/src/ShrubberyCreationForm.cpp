@@ -6,20 +6,20 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:17:32 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/16 16:49:00 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/19 16:00:26 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ShrubberyCreationForm.hpp"
 
 //Constructor
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrubbery Creation Form", _grade_sign, _grade_exec), _target("Garden") {}
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("Shrubbery Creation Form", _grade_sign, _grade_exec), _target(target) {}
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string name, const std::string target): AForm(name, _grade_sign, _grade_exec), _target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target("Garden") {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string name, const std::string target): AForm(name, _const_grade_sign, _const_grade_exec), _target(target) {}
 
 //Destructor, Copy Constructor, Copy Constructor
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm("Shrubbery Creation Form", _grade_sign, _grade_exec), _target(other._target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target(other._target) {}
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
     if (this != &other)

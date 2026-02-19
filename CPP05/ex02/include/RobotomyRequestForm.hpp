@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:38:09 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/13 18:14:00 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/19 15:45:36 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class RobotomyRequestForm: public AForm
 {
     private:
         //Const to initialize the value of the grades
-        static const int grade_sign = 72;
-        static const int grade_exec = 45;
+        static const int _const_grade_sign = 72;
+        static const int _const_grade_exec = 45;
         
         //Variable
         std::string _target;

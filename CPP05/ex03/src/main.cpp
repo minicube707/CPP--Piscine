@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:07:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/16 16:56:32 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/19 16:01:47 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,12 +205,12 @@ int main()
     std::cout << "\n\nTESTS PresidentialPardonForm\n";
     
     //Create three Bureaucrat
-    Bureaucrat little_dictor("Fidel Castro", 50);
+    Bureaucrat little_dictator("Fidel Castro", 50);
     Bureaucrat french_president("Emmanuelle Macron", 10);
     Bureaucrat potus ("Barack Obama", 1);
     
     std::cout << "\n";
-    std::cout << little_dictor;
+    std::cout << little_dictator;
     std::cout << french_president;
     std::cout << potus;
     
@@ -241,12 +241,12 @@ int main()
     
     //Try to sign PresidentialPardonForm
     std::cout << "\nTry to sign PresidentialPardonForm Correct\n";
-    little_dictor.signForm(*presidential_pardon_form1);
+    little_dictator.signForm(*presidential_pardon_form1);
     french_president.signForm(*presidential_pardon_form2);
     potus.signForm(*presidential_pardon_form3);
 
     std::cout << "\nTry to sign PresidentialPardonForm Wrong\n";
-    little_dictor.signForm(*presidential_pardon_form4);
+    little_dictator.signForm(*presidential_pardon_form4);
     french_president.signForm(*presidential_pardon_form5);
     potus.signForm(*presidential_pardon_form6);
     
@@ -265,12 +265,12 @@ int main()
     
     //Try to execute PresidentialPardonForm
     std::cout << "\nTry to execute PresidentialPardonForm Correct\n";
-    little_dictor.executeForm(*presidential_pardon_form1);
+    little_dictator.executeForm(*presidential_pardon_form1);
     french_president.executeForm(*presidential_pardon_form2);
     potus.executeForm(*presidential_pardon_form3);
     
     std::cout << "\nTry to execute PresidentialPardonForm Wrong\n";
-    little_dictor.executeForm(*presidential_pardon_form4);
+    little_dictator.executeForm(*presidential_pardon_form4);
     french_president.executeForm(*presidential_pardon_form5);
     potus.executeForm(*presidential_pardon_form6);
     

@@ -6,19 +6,19 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 17:17:32 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/11 15:47:57 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/19 15:43:30 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ShrubberyCreationForm.hpp"
 
 //Constructor
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrubbery Creation Form", grade_sign, grade_exec), _target("Home") {}
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("Shrubbery Creation Form", grade_sign, grade_exec), _target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target("Home") {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target(target) {}
 
 //Destructor, Copy Constructor, Copy Constructor
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm("Shrubbery Creation Form", grade_sign, grade_exec), _target(other._target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm("Shrubbery Creation Form", _const_grade_sign, _const_grade_exec), _target(other._target) {}
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
     if (this != &other)
