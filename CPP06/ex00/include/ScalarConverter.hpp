@@ -6,18 +6,15 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:59:46 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/20 15:49:27 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 18:27:12 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <string>
-# include <cstring>
-# include <iostream>
-# include <bits/stdc++.h> 
-# include <sstream>
-#include <iterator>
-#include <algorithm> // for std::find
-#include <iterator> // for std::begin, std::end
+#pragma once
+
+# include <iostream>    //std::cout
+# include <sstream>     //std::istringstream
+# include <algorithm>   // count
 
 class ScalarConverter
 {
