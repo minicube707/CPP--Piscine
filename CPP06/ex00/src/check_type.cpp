@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 13:58:24 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/18 16:32:02 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 17:06:24 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ static bool ft_isfloat(std::string string)
 
 void ltrim(std::string& s) 
 {
+    //Skip if the len of string is 1.
+    //For user can test with space, tab, ...
+    if (s.length() == 1)
+        return;
+    
+    //Else remove withespace at the begining of the string
     for (size_t i = 0; i < s.length(); i++)
     {
         if ((9 <= s[i] && s[i] <= 13) || s[i] == 32)
@@ -98,7 +104,7 @@ int check_type(std::string &string)
     //Skip plus and minus
     std::string tmp =  string;
     if (string[0] == '+' || string[0] == '-')
-        tmp = string.substr(1, string.length());
+        tmp = string.substr(1);
 
     if (ft_isnumber(tmp))
         return (2);

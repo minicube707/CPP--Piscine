@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:59:46 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/19 18:38:47 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:49:27 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <iostream>
 # include <bits/stdc++.h> 
 # include <sstream>
+#include <iterator>
+#include <algorithm> // for std::find
+#include <iterator> // for std::begin, std::end
 
 class ScalarConverter
 {
@@ -31,10 +34,19 @@ class ScalarConverter
 
 };
 
+//check_type.cpp
 int check_type(std::string &string);
+
+//convert_string_to.cpp 
 void convert_string_to(std::string string, int type);
 
+//cast_to.cpp 
 void cast_char(char c);
 void cast_int(int i);
 void cast_float(float f);
 void cast_double(double d);
+
+//utils.cpp 
+void print_char(char c);
+void print_float(std::string str);
+void print_double(std::string str);

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:56:58 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/19 17:20:53 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 16:26:43 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void ScalarConverter::convert(std::string input)
     
     if (type == 0)
     {
-        std::cout << "Error input\n";
-        return;
+        std::cout << "Error input\n\n";
+        return ;
     }
     
     convert_string_to(input, type);

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 17:02:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/19 17:34:45 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 17:05:15 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void cast_char(char c)
 {
-    int i = static_cast<int>(c);        // using static_cast for char to int
-    float f = static_cast<float>(c);      // using static_cast for char to float
-    double d = static_cast<double>(c);     // using static_cast for char to double
+    int i = static_cast<int>(c);            // using static_cast for char to int
+    float f = static_cast<float>(c);        // using static_cast for char to float
+    double d = static_cast<double>(c);      // using static_cast for char to double
 
     std::cout << "Inital type Char     : " << c << "\n\n";
 
@@ -33,7 +33,7 @@ void cast_int(int i)
     
     std::cout << "Inital type Int      : " << i << "\n\n";
     
-    std::cout << "Static Cast to Char  : " << c << "\n";
+    print_char(c);
     std::cout << "Static Cast to Float : " << f << "\n";
     std::cout << "Static Cast to Double: " << d << "\n";
 }
@@ -44,9 +44,9 @@ void cast_float(float f)
     int i = static_cast<int>(f);            // using static_cast for float to int
     double d = static_cast<double>(f);      // using static_cast for float to double
     
-    std::cout << "Inital type Float      : " << i << "\n\n";
+    std::cout << "Inital type Float    : " << f << "f\n\n";
     
-    std::cout << "Static Cast to Char  : " << c << "\n";
+    print_char(c);
     std::cout << "Static Cast to Int   : " << i << "\n";
     std::cout << "Static Cast to Double: " << d << "\n";
 }
@@ -59,7 +59,7 @@ void cast_double(double d)
     
     std::cout << "Inital type Double   : " << d << "\n\n";
     
-    std::cout << "Static Cast to Char  : " << c << "\n";
+    print_char(c);
     std::cout << "Static Cast to Int   : " << i << "\n";
     std::cout << "Static Cast to Float : " << f << "\n";
 }
