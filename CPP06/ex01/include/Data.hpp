@@ -6,9 +6,11 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 18:18:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/20 18:57:29 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/20 19:13:51 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 # include <iostream>
 # include <string>
