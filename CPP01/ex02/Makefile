@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 
 
 # =======================================
@@ -34,6 +34,7 @@ OBJ_PATH = .
 
 SRC_FILES = $(FILE_NAMES:%=$(SRC_PATH)/%.cpp)
 OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o)
+DEP_FILES = $(OBJ_FILES:.o=.d)
 
 NAME = HI_THIS_IS_BRAIN
 
@@ -54,7 +55,7 @@ $(NAME): $(OBJ_FILES)
 	@echo "Fichier compile"
 	
 clean :
-	@rm -f $(OBJ_FILES)
+	@rm -f $(OBJ_FILES) $(DEP_FILES)
 	@echo "Fichier object supprime"
 
 fclean : clean	
@@ -62,3 +63,6 @@ fclean : clean
 	@echo "Fichier executable supprime"
 
 re : fclean all
+
+# Automatic inclusion of .d files if they exist
+-include $(DEP_FILES)
