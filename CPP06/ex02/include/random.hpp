@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   B.hpp                                              :+:      :+:    :+:   */
+/*   random.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 19:26:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/22 14:33:15 by fmotte           ###   ########.fr       */
+/*   Created: 2026/02/22 14:12:36 by fmotte            #+#    #+#             */
+/*   Updated: 2026/02/22 14:41:04 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include "Base.hpp"
+# include <cstdlib>
+# include <ctime>
+# include <iostream>
 
-class B: public Base
-{
-    //By Default everything is private
-    public:
-        B();
-        ~B();
-        B operator= (const B&  othe);
-};
+# define RAND_MAX 2147483647    //Max Int
+
+//Give a random number between 0 and 1
+float my_random(void);

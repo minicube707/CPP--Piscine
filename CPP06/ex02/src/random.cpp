@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   B.hpp                                              :+:      :+:    :+:   */
+/*   random.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 19:26:45 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/22 14:33:15 by fmotte           ###   ########.fr       */
+/*   Created: 2026/02/22 14:40:15 by fmotte            #+#    #+#             */
+/*   Updated: 2026/02/22 14:41:26 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+# include "random.hpp"
 
-# include "Base.hpp"
-
-class B: public Base
-{
-    //By Default everything is private
-    public:
-        B();
-        ~B();
-        B operator= (const B&  othe);
-};
+//Give a random number between 0 and 1
+float my_random(void) {return static_cast<double>(std::rand()) / RAND_MAX;}
