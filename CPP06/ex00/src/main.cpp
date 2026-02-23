@@ -6,11 +6,17 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:56:55 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/20 17:30:23 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/23 13:49:47 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
+
+// static_cast: Compile-time type conversion.
+// Used for related types (e.g., numeric conversions or up/downcasting in inheritance).
+// No runtime type checking is performed.
+// Safer than C-style casts but can cause undefined behavior if misused.
+
 
 /*
 int main(int argc, char **argv)

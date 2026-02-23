@@ -6,11 +6,16 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 18:18:08 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/20 19:12:19 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/23 13:49:28 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
+
+// reinterpret_cast: Low-level cast that reinterprets the underlying bits.
+// Used for unrelated pointer conversions or memory manipulation.
+// No type safety or runtime checks.
+// Very dangerous — may lead to undefined behavior if used incorrectly.
 
 int main()
 {

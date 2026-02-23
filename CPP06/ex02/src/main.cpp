@@ -6,11 +6,16 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 19:27:02 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/22 17:17:02 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/23 13:49:42 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Base.hpp"
+
+// dynamic_cast: Runtime-checked cast for polymorphic types.
+// Used mainly for safe downcasting in class hierarchies.
+// Requires at least one virtual function in the base class.
+// Returns nullptr (for pointers) or throws std::bad_cast (for references) if the cast fails.
 
 int main()
 {   
