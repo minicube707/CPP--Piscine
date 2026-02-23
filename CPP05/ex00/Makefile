@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/09 19:32:23 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/23 13:28:04 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ NAME = Mommy_when_I_grow_up_I_want_to_be_a_bureaucrat
 all : $(NAME)
 
 $(OBJ_PATH) :
-	mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEA_FILES) | $(OBJ_PATH)
 	@$(CXX) $(CXXFLAGS) -I $(HEA_PATH) -O3 -c $< -o $@
