@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/23 19:33:15 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/24 15:30:31 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 
 
 # =======================================
@@ -30,6 +30,8 @@ CLASS_FILE =
 
 ABSTR_FILE =	Array \
 
+TEMPL_FILE =	Array \
+
 # =======================================
 #              VARIABLE
 # =======================================
@@ -39,10 +41,10 @@ HEA_PATH = .
 
 SRC_FILES = $(FILE_NAMES:%=$(SRC_PATH)/%.cpp) $(CLASS_FILE:%=$(SRC_PATH)/%.cpp)
 OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
-HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp) $(ABSTR_FILE:%=$(HEA_PATH)/%.hpp)
+HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp) $(ABSTR_FILE:%=$(HEA_PATH)/%.hpp) $(TEMPL_FILE:%=$(HEA_PATH)/%.tpp)
 DEP_FILES = $(OBJ_FILES:.o=.d)
 
-NAME =  Iter
+NAME =  Array
 
 
 # =======================================
