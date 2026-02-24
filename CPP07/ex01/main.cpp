@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 14:56:25 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/23 19:26:39 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/24 14:00:35 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ int main()
     std::cout << "\nAfter:  ";
         for (int i = 0; i < 11; i++)
         std::cout << test3[i] << " ";
+
+    int *ptr_null =  NULL;
+    iter(ptr_null, 11, put_squarre);                    //Check Ptr NULL
+
+    void (*func_null)(int &i) = NULL;
+    iter(&test3[0], 11, func_null);                     //Check Func NULL
 }
