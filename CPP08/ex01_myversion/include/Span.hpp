@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:21 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 14:49:30 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/25 15:21:38 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 #define LEN_MAX 1000000
 
+#define INT_MIN -2147483648
+#define INT_MAX 2147483647
+
 class Span
 {
     private:
@@ -26,6 +29,9 @@ class Span
         int *_array;
         unsigned int _size;
         const unsigned int _max_size;
+        int _fisrt_min_value;
+        int _second_min_value;
+        int _max_value;
         
     public:
         //Constructor
@@ -50,6 +56,8 @@ class Span
         
         //Methode Mandatory
         void addNumber(int n);
+        int shortestSpan();
+        int longestSpan();
         
         //Methode Additional
         void check_max_len(unsigned int n);

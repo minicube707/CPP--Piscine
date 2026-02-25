@@ -6,14 +6,20 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:18 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 14:50:35 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:11 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 //Constructor
-Span::Span(unsigned int N): _size(0), _max_size(N) {check_max_len(N); _array = new int[N]();}
+Span::Span(unsigned int N):
+_size(0), 
+_max_size(N),
+_fisrt_min_value(INT_MAX), 
+_second_min_value(INT_MAX),
+_max_value(INT_MIN)
+{check_max_len(N); _array = new int[N]();}
 
 
 //Destructor
@@ -70,11 +76,25 @@ void Span::addNumber(int n)
 {
     if (_size + 1 > _max_size)
         throw Span::ExeptionSpanFilled();
+
+    //Update min value
+    if (n < _fisrt_min_value)
+    {
+        _second_min_value = _fisrt_min_value;
+        _fisrt_min_value = n;
+    }
+
+    //Update max value
+    if (n > _max_value)
+        _max_value = n;
         
     _array[_size] = n;
     _size++;
 }
 
+int Span::shortestSpan(){return _max_value - _fisrt_min_value;}
+int Span::longestSpan(){return _second_min_value - _fisrt_min_value;}
+        
 
 //Methode Additional
 void Span::check_max_len(unsigned int n)

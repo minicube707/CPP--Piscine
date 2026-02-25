@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 15:03:31 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:30 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,41 @@ void try_catch_constructor(int number)
 void test1()
 {
     //Span with len 0
-    std::cout << "\nSpan with len 0\n";
+    std::cout << "\n------------------\n";
+    std::cout << "Span with len 0\n";
     Span sp1(0);
     std::cout << sp1 << "\n";
     
     try_catch_add(sp1, 1);
     std::cout << sp1 << "\n";
 
-    
+
     //Span with len 1
-    std::cout << "\nSpan with len -1\n";
+    std::cout << "\n------------------\n";
+    std::cout << "Span with len -1\n";
     try_catch_constructor(-1);
     
+    
     //Span with len LEN_MAX + 1
-    std::cout << "\nSpan with len LEN_MAX + 1\n";
+    std::cout << "\n------------------\n";
+    std::cout << "Span with len LEN_MAX + 1\n";
     try_catch_constructor(LEN_MAX + 1);
     
+    
     //Span with len LEN_MAX
-    std::cout << "\nSpan with len LEN_MAX\n";
+    std::cout << "\n------------------\n";
+    std::cout << "Span with len LEN_MAX\n";
     Span sp3(LEN_MAX);
     std::cout << sp3 << "\n";
-    
+    try_catch_add(sp3, INT_MAX);
+    std::cout << sp3 << "\n";
+    try_catch_add(sp3, INT_MIN);
+    std::cout << sp3 << "\n";
+
+
     //Span with len 4
-    std::cout << "\nSpan with len 4\n";
+    std::cout << "\n------------------\n";
+    std::cout << "Span with len 4\n";
     Span sp4(4);
     std::cout << sp4 << "\n";
 
@@ -77,6 +89,10 @@ void test1()
     std::cout << sp4 << "\n";
 }
 
+void test2()
+{
+
+}
 
 int main()
 {
