@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:21 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 15:21:38 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/25 18:28:28 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 # include <exception>
 # include <iostream>
+# include <algorithm> // pour std::sort
+
+# include <cstdlib>
+# include <ctime>
 
 #define LEN_MAX 1000000
 
@@ -29,8 +33,7 @@ class Span
         int *_array;
         unsigned int _size;
         const unsigned int _max_size;
-        int _fisrt_min_value;
-        int _second_min_value;
+        int _min_value;
         int _max_value;
         
     public:
@@ -49,6 +52,9 @@ class Span
         //Getter
         unsigned int get_size(void) const;
         unsigned int get_max_size(void) const;
+        int get_min_value() const;
+        int get_max_value() const;
+        int* get_addr() const;
         
         //Overload
         int& operator[](unsigned int index);
@@ -61,6 +67,7 @@ class Span
         
         //Methode Additional
         void check_max_len(unsigned int n);
+        void check_size_for_methode();
         
         //Exeption
         class ExeptionSpanFilled : public std::exception 
@@ -75,9 +82,17 @@ class Span
         {
             public: const char *what() const throw() {return "Try to create a Span with a range to long";}
         };
+        class ExecptionEmptyArray: public std::exception 
+        {
+            public: const char *what() const throw() {return "Cannot call the methode because array is empty";}
+        };
+        class ExecptionOneElement: public std::exception 
+        {
+            public: const char *what() const throw() {return "Cannot call the methode because array containt only one element";}
+        };
 };
 
 //Overlaod Os
 std::ostream& operator<<(std::ostream& os, const Span& obj);
 
-
+int abs(int n);
