@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/20 14:50:49 by fmotte           ###   ########.fr        #
+#    Updated: 2026/02/25 16:23:35 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ NAME = Conversion_of_scalar_types
 all : $(NAME)
 
 $(OBJ_PATH) :
-	mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEA_FILES) | $(OBJ_PATH)
 	@$(CXX) $(CXXFLAGS) -I $(HEA_PATH) -O3 -c $< -o $@
