@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:21 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 18:28:28 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:46:54 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 # include <exception>
 # include <iostream>
-# include <algorithm> // pour std::sort
+# include <algorithm>
 
 # include <cstdlib>
 # include <ctime>
+
+# include <vector>
 
 #define LEN_MAX 1000000
 
@@ -56,12 +58,21 @@ class Span
         int get_max_value() const;
         int* get_addr() const;
         
+        //Iterator
+        typedef int* iterator;      
+        iterator begin();
+        iterator end();             
+        iterator begin() const;
+        iterator end() const;  
+        
         //Overload
         int& operator[](unsigned int index);
         const int& operator[](unsigned int index) const;
         
         //Methode Mandatory
         void addNumber(int n);
+        void addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end_vec);
+        
         int shortestSpan();
         int longestSpan();
         

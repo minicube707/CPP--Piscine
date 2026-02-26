@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:18 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 18:31:00 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/26 14:06:14 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,12 @@ const int& Span::operator[](unsigned int index) const
 {
     return const_cast<Span*>(this)->operator[](index);
 }
-   
+
+//Iterator
+int* Span::begin() {return get_addr();}
+int* Span::end() {return get_addr() + get_max_size();}
+int* Span::begin() const {return get_addr();}
+int* Span::end() const {return get_addr() + get_max_size();}
 
 //Methode Mandatory
 void Span::addNumber(int n)
@@ -108,21 +113,39 @@ void Span::addNumber(int n)
     _size++;
 }
 
+void Span::addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end_vec)
+{
+    Span::iterator it_span = begin();
+    std::vector<int>::iterator it_vec = start;
+    int i = 0;
+    
+    if (start == end_vec)
+    {
+        _min_value = INT_MAX;
+        _max_value = INT_MIN;
+        _size = i;
+        return;
+    }
+    
+    while (it_span != end() && it_vec != end_vec)
+    {
+        *it_span = *it_vec;
+        it_span++;
+        it_vec++;
+        i++;
+    }
+    _max_value = *std::max_element(begin(), end());
+    _min_value = *std::min_element(begin(), end());
+    _size = i;
+}
+  
 int Span::shortestSpan()
 {
     //Check if the size of the array is correct
     check_size_for_methode();
     
-    return abs(_max_value - _min_value);
-}
-
-int Span::longestSpan()
-{
-    //Check if the size of the array is correct
-    check_size_for_methode();
-    
     Span cpy(*this);
-    std::sort(cpy.get_addr(), cpy.get_addr() + cpy.get_max_size());
+    std::sort(cpy.begin(), cpy.end());
     
     int res = INT_MAX;
     int tmp;
@@ -133,6 +156,14 @@ int Span::longestSpan()
             res = tmp;
     }
     return res;
+}
+
+int Span::longestSpan()
+{
+    //Check if the size of the array is correct
+    check_size_for_methode();
+    
+    return abs(_max_value - _min_value);
 }
         
 

@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/25 18:37:12 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/26 14:00:01 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,34 @@ void test2()
     try_catch_long(sp5);
 }
 
+void test3()
+{
+    Span sp1(10000);
+    std::vector<int> v1(50000);
+    for (unsigned int i = 0; i < v1.size(); i++) v1[i] = i;
+    
+    std::cout << "\n";
+    std::cout << sp1 << "\n";
+    sp1.addNumber(v1.begin(), v1.end());
+    std::cout << sp1 << "\n";
+
+    
+    std::vector<int> v0(0);
+    sp1.addNumber(v0.begin(), v0.end());
+    std::cout << sp1 << "\n";
+
+    Span sp2(5);
+    std::vector<int> v2(10, 42);
+    sp2.addNumber(v2.begin(), v2.end());
+    std::cout << sp2 << "\n";
+}
+
 int main()
 {
     test0();
     test1();
     test2();
+    test3();
     
     return (0);
 }
