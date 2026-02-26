@@ -6,7 +6,12 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:04:13 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/26 15:04:14 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/02/26 15:47:01 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+template <class Type, class Container= stack <Type>>
+class stack
+{
+    Geek(){}
+};
