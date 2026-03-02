@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.tpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
+/*   By: florent <florent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:04:13 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/27 15:47:10 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:53:51 by florent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-template <class Type, class Container= stack <Type>>
-class stack
+template <typename T>
+MutantStack<T>& MutantStack<T>::operator=(const MutantStack<T>& other)
 {
-    public:
-        MutantStack(){}
-        ~MutantStack(){}
-        MutantStack(const MutantStack& other){}
-        MutantStack& operator=(const MutantStack& other){}
-};
+    if (this != *other)
+        std::stack<T>::operator=(other); //use the overload of stack
+    return (*this);
+}
