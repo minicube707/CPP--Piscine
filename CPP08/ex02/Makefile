@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/02/26 15:04:32 by fmotte           ###   ########.fr        #
+#    Updated: 2026/03/03 10:55:38 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
 HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp) $(ABSTR_FILE:%=$(HEA_PATH)/%.hpp) $(TEMPL_FILE:%=$(HEA_PATH)/%.tpp) $(TEMPL_FILE:%=$(HEA_PATH)/%.hpp)
 DEP_FILES = $(OBJ_FILES:.o=.d)
 
-NAME =  Span
+NAME =  Mutated_abomination
 
 
 # =======================================
