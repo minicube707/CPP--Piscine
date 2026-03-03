@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:33:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/24 16:19:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/03 11:39:46 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,33 @@
 # include <cstdlib>
 # include <ctime>
 
-#include "Array.tpp"
-
-//Constructeur
-template <typename T> Array<T>::Array(): _array(0), _size(0) {}
-template <typename T> Array<T>::Array(unsigned int n ): _size(n) {_array = new T[n]();}
-
-//Copy Constructeur
-template <typename T> Array<T>::Array(const Array& other): _array(0), _size(0) {*this = other;} //Don't forget to init the _array and _size for the copy assignement
-
-//Copy Assignement
-template <typename T> Array<T> &Array<T>::operator=(const Array& other) 
+// Template class definition.
+// T represents the type of elements stored in the array.
+template <typename T> class Array
 {
-    //If other is equal to this. Do nothing
-    if (this == &other) 
-        return (*this); 
-    
-    //Delete the old array and get the size of other
-    delete[] _array;
-    _size = other._size;
-
-    //If _size is 
-    if (_size == 0)
-    {
-        _array = 0;
-        return (*this);
-    }
-    
-    _array = new T[_size]();
-    for (unsigned int i = 0; i < _size; i++)
-        _array[i] = other._array[i];
+    private:
+        T* _array;              // Pointer to dynamically allocated array of type T
+        unsigned int _size;
         
-    return (*this);
-}
+    public:
+        // Constructor
+        Array();
+        Array(unsigned int n );
+        ~Array();
+        
+        Array(const Array& other);
+        Array& operator=(const Array& other); 
 
-//Desteucteur
-template <typename T> Array<T>::~Array() {delete[] _array;}
+        // Subscript operator (non-const version)
+        // Allows modification of elements (e.g., arr[i] = value;)
+        T &operator[](unsigned int n);
 
-//Overload operator
-template <typename T> T &Array<T>::operator[](unsigned int n)
-{
-    //Check if n is greater or equal to _size
-    if (n >= _size)
-        throw std::out_of_range("Invalid Index");
-    return _array[n];
-}
+        // Subscript operator (const version)
+        // Allows read-only access when the Array object is const
+        const T &operator[](unsigned int n) const;
+        
+        unsigned int size() const;
+};
 
-template <typename T> const T &Array<T>::operator[](unsigned int n) const
-{
-    //Check if n is greater or equal to _size
-    if (n >= _size)
-        throw std::out_of_range("Invalid Index");
-    return _array[n];
-}
-
-//Methode size
-template <typename T> unsigned int Array<T>::size() const {return _size;};
+//Include after the declaration, else the compilator crash
+#include "Array.tpp"
