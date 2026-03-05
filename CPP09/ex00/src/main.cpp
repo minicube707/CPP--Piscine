@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:02:29 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/04 19:00:15 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/05 15:47:49 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ int main(int argc, char **argv)
     if (btc.parse_file_content(file_content, '|', btc.get_map_transaction()))
         return 0;
     
+    /*
+    std::map<std::string, std::string>::iterator it;
+    std::map<std::string, std::string> map = btc.get_map_DB();
+    
+    for (it = map.begin(); it != map.end(); ++it)
+        std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+    
+    std::cout << "\n";
+    map = btc.get_map_transaction();
+    for (it = map.begin(); it != map.end(); ++it)
+        std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+    */
+
     btc.display_exchange_rate();
     return 0;
 }

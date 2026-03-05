@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/04 19:00:25 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/05 17:13:59 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 
 
 /*--SETTER-&-GETTER--*/
-std::map<std::string, double>& BitcoinExchange::get_map_DB() {return _map_DB;}
-const std::map<std::string, double>& BitcoinExchange::get_map_DB() const{ return _map_DB;}
-std::map<std::string, double>& BitcoinExchange::get_map_transaction() {return _map_transaction;}
-const std::map<std::string, double>& BitcoinExchange::get_map_transaction() const {return _map_transaction;} 
+std::map<std::string, std::string>& BitcoinExchange::get_map_DB() {return _map_DB;}
+const std::map<std::string, std::string>& BitcoinExchange::get_map_DB() const{ return _map_DB;}
+std::map<std::string, std::string>& BitcoinExchange::get_map_transaction() {return _map_transaction;}
+const std::map<std::string, std::string>& BitcoinExchange::get_map_transaction() const {return _map_transaction;} 
 
 /*------METHODE------*/
 bool BitcoinExchange::extract_file(const std::string& filename, std::string& file_content)
@@ -62,7 +62,7 @@ bool BitcoinExchange::extract_file(const std::string& filename, std::string& fil
     return (false);
 }
 
-bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, std::map<std::string, double>& map)
+bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, std::map<std::string, std::string>& map)
 {
     //Remove the header
     file_content.erase(0, file_content.find('\n') + 1);
@@ -70,7 +70,6 @@ bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, st
     std::string line;
     std::string date;
     std::string data;
-    double ref;
       
     while (!file_content.empty())
     {   
@@ -84,40 +83,66 @@ bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, st
         date = line.substr(0, line.find(sep));
         data = line.substr(line.find(sep)+1);
         
-        if (!data.empty() && !date.empty())
-        {
-            if (check_date(date))
-            {
-                std::cerr << "Error: Wrong date\n";
-                return (true);
-            }
-            
-
-            ///Check cast double
-            std::istringstream iss(data);
-            iss >> ref;
-            
-            // if data is empty -> data = double (nan)
-            
-            //Check for the doublons  
-            map.insert(std::make_pair(date, ref)); //Syntaxe for cpp98++
-        }
+        //If the separator and the value is missing, then data copy date, clear to safe the calcul exchange
+        if (date == data)
+            data.clear();
+        
+        if (!data.empty() || !date.empty())
+            map.insert(std::make_pair(date, data)); //Syntaxe for cpp98++
     }
     return (false);
 }
 
-bool BitcoinExchange::check_date(const std::string& date)
+bool BitcoinExchange::convert_data(const std::string& data, double& ref)
+{
+    std::istringstream iss(data);
+    iss >> ref;
+
+    if (!iss.fail())
+        return false;
+    std::cerr << "Error: Can't convert (" << data << ") to type double\n";
+    return true;
+}
+
+bool BitcoinExchange::check_data(const double& ref, bool check_max)
+{
+    if (0 > ref)
+    {
+        std::cerr << "Error: not a positive number (" << ref << ")\n";
+        return true;
+    }
+
+    if (ref > 1000 && check_max)
+    {
+        std::cerr << "Error: too large a number (" << ref << ")\n";
+        return true;
+    }
+    return false;
+}
+
+bool BitcoinExchange::convert_date(const std::string& date, int format_date[3])
 {
     char sep = '-';
-    int format_date[3];
     
     std::string tmp;
     std::stringstream iss(date);
     int i = 0;
     while (getline(iss, tmp, sep))
-        format_date[i++] = std::atoi(tmp.c_str());
-    
+    {
+        std::istringstream convert(tmp);
+        convert >> format_date[i++];
+
+        if (convert.fail())
+        {
+            std::cerr << "Error: Can't convert (" << tmp << ") to int\n";
+            return (true);
+        }
+    }
     return (false);
+}
+
+bool BitcoinExchange::check_date(const int format_date[3])
+{
     if (check_years(format_date[0]))
         return (true);
     
@@ -151,7 +176,7 @@ bool BitcoinExchange::check_month(const int& month)
 bool BitcoinExchange::check_days(const int& years, const int& month, const int& days)
 {
     int day_by_mouth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+     
     //Leap Years
     if (years % 4 == 0 && month == 2)
         day_by_mouth[1] = 29;
@@ -172,19 +197,70 @@ void BitcoinExchange::remove_white_space(std::string& string)
     }
 }
 
+bool BitcoinExchange::check_date_and_data(std::string date, std::string data, bool check_max, double& double_data)
+{
+    int tab_date[3];
+
+    if (convert_date(date, tab_date))
+        return (true);
+        
+    if (check_date(tab_date))
+        return (true);
+    
+    if (convert_data(data, double_data))
+        return (true);
+
+    if (check_data(double_data, check_max))
+        return (true);
+        
+    return (false);
+}
+
 void BitcoinExchange::display_exchange_rate()
 {
-    std::map<std::string, double>::iterator it_tr;
+    std::map<std::string, std::string>::iterator it_DB;
+    
+    double double_DB;
+    double double_tr;
     double calcul_exchange_rate;
     
-    //For each value in DB search the same date ot lower in input.txt
-    for (std::map<std::string, double>::iterator it_DB = _map_DB.begin(); it_DB != _map_DB.end(); ++it_DB)
+    std::string date_DB;
+    std::string data_DB;
+    std::string date_tr;
+    std::string data_tr;
+    
+    //For each value in DB search the same date or lower in input.txt
+    for (std::map<std::string, std::string>::iterator it_tr = _map_transaction.begin(); it_tr != _map_transaction.end(); ++it_tr)
     {
-        std::cout << it_DB->first << " => "; 
-        std::cout << it_DB->second << " = ";
+        date_tr = it_tr->first;
+        data_tr = it_tr->second;
         
-        it_tr = _map_transaction.upper_bound(it_DB->first);
-        calcul_exchange_rate = it_DB->second * it_tr->second;
+        if (check_date_and_data(date_tr, data_tr, true, double_tr))
+            continue;
+            
+        it_DB = _map_DB.upper_bound(date_tr);
+        if (it_DB == _map_DB.begin())
+        {
+            std::cerr << "Error: Lower date not find (" << date_tr << ")\n";
+            continue;
+        }
+            
+        it_DB--;
+        date_DB = it_DB->first;
+        data_DB = it_DB->second;
+        
+        std::cout << "\n";
+        std::cout << "Key: " << date_DB << " | Value: " << data_DB << std::endl;
+        std::cout << "Key: " << date_tr << " | Value: " << data_tr << std::endl;
+        
+        
+        if (check_date_and_data(date_DB, data_DB, false, double_DB))
+            continue;
+
+        std::cout << date_tr << " => "; 
+        std::cout << data_tr << " = ";
+        
+        calcul_exchange_rate = double_DB * double_tr;
         std::cout << calcul_exchange_rate << "\n";
     }
 }
