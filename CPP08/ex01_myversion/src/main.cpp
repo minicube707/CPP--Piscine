@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/06 14:57:44 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 17:20:06 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,9 @@ void test1()
     std::cout << "Span with len LEN_MAX\n";
     Span sp3(LEN_MAX);
     std::cout << sp3 << "\n";
-    try_catch_add(sp3, INT_MAX);
+    try_catch_add(sp3, std::numeric_limits<int>::max());
     std::cout << sp3 << "\n";
-    try_catch_add(sp3, INT_MIN);
+    try_catch_add(sp3, std::numeric_limits<int>::min());
     std::cout << sp3 << "\n";
 
 
@@ -165,6 +165,16 @@ void test2()
     try_catch_short(sp1);
     try_catch_long(sp1);
 
+    Span sp4(2);
+    std::cout << sp4 << "\n";
+    std::cout << "\n";
+    sp4.addNumber(std::numeric_limits<int>::min());
+    sp4.addNumber(std::numeric_limits<int>::max());
+    std::cout << sp4 << "\n";
+    std::cout << "\n";
+    try_catch_short(sp4);
+    try_catch_long(sp4);
+    
     std::cout << "\n";
     Span sp5(10000);
     std::cout << sp5 << "\n";

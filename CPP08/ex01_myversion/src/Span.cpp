@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:18 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/06 15:02:50 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 18:09:38 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
 Span::Span(unsigned int N):
 _size(0), 
 _max_size(N),
-_min_value(INT_MAX),
-_max_value(INT_MIN)
+_min_value(std::numeric_limits<int>::max()),
+_max_value(std::numeric_limits<int>::min())
 {
     check_max_len(N);
     _array = new int[N]();
 }
-
 
 //Destructor
 Span::~Span(){delete[] _array;}
@@ -36,42 +35,42 @@ Span::Span(const Span& other): _size(0), _max_size(other._max_size) {_array = ne
 Span& Span::operator=(const Span& other)
 {
     //If other is equal to this. Do nothing
-    if (this == &other) 
-        return (*this);
-       
-    int min = INT_MAX;
-    int max = INT_MIN;
-
-    //Get the shortest size
-    unsigned int len;
-    if (_max_size < other._max_size)
-        len = _max_size;
-    else
-        len = other._max_size;
-        
-    //Copy the value
-    unsigned int i = 0;
-    while (i < len)
+    if (this != &other) 
     {
-        if (other._array[i] < min)
-            min = other._array[i];
-        
-        if (other._array[i] > max)
-            max = other._array[i];
+        int min = std::numeric_limits<int>::max();
+        int max = std::numeric_limits<int>::min();
+
+        //Get the shortest size
+        unsigned int len;
+        if (_max_size < other._max_size)
+            len = _max_size;
+        else
+            len = other._max_size;
             
-        _array[i] = other._array[i];
-        i++;
+        //Copy the value
+        unsigned int i = 0;
+        while (i < len)
+        {
+            if (other._array[i] < min)
+                min = other._array[i];
+            
+            if (other._array[i] > max)
+                max = other._array[i];
+                
+            _array[i] = other._array[i];
+            ++i;
+        }
+        _size = i;
+        _min_value = min;
+        _max_value = max;
     }
-    _size = i;
-    _min_value = min;
-    _max_value = max;
     return (*this);
 }
 
 
 //Getter
-unsigned int Span::get_size(void) const {return _size;}
-unsigned int Span::get_max_size(void) const {return _max_size;}
+unsigned int Span::get_size() const {return _size;}
+unsigned int Span::get_max_size() const {return _max_size;}
 int Span::get_min_value() const {return _min_value;}
 int Span::get_max_value() const {return _max_value;}
 int* Span::get_addr() const {return &_array[0];}
@@ -80,7 +79,7 @@ int* Span::get_addr() const {return &_array[0];}
 int& Span::operator[](unsigned int index)
 {
     if (index > _max_size)
-        throw Span::ExecptionIndexOutOfRange();
+        throw Span::ExceptionIndexOutOfRange();
     return _array[index];
 }
 
@@ -99,7 +98,7 @@ int* Span::end() const {return get_addr() + get_max_size();}
 void Span::addNumber(int n)
 {
     if (_size + 1 > _max_size)
-        throw Span::ExeptionSpanFilled();
+        throw Span::ExceptionSpanFilled();
 
     //Update first min value
     if (n < _min_value)
@@ -113,33 +112,7 @@ void Span::addNumber(int n)
     _size++;
 }
 
-void Span::addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end_vec)
-{
-    Span::iterator it_span = begin();
-    std::vector<int>::iterator it_vec = start;
-    int i = 0;
-    
-    if (start == end_vec)
-    {
-        _min_value = INT_MAX;
-        _max_value = INT_MIN;
-        _size = i;
-        return;
-    }
-    
-    while (it_span != end() && it_vec != end_vec)
-    {
-        *it_span = *it_vec;
-        it_span++;
-        it_vec++;
-        i++;
-    }
-    _max_value = *std::max_element(begin(), end());
-    _min_value = *std::min_element(begin(), end());
-    _size = i;
-}
-  
-int Span::shortestSpan()
+unsigned Span::shortestSpan() const
 {
     //Check if the size of the array is correct
     check_size_for_methode();
@@ -151,39 +124,39 @@ int Span::shortestSpan()
 	return (*std::min_element(cpy.begin() + 1, cpy.end()));
 }
 
-int Span::longestSpan()
+unsigned int Span::longestSpan() const
 {
     //Check if the size of the array is correct
     check_size_for_methode();
     
-    return abs(_max_value - _min_value);
+    return static_cast<unsigned int>(std::abs(_max_value)) - static_cast<unsigned int>(std::abs(_min_value));
 }
         
 
 //Methode Additional
-void Span::check_max_len(unsigned int n)
+void Span::check_max_len(const unsigned int &n) const
 {
     if (n > LEN_MAX)
-        throw Span::ExecptionMaxSizeReached();
+        throw Span::ExceptionMaxSizeReached();
 }
 
-void Span::check_size_for_methode()
+void Span::check_size_for_methode() const
 {
     if (_size == 0)
-        throw Span::ExecptionEmptyArray();
+        throw Span::ExceptionEmptyArray();
         
     if (_size == 1)
-        throw Span::ExecptionOneElement();
+        throw Span::ExceptionOneElement();
 }
 
 //Overlaod Os
 std::ostream& operator<<(std::ostream& os, const Span& obj)
 {
-    os << "Span \n";
-    os << "Size: " << obj.get_size() << "\n";
-    os << "Max Size: " << obj.get_max_size() << "\n";
-    os << "Min: " << obj.get_min_value() << "\n";
-    os << "Max: " << obj.get_max_value() << "\n";
+    os << "Span \n"
+    << "Size: " << obj.get_size() << "\n"
+    << "Max Size: " << obj.get_max_size() << "\n"
+    << "Min: " << obj.get_min_value() << "\n"
+    << "Max: " << obj.get_max_value() << "\n";
     
     for (unsigned int i = 0; i < obj.get_size(); i++)
         os << obj[i] << " ";
@@ -191,5 +164,3 @@ std::ostream& operator<<(std::ostream& os, const Span& obj)
     os << "\n";
     return os;
 }
-
-int abs(int n) {if (n < 0) return (-n); return (n);}
