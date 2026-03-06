@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:18 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/26 14:06:14 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 15:02:50 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,15 +147,8 @@ int Span::shortestSpan()
     Span cpy(*this);
     std::sort(cpy.begin(), cpy.end());
     
-    int res = INT_MAX;
-    int tmp;
-    for (unsigned int i = 0; i < cpy.get_max_size() - 1; i++)
-    {
-        tmp = abs(cpy[i] - cpy[i + 1]);
-        if (tmp < res)
-            res = tmp;
-    }
-    return res;
+    std::adjacent_difference(cpy.begin(), cpy.end(), cpy.begin());
+	return (*std::min_element(cpy.begin() + 1, cpy.end()));
 }
 
 int Span::longestSpan()

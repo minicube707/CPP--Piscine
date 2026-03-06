@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:21 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/26 13:46:54 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 15:02:57 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include <cstdlib>
 # include <ctime>
+# include <numeric>
 
 # include <vector>
 

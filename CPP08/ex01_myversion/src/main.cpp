@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/26 14:00:01 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 14:57:44 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void try_catch_constructor(int number)
 
 void test0()
 {
+    std::cout << "\n\nTest 0\n";
+    
     Span sp(4);
     std::cout << sp << "\n";
     try_catch_add(sp, 1);
@@ -86,6 +88,7 @@ void test0()
 
 void test1()
 {
+    std::cout << "\n\nTest 1\n";
     std::srand(std::time(0));
         
     //Span with len 0
@@ -141,9 +144,28 @@ void test1()
 
 void test2()
 {
+    std::cout << "\n\nTest 2\n";
+    
     Span sp1(10);
     std::cout << sp1 << "\n";
-    sp1.addNumber(std::rand());
+    std::cout << "\n";
+    try_catch_short(sp1);
+    try_catch_long(sp1);
+    
+    sp1.addNumber(std::rand() % 50);
+    std::cout << sp1 << "\n";
+    std::cout << "\n";
+    try_catch_short(sp1);
+    try_catch_long(sp1);
+    
+    for (unsigned int i = 0; i < sp1.get_max_size() -1; i++)
+        sp1.addNumber(std::rand() % 50);
+    std::cout << sp1 << "\n";
+    std::cout << "\n";
+    try_catch_short(sp1);
+    try_catch_long(sp1);
+
+    std::cout << "\n";
     Span sp5(10000);
     std::cout << sp5 << "\n";
     for (unsigned int i = 0; i < sp5.get_max_size(); i++)
@@ -157,6 +179,8 @@ void test2()
 
 void test3()
 {
+    std::cout << "\n\nTest 3\n";
+    
     Span sp1(10000);
     std::vector<int> v1(50000);
     for (unsigned int i = 0; i < v1.size(); i++) v1[i] = i;
