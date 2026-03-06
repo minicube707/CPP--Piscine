@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:02:26 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/05 17:04:34 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 18:56:58 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <iostream>
 # include <sstream>
 # include <stdlib.h>
+
 
 class BitcoinExchange
 {

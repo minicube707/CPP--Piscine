@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/05 17:13:59 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/06 18:55:31 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, st
     std::string line;
     std::string date;
     std::string data;
-      
+    std::string::size_type pos_new_line;
+    
     while (!file_content.empty())
     {   
-        std::string::size_type pos_new_line = file_content.find('\n');
+        pos_new_line = file_content.find('\n');
         
         line = file_content.substr(0, pos_new_line);
         remove_white_space(line);
@@ -98,8 +99,9 @@ bool BitcoinExchange::convert_data(const std::string& data, double& ref)
     std::istringstream iss(data);
     iss >> ref;
 
-    if (!iss.fail())
+    if (!iss.fail() && iss.eof())
         return false;
+        
     std::cerr << "Error: Can't convert (" << data << ") to type double\n";
     return true;
 }
@@ -157,7 +159,7 @@ bool BitcoinExchange::check_date(const int format_date[3])
 
 bool BitcoinExchange::check_years(const int& years)
 {
-    if (2009 <= years && years <= 20022)
+    if (2009 <= years)
         return (false); 
         
     std::cerr << "Error: Years out of range (" << years << ")\n";
@@ -199,7 +201,7 @@ void BitcoinExchange::remove_white_space(std::string& string)
 
 bool BitcoinExchange::check_date_and_data(std::string date, std::string data, bool check_max, double& double_data)
 {
-    int tab_date[3];
+    int tab_date[3] = {0};
 
     if (convert_date(date, tab_date))
         return (true);
@@ -219,6 +221,7 @@ bool BitcoinExchange::check_date_and_data(std::string date, std::string data, bo
 void BitcoinExchange::display_exchange_rate()
 {
     std::map<std::string, std::string>::iterator it_DB;
+    std::map<std::string, std::string>::iterator it_tr;
     
     double double_DB;
     double double_tr;
@@ -229,11 +232,14 @@ void BitcoinExchange::display_exchange_rate()
     std::string date_tr;
     std::string data_tr;
     
-    //For each value in DB search the same date or lower in input.txt
-    for (std::map<std::string, std::string>::iterator it_tr = _map_transaction.begin(); it_tr != _map_transaction.end(); ++it_tr)
+    //For each value in input.txt search the same date or lower in data.csv
+    for (it_tr = _map_transaction.begin(); it_tr != _map_transaction.end(); ++it_tr)
     {
         date_tr = it_tr->first;
         data_tr = it_tr->second;
+        
+        std::cout << "\n";
+        std::cout << "Key: " << date_tr << " | Value: " << data_tr << std::endl;
         
         if (check_date_and_data(date_tr, data_tr, true, double_tr))
             continue;
@@ -249,11 +255,8 @@ void BitcoinExchange::display_exchange_rate()
         date_DB = it_DB->first;
         data_DB = it_DB->second;
         
-        std::cout << "\n";
         std::cout << "Key: " << date_DB << " | Value: " << data_DB << std::endl;
-        std::cout << "Key: " << date_tr << " | Value: " << data_tr << std::endl;
-        
-        
+
         if (check_date_and_data(date_DB, data_DB, false, double_DB))
             continue;
 
