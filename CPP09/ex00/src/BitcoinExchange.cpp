@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/06 18:55:31 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/09 14:11:05 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,8 +238,8 @@ void BitcoinExchange::display_exchange_rate()
         date_tr = it_tr->first;
         data_tr = it_tr->second;
         
-        std::cout << "\n";
-        std::cout << "Key: " << date_tr << " | Value: " << data_tr << std::endl;
+        //std::cout << "\n";
+        //std::cout << "Key: " << date_tr << " | Value: " << data_tr << std::endl;
         
         if (check_date_and_data(date_tr, data_tr, true, double_tr))
             continue;
@@ -255,7 +255,7 @@ void BitcoinExchange::display_exchange_rate()
         date_DB = it_DB->first;
         data_DB = it_DB->second;
         
-        std::cout << "Key: " << date_DB << " | Value: " << data_DB << std::endl;
+        //std::cout << "Key: " << date_DB << " | Value: " << data_DB << std::endl;
 
         if (check_date_and_data(date_DB, data_DB, false, double_DB))
             continue;
