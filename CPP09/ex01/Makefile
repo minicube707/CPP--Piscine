@@ -6,7 +6,7 @@
 #    By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 16:36:16 by fmotte            #+#    #+#              #
-#    Updated: 2026/03/09 14:53:17 by fmotte           ###   ########.fr        #
+#    Updated: 2026/03/10 17:00:17 by fmotte           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 #                FLAGS
 # =======================================
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 
 
 
 # =======================================
@@ -40,8 +40,7 @@ OBJ_FILES = $(FILE_NAMES:%=$(OBJ_PATH)/%.o) $(CLASS_FILE:%=$(OBJ_PATH)/%.o)
 HEA_FILES = $(CLASS_FILE:%=$(HEA_PATH)/%.hpp)
 DEP_FILES = $(OBJ_FILES:.o=.d)
 
-NAME =  Reverse_Polish_Notation
-
+NAME =  RPN
 
 # =======================================
 #              RULES

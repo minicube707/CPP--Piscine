@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:49 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/09 18:15:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/10 16:42:03 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,38 @@
 # include <string>
 # include <iostream>
 # include <stack>
-# include <sstream>
 # include <limits>
-#include <cstring>
+# include <cstdlib>
 
 class RPN
 {
     private:
-
-        static const std::string _allowed_operation;    
-        std::stack<std::string> _st;
         
-    public:
+        static const std::string _allowed_operation;    
+        static std::stack<int> _st;
+        
         RPN();
         ~RPN();
         RPN(const RPN& other);
         RPN& operator=(const RPN& other);
-
-        std::string get_allowed_operation();
         
-        void fill(int argc, char **argv);
-        bool calcul();
+    public:
+    
+        static std::string get_allowed_operation();
+        
+        static void calcul(std::string string);
+        
+        static bool do_operation(char operation);
 
-        bool apply_add(const int &a, const int &b, int &res);
-        bool apply_minus(const int &a, const int &b, int &res);
-        bool apply_muly(const int &a, const int &b, int &res);
-        bool apply_div(const int &a, const int &b, int &res);
+        static bool apply_add(const int &a, const int &b, int &res);
+        static bool apply_minus(const int &a, const int &b, int &res);
+        static bool apply_mul(const int &a, const int &b, int &res);
+        static bool apply_div(const int &a, const int &b, int &res);
 
-        bool check_overflow(const long &a);
-        bool check_underflow(const long &a);
+        static bool check_overflow(const int &a, const int &b);
+        static bool check_underflow(const int &a, const int &b);
+
+        static void remove_white_space(std::string& string);
 };
 
 
