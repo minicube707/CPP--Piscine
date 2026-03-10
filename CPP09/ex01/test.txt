@@ -1,0 +1,53 @@
+./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+42
+
+
+./RPN "7 7 * 7 -"
+42
+
+
+./RPN "(1 + 1)"
+Error: Wrong char accept only digit and +-/*
+
+
+./RPN "1 2 +"
+3
+
+./RPN "1 2 +            "
+3
+
+
+./RPN  "1     2     +"
+3
+
+
+./RPN   "        1 2 +"
+3
+
+
+./RPN   "1 _2_+"
+Error: Wrong char accept only digit and +-/*
+
+
+./RPN "10 2 +"  
+Error: Wrong accept only digit between 0 and 9
+
+
+./RPN   "1 0 /"
+Error: division by 0 impossible
+
+
+/RPN   "8 8 8 8 8 8 8 8 8 8 2 * * * * * * * * * * "
+Error: overflow
+
+
+./RPN   "2 0 1 - * 8 8 8 8 8 8 8 8 8 8 * * * * * * * * * *"
+-2147483648
+
+
+./RPN   "2 0 1 - * 8 8 8 8 8 8 8 8 8 8 * * * * * * * * * * 1 -"
+Error: underflow
+
+
+./RPN   "2 0 1 - * 8 8 8 8 8 8 8 8 8 8 * * * * * * * * * * 0  1 - /"
+Error: overflow
