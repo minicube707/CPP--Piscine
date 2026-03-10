@@ -6,18 +6,21 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/09 14:11:05 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/10 17:47:41 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+std::map<std::string, std::string> BitcoinExchange::_map_DB;
+std::map<std::string, std::string> BitcoinExchange::_map_transaction;
+        
 // ====================
 // == Canonical Form ==
 // ====================
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::~BitcoinExchange() {}
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other): _map_DB(other._map_DB), _map_transaction(other._map_transaction) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {(void) other;}
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 {
     if (this == &other)
@@ -31,9 +34,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 
 /*--SETTER-&-GETTER--*/
 std::map<std::string, std::string>& BitcoinExchange::get_map_DB() {return _map_DB;}
-const std::map<std::string, std::string>& BitcoinExchange::get_map_DB() const{ return _map_DB;}
 std::map<std::string, std::string>& BitcoinExchange::get_map_transaction() {return _map_transaction;}
-const std::map<std::string, std::string>& BitcoinExchange::get_map_transaction() const {return _map_transaction;} 
 
 /*------METHODE------*/
 bool BitcoinExchange::extract_file(const std::string& filename, std::string& file_content)
@@ -145,10 +146,10 @@ bool BitcoinExchange::convert_date(const std::string& date, int format_date[3])
 
 bool BitcoinExchange::check_date(const int format_date[3])
 {
-    if (check_years(format_date[0]))
+    if (check_years(format_date[0], format_date[1], format_date[2]))
         return (true);
     
-    if (check_month(format_date[1]))
+    if (check_month(format_date[0], format_date[1], format_date[2]))
         return (true);
     
     if (check_days(format_date[0], format_date[1], format_date[2]))
@@ -157,21 +158,29 @@ bool BitcoinExchange::check_date(const int format_date[3])
     return (false);
 }
 
-bool BitcoinExchange::check_years(const int& years)
+bool BitcoinExchange::check_years(const int& years, const int& month, const int& days)
 {
     if (2009 <= years)
         return (false); 
         
-    std::cerr << "Error: Years out of range (" << years << ")\n";
+    std::cerr << "Error: Years out of range ("
+          << years << "-"
+          << std::setfill('0') << std::setw(2) << month << "-"
+          << std::setfill('0') << std::setw(2) << days << ")\n";
+          
     return (true);
 }
 
-bool BitcoinExchange::check_month(const int& month)
+bool BitcoinExchange::check_month(const int& years, const int& month, const int& days)
 {
     if (1 <= month && month <= 12)
         return (false); 
         
-    std::cerr << "Error: Mouth out of range (" << month << ")\n";
+    std::cerr << "Error: Month out of range ("
+          << years << "-"
+          << std::setfill('0') << std::setw(2) << month << "-"
+          << std::setfill('0') << std::setw(2) << days << ")\n";
+          
     return (true);
 }
 
@@ -186,7 +195,11 @@ bool BitcoinExchange::check_days(const int& years, const int& month, const int& 
     if (1 <= days && days <= day_by_mouth[month - 1])
         return (false); 
     
-    std::cerr << "Error: Days out of range (" << days << ")\n";
+    std::cerr << "Error: Days out of range ("
+          << years << "-"
+          << std::setfill('0') << std::setw(2) << month << "-"
+          << std::setfill('0') << std::setw(2) << days << ")\n";
+          
     return (true);
 }
 
@@ -266,4 +279,38 @@ void BitcoinExchange::display_exchange_rate()
         calcul_exchange_rate = double_DB * double_tr;
         std::cout << calcul_exchange_rate << "\n";
     }
+}
+
+void BitcoinExchange::exchange(const std::string& input_file)
+{
+    std::string file_content;
+    
+    //Parsing data.csv
+    if (extract_file("data.csv", file_content))
+        return;
+        
+    if (parse_file_content(file_content, ',', get_map_DB()))
+        return;
+    
+    //Parsing input.txt
+    file_content.clear();
+    if (extract_file(input_file, file_content))
+        return;
+    if (parse_file_content(file_content, '|', get_map_transaction()))
+        return;
+    
+    /*
+    std::map<std::string, std::string>::iterator it;
+    std::map<std::string, std::string> map = btc.get_map_DB();
+    
+    for (it = map.begin(); it != map.end(); ++it)
+        std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+    
+    std::cout << "\n";
+    map = btc.get_map_transaction();
+    for (it = map.begin(); it != map.end(); ++it)
+        std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+    */
+
+    display_exchange_rate();
 }
