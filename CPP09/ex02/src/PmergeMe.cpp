@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:17 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 19:04:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/11 13:56:40 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ bool PmergeMe::fill_vector(int argc, char **argv)
     {
         std::istringstream convert(argv[i]);
         convert >> ui;
-
+        
+        if (argv[i][0] == '-')
+        {
+            std::cerr << "Error: Can't accept negative number (" << argv[i] << ")\n";
+            return true;
+        }
+        
         if (convert.fail() || !convert.eof())
         {
             std::cerr << "Error: Can't convert (" << argv[i] << ") to type int\n";
