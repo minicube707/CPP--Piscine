@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:53 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 16:57:28 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/12 14:14:15 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 //     // Underflow
 //     assert(RPN::apply_add(std::numeric_limits<int>::min(), -1, res) == true);
 
-//     std::cout << "Addition tests passed ✅\n";
+//     std::cout << "Addition tests passed ✅\n\n";
 
 //     // ======================
 //     // TEST SUBTRACTION
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 //     assert(RPN::apply_minus(std::numeric_limits<int>::max(), -1, res) == true);
 //     assert(RPN::apply_minus(std::numeric_limits<int>::min(), 1, res) == true);
 
-//     std::cout << "Subtraction tests passed ✅\n";
+//     std::cout << "Subtraction tests passed ✅\n\n";
 
 //     // ======================
 //     // TEST MULTIPLICATION
@@ -73,8 +73,10 @@ int main(int argc, char **argv)
 //     // Overflow / underflow
 //     assert(RPN::apply_mul(std::numeric_limits<int>::max(), 2, res) == true);
 //     assert(RPN::apply_mul(std::numeric_limits<int>::min(), 2, res) == true);
-
-//     std::cout << "Multiplication tests passed ✅\n";
+//     assert(RPN::apply_mul(std::numeric_limits<int>::max(), -2, res) == true);
+//     assert(RPN::apply_mul(std::numeric_limits<int>::min(), -2, res) == true);
+    
+//     std::cout << "Multiplication tests passed ✅\n\n";
 
 //     // ======================
 //     // TEST DIVISION
@@ -89,9 +91,9 @@ int main(int argc, char **argv)
 //     // Overflow case INT_MIN / -1
 //     assert(RPN::apply_div(std::numeric_limits<int>::min(), -1, res) == true);
 
-//     std::cout << "Division tests passed ✅\n";
+//     std::cout << "Division tests passed ✅\n\n";
 
-//     std::cout << "All tests passed successfully 🎉\n";
+//     std::cout << "\nAll tests passed successfully 🎉\n";
 
 //     return 0;
 // }
