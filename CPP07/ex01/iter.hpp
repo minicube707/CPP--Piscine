@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 14:56:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/02/24 13:59:55 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/12 14:48:23 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void iter(ADRR *addr, const LEN length, FUNC func)
 {
     if (addr == 0 || func == 0)
         return;
+
     for (LEN i = 0; i < length; ++i)
         func(addr[i]);
 }
