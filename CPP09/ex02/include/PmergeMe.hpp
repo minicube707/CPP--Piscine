@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 18:50:25 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/12 19:23:23 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <iostream>
 # include <sstream>
+# include <algorithm>
 
 class PmergeMe
 {
@@ -32,6 +33,9 @@ class PmergeMe
 
         bool fill_vector(int argc, char **argv);
         void fill_list();
+
+        void merge_sort_vector(unsigned int level);
+        unsigned int get_jacobsthal(const unsigned int n);
 };
 
 
