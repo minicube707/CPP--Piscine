@@ -6,16 +6,11 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:25:23 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/06 17:20:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/12 14:32:36 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-/*
-This is not the official version of project ex01 that will be evaluated.
-This is simply my own implementation of the project.
-*/
 
 void try_catch_short(Span &sp)
 {
