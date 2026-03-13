@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/12 19:23:23 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/13 16:58:06 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,15 @@ class PmergeMe
         void fill_list();
 
         void merge_sort_vector(unsigned int level);
+        void insertion_vector(unsigned int peer_size);
+        
         unsigned int get_jacobsthal(const unsigned int n);
+        
+        std::vector<unsigned int>::iterator binary_search(
+            const unsigned int val, 
+            std::vector<unsigned int>::iterator begin, 
+            std::vector<unsigned int>::iterator end
+        );
 };
 
 
