@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:03:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/12 19:23:09 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/15 16:42:34 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
         return 1;
         
     //pm.fill_list();
-    pm.merge_sort_vector(1);
+    pm.merge_insertoin_sort_vector(0);
     
     return 0;
 }

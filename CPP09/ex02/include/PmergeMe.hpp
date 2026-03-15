@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/13 16:58:06 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/15 18:05:43 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ class PmergeMe
         bool fill_vector(int argc, char **argv);
         void fill_list();
 
-        void merge_sort_vector(unsigned int level);
+        void merge_insertoin_sort_vector(unsigned int level);
         void insertion_vector(unsigned int peer_size);
+        void insertion_smallest_peer_vector(
+            std::vector<unsigned int> vec_main, 
+            std::vector<unsigned int> vec_val_max,
+            const unsigned int peer_size,
+            unsigned int last_index
+        );
         
         unsigned int get_jacobsthal(const unsigned int n);
         
