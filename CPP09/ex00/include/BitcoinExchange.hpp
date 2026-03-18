@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:02:26 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 17:47:12 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/17 14:17:27 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class BitcoinExchange
         /*------METHODE------*/
         static bool extract_file(const std::string& filename, std::string& file_content);
         
-        static bool parse_file_content(std::string& file_content, char sep, std::map<std::string, std::string>& map);
+        static void parse_file_content(std::string& file_content, char sep, std::map<std::string, std::string>& map);
         
         static bool convert_data(const std::string& data, double& ref);
         static bool check_data(const double& ref, bool check_max);

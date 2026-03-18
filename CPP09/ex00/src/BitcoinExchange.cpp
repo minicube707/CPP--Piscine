@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 17:47:41 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/17 14:17:57 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool BitcoinExchange::extract_file(const std::string& filename, std::string& fil
     return (false);
 }
 
-bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, std::map<std::string, std::string>& map)
+void BitcoinExchange::parse_file_content(std::string& file_content, char sep, std::map<std::string, std::string>& map)
 {
     //Remove the header
     file_content.erase(0, file_content.find('\n') + 1);
@@ -92,7 +92,6 @@ bool BitcoinExchange::parse_file_content(std::string& file_content, char sep, st
         if (!data.empty() || !date.empty())
             map.insert(std::make_pair(date, data)); //Syntaxe for cpp98++
     }
-    return (false);
 }
 
 bool BitcoinExchange::convert_data(const std::string& data, double& ref)
@@ -289,15 +288,14 @@ void BitcoinExchange::exchange(const std::string& input_file)
     if (extract_file("data.csv", file_content))
         return;
         
-    if (parse_file_content(file_content, ',', get_map_DB()))
-        return;
+    parse_file_content(file_content, ',', get_map_DB());
     
     //Parsing input.txt
     file_content.clear();
     if (extract_file(input_file, file_content))
         return;
-    if (parse_file_content(file_content, '|', get_map_transaction()))
-        return;
+        
+    parse_file_content(file_content, '|', get_map_transaction());
     
     /*
     std::map<std::string, std::string>::iterator it;
