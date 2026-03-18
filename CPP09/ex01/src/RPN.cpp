@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/10 16:58:45 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/17 14:20:13 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void RPN::calcul(std::string string)
         
     }
     
+    if (_st.size() > 1)
+    {
+        std::cerr << "Error: miss a operation to do the calcul\n";
+        return;
+    }
+    
     //Reverse stack
     std::stack<int> tmp;
     while (!_st.empty())
@@ -96,7 +102,7 @@ bool RPN::do_operation(char operation)
     
     if (_st.size() < 2)
     {
-        std::cerr << "Error: miss a number to do the operation\n";
+        std::cerr << "Error: miss a number to do the calcul\n";
         return true; 
     }
 
@@ -105,7 +111,7 @@ bool RPN::do_operation(char operation)
     tab_int[0] = _st.top();
     _st.pop();
 
-    std::cout << "Operation: "<<tab_int[0] << " " << tab_int[1] << " " << operation << "\n";
+    //std::cout << "Operation: "<<tab_int[0] << " " << tab_int[1] << " " << operation << "\n";
     
     for (size_t  i = 0; i < allowed_operation.length(); i++)
     {
