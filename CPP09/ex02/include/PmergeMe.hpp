@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/16 18:43:34 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/18 17:01:11 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 # include <algorithm>
 # include <iterator>
 # include <ctime>
-
+# include <utility>
+	
 class PmergeMe
 {
     private:
         std::vector<unsigned int> _vector;
-        std::list<unsigned int> _list;
+        unsigned int _last_number;
+        bool _has_last_number;
         
     public:
         PmergeMe();
@@ -54,25 +56,23 @@ class PmergeMe
         
         //Vector
         bool fill_vector(int argc, char **argv);
-        void merge_insertoin_sort_vector(unsigned int level);
-        void insertion_vector(unsigned int peer_size);
-        void insertion_smallest_peer_vector(
-            std::vector<unsigned int> &vec_main, 
-            const unsigned int peer_size,
-            const unsigned int last_index
+        void init_sort_vector();
+        void merge_vector(
+            std::vector<std::pair<unsigned int, unsigned int> >& arr, 
+            unsigned int left, 
+            unsigned int mid, 
+            unsigned int right
         );
+        
+        void merge_sort_vector(
+            std::vector<std::pair<unsigned int, unsigned int> >& arr, 
+            unsigned int left, 
+            unsigned int right
+        );
+        
+        void insertion_smallest_peer_vector(const std::vector<std::pair<unsigned int, unsigned int> >& arr);
+        
         void vector_is_sorted();
         void print_vector();
-        
-        //List
-        void fill_list();
-        void merge_insertoin_sort_list(unsigned int level);
-        void insertion_list(unsigned int peer_size);
-        void insertion_smallest_peer_list(
-            std::list<unsigned int> &vec_main, 
-            const unsigned int peer_size,
-            unsigned int last_index
-        );
-        void list_is_sorted();
 };
 

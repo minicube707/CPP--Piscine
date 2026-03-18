@@ -6,13 +6,13 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:17 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/16 18:46:09 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/18 19:28:32 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){}
+PmergeMe::PmergeMe():_last_number(0), _has_last_number(false){}
 PmergeMe::~PmergeMe(){}
 PmergeMe::PmergeMe(const PmergeMe& other) {*this = other;}
 PmergeMe& PmergeMe::operator=(const PmergeMe& other)
@@ -20,7 +20,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
     if (this != &other)
     {
         _vector = other._vector;
-        _list = other._list;
     }
     return (*this);
 }
@@ -45,7 +44,7 @@ bool PmergeMe::fill_vector(int argc, char **argv)
 {   
     unsigned int ui;
     
-    for (int i = 1 ; i < argc; i++)
+    for (int i = 1 ; i < argc - 1; i++)
     {
         std::istringstream convert(argv[i]);
         convert >> ui;
@@ -62,108 +61,193 @@ bool PmergeMe::fill_vector(int argc, char **argv)
             return true;
         }
         _vector.push_back(ui);
-    }
+    }  
     return false;
 }
 
-void PmergeMe::merge_insertoin_sort_vector(unsigned int level)
+void PmergeMe::init_sort_vector()
 {
-    unsigned int max_fisrt;
-    unsigned int max_second;
-    std::vector<int>::iterator mid_peer;
-    const unsigned int peer_size = 1 << level;
+    std::vector<std::pair<unsigned int, unsigned int> > vec_peer;
+    std::pair<unsigned int, unsigned int> peer;
     
-    if (peer_size > _vector.size())
-        return;
-    
-    //Skip the peer of size 1, because the greater and the smallest isn't distinct
-    if (level > 0)
+    for (size_t i = 0; i < _vector.size() - 1; i += 2)
     {
-        //For each peer
-        for (unsigned int i = 0; i + peer_size <= _vector.size(); i += peer_size)
-        {  
-            std::vector<int> peer(_vector.begin() + i, _vector.begin() + i + peer_size);
+        if (_vector[i] < _vector[i + 1])
+            peer = std::make_pair(_vector[i], _vector[i + 1]);
+        else
+            peer = std::make_pair(_vector[i + 1], _vector[i]);
             
-            max_fisrt = peer[(peer_size / 2) - 1];
-            max_second = peer[peer_size - 1];
-            
-            //If the first is greater than the second, swap
-            if (max_fisrt > max_second)
-            {
-                mid_peer = peer.begin() + (peer_size / 2);
-                std::swap_ranges(peer.begin(), mid_peer, mid_peer);
-                std::copy(peer.begin(), peer.end(), _vector.begin() + i);  
-            } 
-        }
-    }
-    merge_insertoin_sort_vector(++level);
-    insertion_vector(peer_size);
-}
-
-void PmergeMe::insertion_vector(const unsigned int peer_size)
-{
-    std::vector<unsigned int> vec_main;
-    const unsigned int last_index = ((_vector.size()) / peer_size) * peer_size;
-
-    //Add the first smallest peer
-    vec_main.insert(vec_main.begin(), _vector.begin(), _vector.begin() + peer_size);
+        vec_peer.push_back(peer);
+    } 
     
-    //Add the greater peer
-    for (unsigned int i = peer_size; i < last_index; i += 2 * peer_size)
-        vec_main.insert(vec_main.end(), _vector.begin() + i, _vector.begin() + i + peer_size);
-        
-    //insertion find the place for the smallest
-    insertion_smallest_peer_vector(vec_main, peer_size, last_index);
+    if (_vector.size() % 2 == 1)
+    {
+        _has_last_number = true;
+        _last_number = *(_vector.end() -1);
+    }
+    merge_sort_vector(vec_peer, 0, vec_peer.size() -1);
 
-    //Add the rest
-    vec_main.insert(vec_main.end(), _vector.begin() + last_index, _vector.end());
-
-    //Assign the _vector, the sort vector
-    _vector.assign(vec_main.begin(), vec_main.end());
+    insertion_smallest_peer_vector(vec_peer);
 }
 
-void PmergeMe::insertion_smallest_peer_vector(
-    std::vector<unsigned int> &vec_main, 
-    const unsigned int peer_size,
-    const unsigned int last_index
+void PmergeMe::merge_vector(
+    std::vector<std::pair<unsigned int, unsigned int> >& arr, 
+    unsigned int left, 
+    unsigned int mid, 
+    unsigned int right
 )
+{         
+    unsigned int n1 = mid - left + 1;
+    unsigned int n2 = right - mid;
+    
+    // Create temp vectors
+    std::vector<std::pair<unsigned int, unsigned int> > L(n1), R(n2);
+
+    // Copy data to temp vectors L[] and R[]
+    for (unsigned int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+        
+    for (unsigned int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    unsigned int i = 0, j = 0;
+    unsigned int k = left;
+
+    // Merge the temp vectors back 
+    // into arr[left..right]
+    while (i < n1 && j < n2) 
+    {
+        if (L[i].second <= R[j].second)
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of L[], 
+    // if there are any
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of R[], 
+    // if there are any
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+// begin is for left index and end is right index
+// of the sub-array of arr to be sorted
+void PmergeMe::merge_sort_vector(
+    std::vector<std::pair<unsigned int, unsigned int> >& arr, 
+    unsigned int left, 
+    unsigned int right
+)
+{
+    if (left >= right)
+        return;
+        
+    unsigned int mid = left + (right - left) / 2;
+    merge_sort_vector(arr, left, mid);
+    merge_sort_vector(arr, mid + 1, right);
+    merge_vector(arr, left, mid, right);
+}
+
+void PmergeMe::insertion_smallest_peer_vector(const std::vector<std::pair<unsigned int, unsigned int> >& vec_peer)
 {   
-    std::vector<unsigned int> vec_val_max;
+    std::vector<unsigned int> vec_cpy;
+    std::vector<unsigned int> vec_add_index;
     
     unsigned int jacobsthal_number = get_jacobsthal(2);
     unsigned int next_jacobsthal_number;
-    unsigned int peer_max_val;
-    unsigned int index_insert;
+    unsigned int min_number;
+    unsigned int upper_bound;
+    unsigned int test;
     
-    std::vector<unsigned int>::iterator begin;
-    std::vector<unsigned int>::iterator end;
+    std::vector<unsigned int>::iterator it_insert;
+    
+    for (unsigned int i = 0; i <= vec_peer.size() - 1; ++i)
+    {
+        vec_cpy.push_back(vec_peer[i].first);
+        vec_cpy.push_back(vec_peer[i].second);;
+    }
+    
+    std::cout << "\n";
+    for (unsigned int i = 0; i <= vec_cpy.size() - 1; ++i)
+        std::cout << vec_cpy[i] << " ";
+    std::cout << "\n";
     
     //Create a vector with the max value of each peer
-    for (unsigned int i = peer_size; i <= vec_main.size(); i += peer_size)
-        vec_val_max.push_back(vec_main[i-1]);
-    
+    _vector.clear();
+    _vector.push_back(vec_cpy[0]);
+    for (unsigned int i = 1; i <= vec_cpy.size(); i += 2)
+        _vector.push_back(vec_cpy[i]);
+    vec_add_index.assign(_vector.size(), 0);
+
     //While the jacobsthal_number is smaller than greatest index of all peer
-    for (unsigned int i = 2; jacobsthal_number < last_index / peer_size; ++i)
+    for (unsigned int i = 2; jacobsthal_number < vec_cpy.size(); ++i)
     {
         next_jacobsthal_number = get_jacobsthal(i + 1);
         
         // For every index between the next Jacobsthal number and the current Jacobsthal number, iterate backward.
         for (unsigned int j = next_jacobsthal_number; j > jacobsthal_number; --j)
-        {
+        {   
+            
             // This condition is to prevent index out of range while next_jacobsthal_numbern is greater than _vector size
-            if ((j - 1) * 2 < _vector.size() / peer_size)
+            if ((j - 1) * 2 < vec_cpy.size())
             {
-                begin = _vector.begin() + (j - 1) * 2 * peer_size;
-                peer_max_val = *(begin + peer_size - 1);
+                std::cout << "\n";
+                print_vector();
+            
+                min_number = vec_cpy[(j - 1) * 2];
+                upper_bound = (j - 1) * 2 + 1;
+                test = j + i - 2;
+            
+                std::cout << "inser num: " << min_number << "\n";
+                std::cout << "upper boud: " << upper_bound << "\n";
+                std::cout << "the max: " << vec_cpy[upper_bound] << "\n";
+                std::cout << "My max:  " << _vector[test] << "\n";
                 
-                index_insert = binary_search(peer_max_val, vec_val_max.begin(), vec_val_max.end()) - vec_val_max.begin();
-                vec_val_max.insert(vec_val_max.begin() + index_insert, peer_max_val);
+                std::cout << "\nthe index: " << find(_vector.begin(), _vector.end(), vec_cpy[upper_bound]) - _vector.begin()<< "\n";
+                std::cout << "My index:   " << test << "\n";
+                std::cout << "Add index:  " << vec_add_index[upper_bound] << "\n";
+                std::cout << "Se index:   " << test + vec_add_index[upper_bound] << "\n";
                 
-                end = begin + peer_size;
-                vec_main.insert(vec_main.begin() + index_insert * peer_size, begin, end);
-            }
-        }  
+                it_insert = binary_search(min_number, _vector.begin(), _vector.end());
+                _vector.insert(it_insert, min_number); 
+                
+                vec_add_index.push_back(*(vec_add_index.end() - 1));
+                for (unsigned int i = it_insert - _vector.begin(); i < vec_add_index.size(); i++)
+                    vec_add_index[i]++;
+                    
+                std::cout << "Vector index\n";
+                for (unsigned int i = 0; i < vec_add_index.size(); i++)
+                    std::cout << vec_add_index[i] << " ";
+                std::cout << "\n";
+                std::cout << "\n";
+            }    
+        } 
         jacobsthal_number = next_jacobsthal_number;
+    }
+
+    if (_has_last_number)
+    {
+        min_number = _last_number;
+        it_insert = binary_search(min_number, _vector.begin(), _vector.end());
+        _vector.insert(it_insert, min_number);
     }
 }
 
@@ -184,209 +268,7 @@ void PmergeMe::vector_is_sorted()
 
 void PmergeMe::print_vector()
 {
-    for (unsigned int i = 0; i < _vector.size(); ++i)
+    for (size_t i = 0; i < _vector.size(); ++i)
         std::cout << _vector[i] << " ";
     std::cout << "\n";
-}
-
-// ==============================
-//          LIST
-// ==============================
-
-void PmergeMe::fill_list()
-{   
-    std::vector<unsigned int>::iterator it = _vector.begin();
-    std::vector<unsigned int>::iterator ite = _vector.end();
-    
-    for (; it != ite; it++)
-        _list.push_back(*it);
-}
-
-void PmergeMe::merge_insertoin_sort_list(unsigned int level)
-{
-    unsigned int max_first;
-    unsigned int max_second;
-    
-    std::list<unsigned int>::iterator start;
-    std::list<unsigned int>::iterator end;
-    std::list<unsigned int>::iterator it_first;
-    std::list<unsigned int>::iterator it_second;
-    std::list<unsigned int>::iterator mid_peer;
-    std::list<unsigned int>::iterator dest;
-    
-    const unsigned int peer_size = 1 << level;
-    
-    if (peer_size > _list.size())
-        return;
-    
-    //Skip the peer of size 1, because the greater and the smallest isn't distinct
-    if (level > 0)
-    {
-        //For each peer
-        for (unsigned int i = 0; i + peer_size <= _list.size(); i += peer_size)
-        {  
-            
-            start = _list.begin();
-            std::advance(start, i);
-
-            end = start;
-            std::advance(end, peer_size);
-
-            std::list<unsigned int> peer(start, end);
-
-            it_first = peer.begin();
-            std::advance(it_first, (peer_size / 2) - 1);
-
-            it_second = peer.begin();
-            std::advance(it_second, peer_size - 1);
-
-            max_first = *it_first;
-            max_second = *it_second;
-
-            // If the first is greater than the second, swap
-            if (max_first > max_second)
-            {
-                mid_peer = peer.begin();
-                std::advance(mid_peer, peer_size / 2);
-
-                std::swap_ranges(peer.begin(), mid_peer, mid_peer);
-
-                dest = _list.begin();
-                std::advance(dest, i);
-
-                std::copy(peer.begin(), peer.end(), dest);
-            }
-        }
-    }
-    merge_insertoin_sort_list(++level);
-    insertion_list(peer_size);
-}
-
-void PmergeMe::insertion_list(const unsigned int peer_size)
-{
-    std::list<unsigned int> list_main;
-    std::list<unsigned int>::iterator start;
-    std::list<unsigned int>::iterator end;
-    std::list<unsigned int>::iterator it_start;
-    std::list<unsigned int>::iterator it_end;
-    std::list<unsigned int>::iterator rest_start;
-    
-    unsigned int last_index = ((_list.size()) / peer_size) * peer_size;
-
-    // Add the first smallest peer
-    start = _list.begin();
-    end = start;
-    std::advance(end, peer_size);
-    list_main.insert(list_main.begin(), start, end);
-
-    // Add the greater peer
-    for (unsigned int i = peer_size; i < last_index; i += 2 * peer_size)
-    {
-        it_start = _list.begin();
-        std::advance(it_start, i);
-
-        it_end = it_start;
-        std::advance(it_end, peer_size);
-
-        list_main.insert(list_main.end(), it_start, it_end);
-    }
-
-    // insertion find the place for the smallest
-    insertion_smallest_peer_list(list_main, peer_size, last_index);
-
-    // Add the rest
-    rest_start = _list.begin();
-    std::advance(rest_start, last_index);
-
-    list_main.insert(list_main.end(), rest_start, _list.end());
-
-    // Assign the sorted list
-    _list.assign(list_main.begin(), list_main.end());
-}
-
-void PmergeMe::insertion_smallest_peer_list(
-    std::list<unsigned int> &list_main, 
-    const unsigned int peer_size,
-    unsigned int last_index
-)
-{   
-    std::list<unsigned int> vec_val_max;
-
-    unsigned int jacobsthal_number = get_jacobsthal(2);
-    unsigned int next_jacobsthal_number;
-    unsigned int peer_max_val;
-    unsigned int index_insert;
-
-    std::list<unsigned int>::iterator it;
-    std::list<unsigned int>::iterator begin;
-    std::list<unsigned int>::iterator end;
-    std::list<unsigned int>::iterator max_it;
-    std::list<unsigned int>::iterator pos;
-    std::list<unsigned int>::iterator insert_pos;
-    
-    // Create a list with the max value of each peer
-    for (unsigned int i = peer_size; i <= list_main.size(); i += peer_size)
-    {
-        it = list_main.begin();
-        std::advance(it, i - 1);
-        vec_val_max.push_back(*it);
-    }
-
-    for (unsigned int i = 2; jacobsthal_number < last_index / peer_size; ++i)
-    {
-        next_jacobsthal_number = get_jacobsthal(i + 1);
-
-        for (unsigned int j = next_jacobsthal_number; j > jacobsthal_number; --j)
-        {
-            if ((j - 1) * 2 < _list.size() / peer_size)
-            {
-                begin = _list.begin();
-                std::advance(begin, (j - 1) * 2 * peer_size);
-
-                max_it = begin;
-                std::advance(max_it, peer_size - 1);
-                peer_max_val = *max_it;
-
-                pos = binary_search(peer_max_val, vec_val_max.begin(), vec_val_max.end());
-                index_insert = std::distance(vec_val_max.begin(), pos);
-                vec_val_max.insert(pos, peer_max_val);
-
-                end = begin;
-                std::advance(end, peer_size);
-
-                insert_pos = list_main.begin();
-                std::advance(insert_pos, index_insert * peer_size);
-
-                list_main.insert(insert_pos, begin, end);
-            }
-        }
-
-        jacobsthal_number = next_jacobsthal_number;
-    }
-}
-
-void PmergeMe::list_is_sorted()
-{
-    std::list<unsigned int>::iterator prev = _list.begin();
-    std::list<unsigned int>::iterator curr = prev;
-    ++curr;
-
-    size_t index = 1;
-
-    while (curr != _list.end())
-    {
-        if (*prev > *curr)
-        {
-            std::cout << "The list isn't sorted\n";
-            std::cout << *prev << " > " << *curr << "\n";
-            std::cout << "Index: " << index << "\n";
-            return;
-        }
-
-        ++prev;
-        ++curr;
-        ++index;
-    }
-
-    std::cout << "The list is sorted\n";
 }
