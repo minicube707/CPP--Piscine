@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:12 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/18 17:01:11 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/19 16:14:14 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 class PmergeMe
 {
     private:
-        std::vector<unsigned int> _vector;
+        std::vector<unsigned int> _vector_main;
+        std::list<unsigned int> _list_main;
+        
         unsigned int _last_number;
         bool _has_last_number;
         
@@ -57,6 +59,11 @@ class PmergeMe
         //Vector
         bool fill_vector(int argc, char **argv);
         void init_sort_vector();
+        void vector_is_sorted();
+        void print_vector();
+        
+        void insertion_smallest_peer_vector(const std::vector<std::pair<unsigned int, unsigned int> >& arr);
+
         void merge_vector(
             std::vector<std::pair<unsigned int, unsigned int> >& arr, 
             unsigned int left, 
@@ -70,9 +77,28 @@ class PmergeMe
             unsigned int right
         );
         
-        void insertion_smallest_peer_vector(const std::vector<std::pair<unsigned int, unsigned int> >& arr);
         
-        void vector_is_sorted();
-        void print_vector();
+        
+        //List
+        void fill_list();
+        void init_sort_list();
+        void list_is_sorted();
+        void print_list();
+        
+        void insertion_smallest_peer_list(const std::list<std::pair<unsigned int, unsigned int> >& arr);
+        
+        void merge_list(
+            std::list<std::pair<unsigned int, unsigned int> >& arr, 
+            unsigned int left, 
+            unsigned int mid, 
+            unsigned int right
+        );
+
+        void merge_sort_list(
+            std::list<std::pair<unsigned int, unsigned int> >& arr, 
+            unsigned int left, 
+            unsigned int right
+        );
+        
 };
 
