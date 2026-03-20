@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:03:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/19 16:25:39 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 09:32:34 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     pm.fill_list();
     
     std::cout << "Before:\n";
-    //pm.print_vector();
+    pm.print_list();
     
     clock_t start_vector = clock();
     pm.init_sort_vector();

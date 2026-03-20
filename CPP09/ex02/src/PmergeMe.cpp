@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:04:17 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/19 16:25:26 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 09:42:03 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
     if (this != &other)
     {
         _vector_main = other._vector_main;
+        _list_main = other._list_main;
+        _has_last_number = other._has_last_number;
+        _last_number = other._last_number;
     }
     return (*this);
 }
@@ -211,7 +214,9 @@ void PmergeMe::insertion_smallest_peer_vector(const std::vector<std::pair<unsign
                 idx_upper_bound_main = j + jacobsthal_offset + add_idx;
                 ++add_idx;
                    
-                
+                if (idx_upper_bound_main > _list_main.size())
+                    idx_upper_bound_main = _list_main.size();
+                    
                 //Decreasse the upper bound until it reach the max peer
                 while (_vector_main[idx_upper_bound_main] > vec_peer[j - 1].second)
                     idx_upper_bound_main--;
@@ -311,6 +316,7 @@ void PmergeMe::merge_list(
     unsigned int mid,
     unsigned int right)
 {
+    // Create temp lists
     std::list<std::pair<unsigned int, unsigned int> > L;
     std::list<std::pair<unsigned int, unsigned int> > R;
 
@@ -321,7 +327,8 @@ void PmergeMe::merge_list(
     it = arr.begin();
 
     std::advance(it, left);
-
+    
+    // Copy data to temp lists L[] and R[]
     for (unsigned int i = 0; i <= mid - left; ++i, ++it)
         L.push_back(*it);
 
@@ -334,6 +341,8 @@ void PmergeMe::merge_list(
     it = arr.begin();
     std::advance(it, left);
 
+    // Merge the temp lists back 
+    // into arr[left..right]
     while (itL != L.end() && itR != R.end())
     {
         if (itL->second <= itR->second)
@@ -342,9 +351,14 @@ void PmergeMe::merge_list(
             *it++ = *itR++;
     }
 
+
+    // Copy the remaining elements of L[], 
+    // if there are any
     while (itL != L.end())
         *it++ = *itL++;
 
+    // Copy the remaining elements of R[], 
+    // if there are any
     while (itR != R.end())
         *it++ = *itR++;
 }
@@ -366,34 +380,33 @@ void PmergeMe::merge_sort_list(
 
 void PmergeMe::insertion_smallest_peer_list(const std::list<std::pair<unsigned int, unsigned int> >& list_peer)
 {   
-    unsigned int jacobsthal_number = get_jacobsthal(2);
     unsigned int next_jacobsthal_number;
     unsigned int number_to_insert;
-    
+    unsigned int add_idx;
+    unsigned int jacobsthal_number = get_jacobsthal(2);
+    unsigned int jacobsthal_offset = 0;
+
+    size_t idx_upper_bound_main;
     size_t len_list_peer = list_peer.size();
     
-    std::list<std::pair<unsigned int, unsigned int> >::const_iterator it_begin = list_peer.begin();
     std::list<std::pair<unsigned int, unsigned int> >::const_iterator it;
     std::list<unsigned int>::iterator it_insert;
-    
-    for (it = it_begin; it != list_peer.end(); ++it)
-        std::cout << it->first << " " << it->second << " ";
-    std::cout << "\n";
+    std::list<unsigned int>::iterator it_upper_bound_main;
     
     //Create a vector with the max value of each peer
     _list_main.clear();
     _list_main.push_back(list_peer.begin()->first);
-    for (it = it_begin; it != list_peer.end(); ++it)
+    for (it = list_peer.begin(); it != list_peer.end(); ++it)
         _list_main.push_back(it->second);
-    
-    print_list();
-    
+       
+        
     //While the jacobsthal_number is smaller than greatest index of all peer
     for (size_t i = 2; jacobsthal_number < len_list_peer; ++i)
     {
-
+        
         next_jacobsthal_number = get_jacobsthal(i + 1);
-
+        add_idx = 0;
+        
         // For every index between the next Jacobsthal number and the current Jacobsthal number, iterate backward.
         for (size_t j = next_jacobsthal_number; j > jacobsthal_number; --j)
         {   
@@ -405,15 +418,29 @@ void PmergeMe::insertion_smallest_peer_list(const std::list<std::pair<unsigned i
                 std::advance(it, j - 1);
                 
                 number_to_insert = (*it).first;
-                std::cout << "Number to insert: " << number_to_insert << "\n";
-                std::cout << "Max: " << (*it).second << "\n";
-                std::cout << "\n";
                 
-                it_insert = binary_search(number_to_insert, _list_main.begin(), _list_main.end());
+                idx_upper_bound_main = j + jacobsthal_offset + add_idx;
+                ++add_idx;
+                
+                if (idx_upper_bound_main > _list_main.size())
+                    idx_upper_bound_main = _list_main.size();
+        
+                it_upper_bound_main = _list_main.begin();
+                std::advance(it_upper_bound_main, idx_upper_bound_main);
+                
+                it_insert = binary_search(number_to_insert, _list_main.begin(), it_upper_bound_main);
                 _list_main.insert(it_insert, number_to_insert); 
             }    
         }
+        jacobsthal_offset += next_jacobsthal_number - jacobsthal_number;
         jacobsthal_number = next_jacobsthal_number;
+    }
+
+    if (_has_last_number)
+    {
+        number_to_insert = _last_number;
+        it_insert = binary_search(number_to_insert, _list_main.begin(), _list_main.end());
+        _list_main.insert(it_insert, number_to_insert);
     }
 }
 
