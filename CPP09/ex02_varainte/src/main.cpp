@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:03:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/16 18:35:39 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 12:08:10 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int main(int argc, char **argv)
     std::cout << "After:\n";
     pm.print_vector();
     
-    double time_vector = double(end_vector - start_vector) / CLOCKS_PER_SEC;
-    double time_list = double(end_list - start_list) / CLOCKS_PER_SEC;
+    double time_vector = double(end_vector - start_vector) * 1000000 / CLOCKS_PER_SEC;;
+    double time_list = double(end_list - start_list) * 1000000 / CLOCKS_PER_SEC;;
 
     std::cout << "\n";
-    std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << time_vector << "\n";
-    std::cout << "Time to process a range of " << argc - 1 << " elements with std::list: " << time_list << "\n";
+    std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector: " << time_vector << " us\n";
+    std::cout << "Time to process a range of " << argc - 1 << " elements with std::list: " << time_list << " us\n";
     
     std::cout << "\n";
     pm.vector_is_sorted();
