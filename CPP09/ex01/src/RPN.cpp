@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/17 14:20:13 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 11:43:37 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ RPN& RPN::operator=(const RPN& other)
 void RPN::calcul(std::string string)
 {
     std::string allowed_operation = get_allowed_operation();
+    char tmp_char;
     
     remove_white_space(string);
     
     while (!string.empty())
     {
-        
-        if (std::isdigit((string[0])) && std::isdigit((string[1])))
+        tmp_char = string[0];
+        if (std::isdigit((tmp_char)))
         {
-            std::cerr << "Error: Wrong accept only digit between 0 and 9\n";
-            return;
+            std::cout <<  "\n";
+            std::cout << "str: " << tmp_char << "\n";
+            std::cout << "add: " << std::atoi(&tmp_char) << "\n";
+            _st.push(std::atoi(&tmp_char));
         }
-        
-        else if (std::isdigit((string[0])))
-            _st.push(std::atoi(&string[0]));
 
         
-        else if (allowed_operation.find(string[0]) != std::string::npos)
+        else if (allowed_operation.find(tmp_char) != std::string::npos)
         {
-            if (do_operation(string[0]))
+            if (do_operation(tmp_char))
                 return;
         }
         else
