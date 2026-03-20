@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 13:03:11 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/17 14:17:57 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 17:29:48 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ bool BitcoinExchange::extract_file(const std::string& filename, std::string& fil
     {
         if (!f.eof())
             line.append("\n");
+        else
+            break;
+            
         data.append(line);
     }
     f.close();
