@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/20 11:43:37 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/20 11:52:17 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ void RPN::calcul(std::string string)
     {
         tmp_char = string[0];
         if (std::isdigit((tmp_char)))
-        {
-            std::cout <<  "\n";
-            std::cout << "str: " << tmp_char << "\n";
-            std::cout << "add: " << std::atoi(&tmp_char) << "\n";
             _st.push(std::atoi(&tmp_char));
-        }
 
         
         else if (allowed_operation.find(tmp_char) != std::string::npos)
