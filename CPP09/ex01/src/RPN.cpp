@@ -6,7 +6,7 @@
 /*   By: fmotte <fmotte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:20:51 by fmotte            #+#    #+#             */
-/*   Updated: 2026/03/20 11:52:17 by fmotte           ###   ########.fr       */
+/*   Updated: 2026/03/21 16:38:47 by fmotte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,9 @@ void RPN::calcul(std::string string)
         std::cerr << "Error: miss a operation to do the calcul\n";
         return;
     }
-    
-    //Reverse stack
-    std::stack<int> tmp;
-    while (!_st.empty())
-    {
-        tmp.push(_st.top());
-        _st.pop();
-    }
-    
+
     //Resultat
-    while (!tmp.empty())
-    {
-        std::cout << tmp.top() << " ";
-        tmp.pop();
-    }
-    std::cout <<  "\n";
+    std::cout << _st.top() << "\n";
 }
 
 std::string RPN::get_allowed_operation() {return _allowed_operation;}
@@ -209,27 +196,6 @@ bool RPN::apply_div(const int &a, const int &b, int &res)
     }
         
     res = a / b;
-    return false;
-}
-
-
-bool RPN::check_overflow(const int &a, const int &b)
-{
-    if (a > b)
-    { 
-        std::cerr << "Error: overflow\n";
-        return true;
-    }
-    return false;
-}
-
-bool RPN::check_underflow(const int &a, const int &b)
-{
-    if (a < b)
-    { 
-        std::cerr << "Error: underflow\n";
-        return true;
-    }
     return false;
 }
 
